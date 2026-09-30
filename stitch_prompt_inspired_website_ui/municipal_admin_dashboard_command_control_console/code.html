@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed":"#00201d","primary":"#00652c","on-secondary-fixed-variant":"#314863","secondary-fixed-dim":"#b0c9e8","status-progress":"#0284C7","status-resolved-soft":"#DCFCE7","civic-navy-dark":"#0A1B2C","error-container":"#ffdad6","secondary-container":"#c7dfff","surface-container-highest":"#d3e4fe","on-error":"#ffffff","surface-card":"#FFFFFF","alert-amber":"#D97706","on-primary-container":"#d3ffd5","segregation-hazardous":"#EA580C","surface":"#f8f9ff","on-error-container":"#93000a","error":"#ba1a1a","surface-bright":"#f8f9ff","tertiary-container":"#007d73","primary-fixed-dim":"#79db8d","on-surface":"#0b1c30","civic-navy-subtle":"#F0F4F8","status-critical-soft":"#FEE2E2","surface-container-low":"#eff4ff","segregation-dry":"#2563EB","on-primary-fixed-variant":"#005323","status-critical":"#DC2626","on-secondary":"#ffffff","status-progress-soft":"#E0F2FE","primary-container":"#15803d","inverse-on-surface":"#eaf1ff","on-background":"#0b1c30","surface-dim":"#cbdbf5","surface-variant":"#d3e4fe","on-primary":"#ffffff","inverse-primary":"#79db8d","alert-amber-soft":"#FEF3C7","on-tertiary-fixed-variant":"#005049","tertiary":"#00625a","outline":"#6f7a6e","surface-border":"#E2E8F0","surface-container-lowest":"#ffffff","secondary":"#49607c","on-tertiary":"#ffffff","surface-canvas":"#F8FAFC","secondary-fixed":"#d1e4ff","inverse-surface":"#213145","on-primary-fixed":"#00210a","surface-container":"#e5eeff","outline-variant":"#becabc","primary-fixed":"#95f8a7","segregation-wet":"#16A34A","surface-tint":"#006d30","tertiary-fixed-dim":"#6bd8cb","on-tertiary-container":"#c5fff5","on-secondary-fixed":"#011d35","background":"#f8f9ff","tertiary-fixed":"#89f5e7","surface-container-high":"#dce9ff","on-surface-variant":"#3f493f","status-resolved":"#15803D","on-secondary-container":"#4b637e"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"gutter":"1.25rem","space-md":"1rem","margin-mobile":"1rem","margin":"2rem","space-xl":"2.25rem","space-sm":"0.5rem","gutter-mobile":"0.75rem","space-lg":"1.5rem","space-xs":"0.25rem"},fontFamily:{"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Inter"],"label-sm":["Inter"],"body-sm":["Inter"],"title-lg":["Plus Jakarta Sans"],"body-lg":["Inter"],"body-md":["Inter"],"headline-xl":["Plus Jakarta Sans"],"label-lg":["Inter"],"stat-counter":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"]},fontSize:{"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.03em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"title-lg":["18px",{lineHeight:"26px",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-xl":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"stat-counter":["32px",{lineHeight:"38px",letterSpacing:"-0.02em",fontWeight:"800"}],"headline-xl-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.01em",fontWeight:"700"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-civic-navy-dark text-inverse-on-surface"><div class="max-w-7xl mx-auto px-gutter flex items-center justify-between h-9 font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-xs font-label-md text-label-md"><span class="material-symbols-outlined text-[16px] text-primary-fixed">assured_workload</span>Government of India</span><span class="hidden sm:inline text-secondary-fixed-dim">•</span><span class="hidden sm:inline text-secondary-fixed-dim">Swachh Bharat Mission (Urban)</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[15px] text-alert-amber">call</span><span class="text-secondary-fixed-dim">Toll Free Helpline:</span><span class="font-label-md text-label-md text-surface-card font-bold">1969</span></div><div class="flex items-center rounded-full bg-inverse-surface px-space-xs py-0.5 gap-space-xs"><button class="px-space-xs py-0.5 rounded-full bg-primary font-label-sm text-label-sm text-on-primary">EN</button><button class="px-space-xs py-0.5 rounded-full hover:bg-surface-container-high hover:text-on-surface font-label-sm text-label-sm text-secondary-fixed-dim transition-colors">HI</button></div></div></div></div><div class="h-20 max-w-7xl mx-auto px-gutter flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Waste Management Portal Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBms-fBXHu3hmhKWsrc6Kkuy-hvBJsP_oQeyhfZS5NMRHcf2PMNYwzsMB3A1AvSN1Mt6abUfV9ktrvZflZN4q15fcqNmEixFa2WuvuL5xZ3X_5iqsfZbtMnI09Gd8avjOktzsxOvJGIQHrTXb5NAnFYztYwfA7gyQdZrSsF-avH3RaypByDI7i1k10QRKsRmhA_VMBHIQjGCSbrMDOrFqOU4d80G5z5rCMO12B9pDnkfd9WBjoMn_qD"/><div class="flex flex-col"><span class="font-title-md text-title-md text-primary tracking-tight font-bold">Swachh Bharat</span><span class="font-label-sm text-label-sm text-on-surface-variant">Integrated Waste Management System</span></div></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-title-md"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="report-waste" href="#">Report Waste</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="pickup-request" href="#">Pickup Request</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="track-complaint" href="#">Track Complaint</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="awareness-guide" href="#">Awareness Guide</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="admin-portal" href="#">Admin Portal</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors shadow-[0_1px_3px_rgba(15,41,66,0.05)]" data-path="citizen-login" href="#">Citizen Login / Register</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface flex-1"><div class="flex flex-col w-full">
+<!-- Command Room Context Sub-Bar (Integrated directly beneath primary header) -->
+<div class="w-full bg-civic-navy-dark text-inverse-on-surface border-b border-surface-border/10 py-space-sm px-gutter">
+<div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-space-md">
+<!-- ULB Zone & Ward Switcher -->
+<div class="flex items-center gap-space-md flex-wrap">
+<div class="flex items-center gap-space-xs bg-surface-card/10 px-space-md py-1.5 rounded-lg border border-surface-card/15 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">domain</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim">Urban Local Body</span>
+<div class="flex items-center gap-1 cursor-pointer group">
+<span class="font-label-lg text-label-lg font-semibold text-white tracking-tight">North Delhi Municipal Corporation (North DMC)</span>
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed-dim group-hover:text-white transition-colors">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-xs bg-surface-card/10 px-space-md py-1.5 rounded-lg border border-surface-card/15">
+<span class="material-symbols-outlined text-[18px] text-alert-amber">location_on</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim">Active Zone</span>
+<span class="font-label-lg text-label-lg text-white font-medium">Zone 04 - Central Ward 28</span>
+</div>
+</div>
+<!-- Telemetry Status Beacon -->
+<div class="flex items-center gap-2 px-space-md py-1.5 rounded-full bg-status-resolved/20 border border-status-resolved/30">
+<span class="relative flex h-2.5 w-2.5">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-fixed opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary-fixed"></span>
+</span>
+<span class="font-label-sm text-label-sm font-semibold tracking-wide text-primary-fixed uppercase">24/7 Command Live Telemetry</span>
+</div>
+</div>
+<!-- Officer Identification & Quick Session Badge -->
+<div class="flex items-center gap-space-md">
+<div class="flex items-center gap-space-sm text-right">
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold text-white tracking-tight">Rajesh Kumar, IAS</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim">Joint Commissioner (Swachhata &amp; Solid Waste)</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-white font-bold text-sm shadow-sm ring-2 ring-primary-fixed/30">
+            RK
+          </div>
+</div>
+<button class="bg-surface-card/10 hover:bg-surface-card/20 text-white p-2 rounded-lg transition-colors flex items-center justify-center" title="Refresh Live Feeds">
+<span class="material-symbols-outlined text-[18px]">sync</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Operational Control Canvas -->
+<div class="w-full bg-surface-canvas py-space-md px-gutter">
+<div class="max-w-7xl mx-auto flex flex-col gap-space-lg">
+<!-- SECTION 1: Top Executive KPI Summary Row -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<!-- KPI 1: Active Complaints -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm border border-surface-border flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-secondary">Active Grievances</span>
+<span class="font-body-sm text-body-sm text-outline">Total Complaints</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-status-critical-soft text-status-critical flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">report_problem</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-stat-counter text-stat-counter text-civic-navy-dark font-extrabold tracking-tight">1,428</span>
+<span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-full text-label-sm font-semibold bg-status-resolved-soft text-status-resolved">
+<span class="material-symbols-outlined text-[13px]">arrow_downward</span> 12%
+            </span>
+</div>
+<div class="mt-space-xs pt-space-xs border-t border-surface-border/60 flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant font-medium">92 resolved today</span>
+<span class="font-label-sm text-status-resolved font-semibold">93.5% Cleared</span>
+</div>
+</div>
+<!-- KPI 2: Fleet Status -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm border border-surface-border flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-secondary">Fleet Telemetry Active</span>
+<span class="font-body-sm text-body-sm text-outline">Active Operations</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-status-progress-soft text-status-progress flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-stat-counter text-stat-counter text-civic-navy-dark font-extrabold tracking-tight">184<span class="text-xl font-normal text-secondary">/196</span></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-status-progress-soft text-status-progress">
+              94% Route
+            </span>
+</div>
+<div class="mt-space-xs pt-space-xs border-t border-surface-border/60 flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant">12 in depot / maintenance</span>
+<span class="font-label-sm text-secondary font-semibold">48 EV Tippers</span>
+</div>
+</div>
+<!-- KPI 3: SLA Resolution Time -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm border border-surface-border flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-secondary">Mean Resolution Time</span>
+<span class="font-body-sm text-body-sm text-outline">Average SLA TAT</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-status-resolved-soft text-status-resolved flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">timer</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-stat-counter text-stat-counter text-civic-navy-dark font-extrabold tracking-tight">2.4<span class="text-xl font-normal text-secondary"> hrs</span></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-status-resolved-soft text-status-resolved">
+              Target: 4.0h
+            </span>
+</div>
+<div class="mt-space-xs pt-space-xs border-t border-surface-border/60 flex items-center justify-between text-body-sm">
+<span class="text-on-surface-variant">On-time compliance</span>
+<span class="font-label-sm text-status-resolved font-semibold">98.2% SLA</span>
+</div>
+</div>
+<!-- KPI 4: Daily Waste Collected -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm border border-surface-border flex flex-col justify-between hover:shadow-md transition-shadow">
+<div class="flex items-start justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold uppercase tracking-wider text-secondary">Daily Waste Tonnage</span>
+<span class="font-body-sm text-body-sm text-outline">Total Daily Collection</span>
+</div>
+<div class="w-9 h-9 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">delete_sweep</span>
+</div>
+</div>
+<div class="mt-space-sm flex items-baseline gap-space-sm">
+<span class="font-stat-counter text-stat-counter text-civic-navy-dark font-extrabold tracking-tight">1,840<span class="text-xl font-normal text-secondary"> MT</span></span>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-label-sm font-semibold bg-surface-container-high text-primary font-bold">
+              +4.1%
+            </span>
+</div>
+<!-- Integrated Micro Segregation Bar -->
+<div class="mt-space-xs pt-space-xs border-t border-surface-border/60 flex flex-col gap-1">
+<div class="w-full h-2 rounded-full overflow-hidden flex bg-surface-container">
+<div class="bg-segregation-wet h-full" style="width: 62%" title="Wet Waste: 62%"></div>
+<div class="bg-segregation-dry h-full" style="width: 31%" title="Dry Waste: 31%"></div>
+<div class="bg-segregation-hazardous h-full" style="width: 7%" title="Hazardous/C&amp;D: 7%"></div>
+</div>
+<div class="flex items-center justify-between text-label-sm text-secondary font-medium">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-segregation-wet"></span> 62% Wet</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-segregation-dry"></span> 31% Dry</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-segregation-hazardous"></span> 7% C&amp;D</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2: Split Command Grid (Map/Fleet vs Escalation/Scores) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT COLUMN (7 of 12 columns = ~58-60%) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- GIS & AI Hotspot Heatmap Console -->
+<div class="bg-surface-card rounded-xl border border-surface-border shadow-sm overflow-hidden flex flex-col">
+<!-- Console Header -->
+<div class="p-space-md border-b border-surface-border flex flex-wrap items-center justify-between gap-space-sm bg-surface-container-lowest">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">map</span>
+<div>
+<h2 class="font-title-md text-title-md font-bold text-civic-navy-dark leading-tight">Geospatial AI Waste Density Map • Ward 28 &amp; Karol Bagh Sector</h2>
+<p class="font-body-sm text-body-sm text-secondary">Real-time Waste Density Radar &amp; Smart Bin Telemetry</p>
+</div>
+</div>
+<!-- Map Control Pill Controls -->
+<div class="flex items-center gap-1 bg-surface-canvas p-1 rounded-lg border border-surface-border">
+<button class="px-2.5 py-1 text-label-sm font-semibold rounded bg-surface-card text-civic-navy-dark shadow-sm">Hotspot (Heatmap)</button>
+<button class="px-2.5 py-1 text-label-sm font-medium rounded text-secondary hover:text-civic-navy-dark transition-colors">Fleet Route</button>
+<button class="px-2.5 py-1 text-label-sm font-medium rounded text-secondary hover:text-civic-navy-dark transition-colors">Smart Bins (IoT Bins)</button>
+</div>
+</div>
+<!-- Heatmap Visualization Body Container -->
+<div class="relative w-full h-[410px] bg-slate-100 overflow-hidden">
+<!-- Location Map Container Component -->
+<div class="w-full h-full bg-cover bg-center" data-location="Karol Bagh, New Delhi, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCP-NmmsVQy4LQ_nZ4zoMLLLe1iiRh6DDyGnTfuu_pfX4IIp3wtnaJoVXknYs6QjpHjBUcfH4wo7lzcj7tejSgO-MCxT9dcS66O--Aa1nuu38ArDdgWyz9jKqFruvUHQuIH7Lt0IRsqrZRIQOLT5bGz2pAI8PaQ-O8oIHQd7DE3XZpRPQAUF_3rdiLRHnlJuyem1tJ_z9KWw2deFIOxX1SXQO4JINp0Yc-RWsKSzFi-k-vx5vkVhkXf');">
+</div>
+<!-- Interactive HUD Map Overlay Layer -->
+<div class="absolute inset-0 pointer-events-none p-space-md flex flex-col justify-between">
+<!-- Top Map Tags and Layer Legend -->
+<div class="flex items-center justify-between gap-space-sm flex-wrap pointer-events-auto">
+<div class="bg-surface-card/95 backdrop-blur-md px-space-md py-1.5 rounded-lg border border-surface-border shadow-sm flex items-center gap-3">
+<span class="font-label-sm text-label-sm font-bold text-civic-navy-dark uppercase">Active Radar Filters:</span>
+<span class="flex items-center gap-1 text-label-sm text-status-critical font-semibold">
+<span class="w-2.5 h-2.5 rounded-full bg-status-critical animate-ping"></span> 4 Critical Overflows
+                    </span>
+<span class="flex items-center gap-1 text-label-sm text-alert-amber font-medium">
+<span class="w-2.5 h-2.5 rounded-full bg-alert-amber"></span> 9 Smart Bins &gt;75%
+                    </span>
+</div>
+<div class="bg-surface-card/95 backdrop-blur-md px-2 py-1 rounded-lg border border-surface-border shadow-sm flex items-center gap-1">
+<button class="p-1 text-secondary hover:text-civic-navy-dark"><span class="material-symbols-outlined text-[18px]">layers</span></button>
+<button class="p-1 text-secondary hover:text-civic-navy-dark"><span class="material-symbols-outlined text-[18px]">my_location</span></button>
+<button class="p-1 text-secondary hover:text-civic-navy-dark"><span class="material-symbols-outlined text-[18px]">fullscreen</span></button>
+</div>
+</div>
+<!-- Simulated Floating Hotspot Markers on Canvas -->
+<div class="relative w-full h-full pointer-events-auto">
+<!-- Hotspot Pin 1: Critical Overflow (Sec 14 Market) -->
+<div class="absolute top-1/4 left-1/3 transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer">
+<div class="relative flex items-center justify-center">
+<span class="animate-ping absolute inline-flex h-10 w-10 rounded-full bg-status-critical opacity-75"></span>
+<div class="w-8 h-8 rounded-full bg-status-critical text-white flex items-center justify-center shadow-lg border-2 border-white">
+<span class="material-symbols-outlined text-[16px]">delete_forever</span>
+</div>
+</div>
+<!-- Tooltip Card Hover State -->
+<div class="absolute left-1/2 -translate-x-1/2 bottom-10 w-56 p-space-sm bg-surface-card rounded-lg shadow-xl border border-surface-border pointer-events-none hidden group-hover:block z-20">
+<span class="font-label-sm text-label-sm font-bold text-status-critical flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">warning</span> Critical Overflow (98% Full)
+                      </span>
+<p class="font-body-sm text-body-sm text-civic-navy-dark font-medium mt-0.5">Community Park, Sector 14</p>
+<p class="font-label-sm text-secondary">3 Citizen Grievances • 45m left</p>
+</div>
+</div>
+<!-- Hotspot Pin 2: Moving Compactor (DL-04-E-9042) -->
+<div class="absolute top-1/2 right-1/4 transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer">
+<div class="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center shadow-md border-2 border-white">
+<span class="material-symbols-outlined text-[14px]">local_shipping</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 bottom-9 w-48 p-2 bg-surface-card rounded-lg shadow-lg border border-surface-border hidden group-hover:block z-20">
+<p class="font-label-sm text-primary font-bold">DL-04-E-9042 (Compactor)</p>
+<p class="font-label-sm text-secondary">Driver: Sunil Pal • Speed: 18 km/h</p>
+</div>
+</div>
+<!-- Hotspot Pin 3: Normal Smart Bin -->
+<div class="absolute bottom-1/4 left-1/4 transform -translate-x-1/2 -translate-y-1/2 group cursor-pointer">
+<div class="w-6 h-6 rounded-full bg-segregation-wet text-white flex items-center justify-center shadow-sm border border-white">
+<span class="material-symbols-outlined text-[12px]">check</span>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 bottom-8 w-44 p-2 bg-surface-card rounded-lg shadow-lg border border-surface-border hidden group-hover:block z-20">
+<p class="font-label-sm text-segregation-wet font-bold">Smart Bin #104 (Ward 28)</p>
+<p class="font-label-sm text-secondary">Fill Level: 34% (Normal)</p>
+</div>
+</div>
+</div>
+<!-- Bottom Floating Quick Action Dispatch Dock -->
+<div class="flex items-center justify-between bg-surface-card/95 backdrop-blur-md p-space-sm rounded-xl border border-surface-border shadow-md pointer-events-auto">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">near_me</span>
+<span class="font-label-sm text-label-sm font-semibold text-civic-navy-dark">Quick Actions:</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-3 py-1.5 bg-primary hover:bg-primary-container text-white rounded-lg font-label-sm text-label-sm font-medium transition-colors shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">electric_bolt</span> Dispatch Nearest EV Compactor
+                    </button>
+<button class="px-3 py-1.5 bg-surface-container-high hover:bg-surface-variant text-civic-navy-dark rounded-lg font-label-sm text-label-sm font-medium transition-colors flex items-center gap-1">
+<span class="material-symbols-outlined text-[15px]">videocam</span> Drone Surveillance
+                    </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Heatmap Intensity Legend Footer -->
+<div class="py-2 px-space-md bg-surface-container-lowest border-t border-surface-border flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-secondary">Waste Accumulation Density (AI Density Metric):</span>
+<div class="h-2 w-32 rounded-full bg-gradient-to-r from-segregation-wet via-alert-amber to-status-critical"></div>
+<span class="font-label-sm text-secondary">Low → Critical</span>
+</div>
+<span class="font-label-sm text-outline">Last satellite refresh: 2 mins ago</span>
+</div>
+</div>
+<!-- Active Sanitation Fleet Telemetry -->
+<div class="bg-surface-card rounded-xl border border-surface-border shadow-sm p-space-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">directions_bus</span>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-civic-navy-dark leading-snug">Active Sanitation Vehicles &amp; Crew Telemetry</h3>
+<p class="font-body-sm text-body-sm text-secondary">Active Sanitation Vehicles &amp; Crew Dispatch • Ward 28</p>
+</div>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-primary px-2.5 py-1 rounded-full font-bold">184 Active Routes</span>
+</div>
+<!-- Vehicle Rows -->
+<div class="flex flex-col gap-space-sm">
+<!-- Vehicle 1 -->
+<div class="p-space-sm rounded-lg bg-surface-canvas border border-surface-border hover:border-primary/40 transition-colors flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">fire_truck</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-bold text-civic-navy-dark tracking-tight">DL-04-E-9042</span>
+<span class="text-label-sm px-1.5 py-0.5 rounded bg-status-resolved-soft text-status-resolved font-semibold">407 Hydraulic Compactor</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">Sunil Pal (Driver) + 2 helpers • Route #4 (Ward 28)</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-2 md:pt-0 border-surface-border/50">
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-status-progress font-semibold flex items-center gap-1 justify-end">
+<span class="w-1.5 h-1.5 rounded-full bg-status-progress animate-pulse"></span> Heading to Bin #28
+                    </span>
+<span class="font-body-sm text-body-sm text-outline">Speed: 18 km/h • Fuel: 82%</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 text-secondary hover:text-primary hover:bg-surface-card rounded-lg transition-colors" title="Quick Re-route">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+</button>
+<button class="p-2 text-secondary hover:text-status-progress hover:bg-surface-card rounded-lg transition-colors" title="Radio Call">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Vehicle 2 -->
+<div class="p-space-sm rounded-lg bg-surface-canvas border border-surface-border hover:border-primary/40 transition-colors flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-segregation-dry text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">electric_car</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-bold text-civic-navy-dark tracking-tight">DL-01-EV-3180</span>
+<span class="text-label-sm px-1.5 py-0.5 rounded bg-status-progress-soft text-status-progress font-semibold">Zero-Emission EV Tipper</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">Mahendra Singh • Bulk &amp; E-Waste Special Pickup</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-2 md:pt-0 border-surface-border/50">
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-status-resolved font-semibold flex items-center gap-1 justify-end">
+<span class="material-symbols-outlined text-[14px]">home</span> Citizen Doorstep (Sector 4)
+                    </span>
+<span class="font-body-sm text-body-sm text-outline">Battery: 74% • Pickups done: 8/12</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 text-secondary hover:text-primary hover:bg-surface-card rounded-lg transition-colors" title="Quick Re-route">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+</button>
+<button class="p-2 text-secondary hover:text-status-progress hover:bg-surface-card rounded-lg transition-colors" title="Radio Call">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Vehicle 3 -->
+<div class="p-space-sm rounded-lg bg-surface-canvas border border-surface-border hover:border-primary/40 transition-colors flex flex-col md:flex-row items-start md:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-10 h-10 rounded-lg bg-alert-amber text-white flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">construction</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-bold text-civic-navy-dark tracking-tight">DL-09-C-5512</span>
+<span class="text-label-sm px-1.5 py-0.5 rounded bg-alert-amber-soft text-alert-amber font-semibold">JCB Compact Loader</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary truncate">Amit Sharma • C&amp;D Debris Removal Operation</span>
+</div>
+</div>
+<div class="flex items-center gap-space-md shrink-0 w-full md:w-auto justify-between md:justify-end border-t md:border-t-0 pt-2 md:pt-0 border-surface-border/50">
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-alert-amber font-semibold">Ring Road Industrial Area</span>
+<span class="font-body-sm text-body-sm text-outline">Scheduled Task</span>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 text-secondary hover:text-primary hover:bg-surface-card rounded-lg transition-colors" title="Quick Re-route">
+<span class="material-symbols-outlined text-[18px]">alt_route</span>
+</button>
+<button class="p-2 text-secondary hover:text-status-progress hover:bg-surface-card rounded-lg transition-colors" title="Radio Call">
+<span class="material-symbols-outlined text-[18px]">phone_in_talk</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN (5 of 12 columns = ~40-42%) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Critical SLA Alerts & Escalations Queue -->
+<div class="bg-surface-card rounded-xl border border-surface-border shadow-sm p-space-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between border-b border-surface-border pb-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-status-critical text-[22px]">notification_important</span>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-civic-navy-dark leading-tight">Critical SLA Alerts &amp; Auto Escalations</h3>
+<p class="font-body-sm text-body-sm text-secondary">High Priority &amp; SLA Breach Watch</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full text-label-sm font-bold bg-status-critical-soft text-status-critical">3 Critical</span>
+</div>
+<!-- Escalation Cards Stack -->
+<div class="flex flex-col gap-space-sm">
+<!-- SLA Alert 1: Critical -->
+<div class="p-space-sm rounded-lg bg-status-critical-soft/30 border-l-4 border-l-status-critical border-t border-r border-b border-surface-border flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm font-bold text-status-critical">#SBM-2026-9812 • Ward 28</span>
+<span class="font-label-sm text-status-critical bg-status-critical-soft px-2 py-0.5 rounded-full font-bold">45m to SLA Breach</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-civic-navy-dark">Public Dustbin Overflow (Encroachment)</span>
+<span class="font-body-sm text-body-sm text-secondary">Location: Community Park, Sector 14 Market | Elapsed: 3h 15m</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-status-critical/10 text-label-sm">
+<span class="text-outline">Escalated: Zonal Sanitary Inspector</span>
+<button class="text-primary font-bold hover:underline flex items-center gap-0.5">
+                    Dispatch Crew Now <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- SLA Alert 2: Warning Amber -->
+<div class="p-space-sm rounded-lg bg-alert-amber-soft/30 border-l-4 border-l-alert-amber border-t border-r border-b border-surface-border flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm font-bold text-alert-amber">#SBM-2026-9799 • Ward 14</span>
+<span class="font-label-sm text-alert-amber bg-alert-amber-soft px-2 py-0.5 rounded-full font-semibold">1h 20m remaining</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-civic-navy-dark">Illegal C&amp;D Debris Dump</span>
+<span class="font-body-sm text-body-sm text-secondary">Location: Gate #2, Wholesale Grain Market | Squad: Team B</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-alert-amber/10 text-label-sm">
+<span class="text-outline">Status: Loader in-transit</span>
+<button class="text-primary font-bold hover:underline flex items-center gap-0.5">
+                    Inspect <span class="material-symbols-outlined text-[14px]">visibility</span>
+</button>
+</div>
+</div>
+<!-- SLA Alert 3: Informational Blue -->
+<div class="p-space-sm rounded-lg bg-status-progress-soft/30 border-l-4 border-l-status-progress border-t border-r border-b border-surface-border flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm font-bold text-status-progress">#SBM-2026-9840 • Ward 22</span>
+<span class="font-label-sm text-status-progress bg-status-progress-soft px-2 py-0.5 rounded-full font-medium">Awaiting Approval</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md font-semibold text-civic-navy-dark">Bi-weekly E-Waste Special Drive Allocation</span>
+<span class="font-body-sm text-body-sm text-secondary">42 Registered Resident Welfare Associations (RWAs)</span>
+</div>
+<div class="flex items-center justify-between pt-1 border-t border-status-progress/10 text-label-sm">
+<span class="text-outline">Approval: Additional Commissioner Office</span>
+<button class="text-primary font-bold hover:underline flex items-center gap-0.5">
+                    Approve <span class="material-symbols-outlined text-[14px]">check</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action Strip -->
+<button class="w-full py-2 bg-civic-navy-subtle hover:bg-surface-container text-civic-navy-dark rounded-lg font-label-md text-label-md font-bold transition-colors flex items-center justify-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">rule</span>
+              Bulk Re-assign Crew
+            </button>
+</div>
+<!-- Swachh Survekshan 2026 Live Scorecard -->
+<div class="bg-surface-card rounded-xl border border-surface-border shadow-sm p-space-md flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-alert-amber text-[22px]">military_tech</span>
+<div>
+<h3 class="font-title-md text-title-md font-bold text-civic-navy-dark leading-tight">Swachh Survekshan 2026 Live Scorecard</h3>
+<p class="font-body-sm text-body-sm text-secondary">National Survekshan Benchmarks &amp; Target MoHUA</p>
+</div>
+</div>
+<div class="text-right">
+<span class="font-stat-counter text-stat-counter text-primary font-extrabold leading-none">#3</span>
+<span class="font-label-sm text-label-sm block text-secondary font-semibold">National Rank</span>
+</div>
+</div>
+<!-- Survekshan Score Metrics Grid -->
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="p-space-sm bg-surface-canvas rounded-lg border border-surface-border">
+<span class="font-label-sm text-label-sm text-secondary block">Cumulative Score</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-title-lg text-title-lg font-bold text-civic-navy-dark">8,840</span>
+<span class="font-label-sm text-outline">/ 10,000</span>
+</div>
+<div class="w-full h-1.5 rounded-full bg-surface-container mt-2 overflow-hidden">
+<div class="h-full bg-primary" style="width: 88.4%"></div>
+</div>
+</div>
+<div class="p-space-sm bg-surface-canvas rounded-lg border border-surface-border">
+<span class="font-label-sm text-label-sm text-secondary block">Citizen CSAT</span>
+<div class="flex items-baseline gap-1 mt-1">
+<span class="font-title-lg text-title-lg font-bold text-civic-navy-dark">4.6</span>
+<span class="font-label-sm text-outline">/ 5.0</span>
+</div>
+<span class="font-label-sm text-label-sm text-status-resolved font-medium mt-2 block">14,200+ verified ratings</span>
+</div>
+</div>
+<!-- Segregation & Processing Facility Capacity Meters -->
+<div class="flex flex-col gap-space-sm pt-space-xs border-t border-surface-border">
+<!-- Source Segregation -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-civic-navy-dark font-semibold">Source Segregation Compliance</span>
+<span class="text-primary font-bold">88.4%</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-primary" style="width: 88.4%"></div>
+</div>
+</div>
+<!-- Wet Waste Bio-methanation Facility -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-civic-navy-dark font-medium">Wet Waste Bio-Methanation Plant Load</span>
+<span class="text-status-critical font-bold">95% (Near Capacity)</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-status-critical" style="width: 95%"></div>
+</div>
+</div>
+<!-- Dry Waste MRF Load -->
+<div class="flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-civic-navy-dark font-medium">Dry Waste MRF Material Recovery</span>
+<span class="text-status-progress font-bold">82% Operational</span>
+</div>
+<div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+<div class="h-full bg-status-progress" style="width: 82%"></div>
+</div>
+</div>
+</div>
+<!-- MoHUA Validation Stamp Banner -->
+<div class="p-2.5 rounded-lg bg-surface-container-high/60 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">verified</span>
+<span class="font-label-sm text-label-sm text-civic-navy-dark font-semibold">7-Star Garbage Free City (GFC) Certified</span>
+</div>
+<span class="font-label-sm text-secondary font-medium">MoHUA Audit 2025</span>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3: Administrative Quick Action Toolbar Strip -->
+<div class="bg-surface-card rounded-xl border border-surface-border p-space-md shadow-sm">
+<div class="flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-primary-container text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg font-bold text-civic-navy-dark">Command Center Actions</span>
+<span class="font-body-sm text-body-sm text-secondary">Centralized operations dispatch and telemetry diagnostics</span>
+</div>
+</div>
+<!-- Buttons Group -->
+<div class="flex flex-wrap items-center gap-space-sm w-full md:w-auto">
+<button class="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-space-md py-2.5 rounded-lg bg-primary hover:bg-primary-container text-white font-label-md text-label-md font-semibold transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">group_add</span>
+              Deploy Crew
+            </button>
+<button class="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-space-md py-2.5 rounded-lg bg-civic-navy-subtle hover:bg-surface-container text-civic-navy-dark font-label-md text-label-md font-semibold transition-colors">
+<span class="material-symbols-outlined text-[18px]">sensors</span>
+              IoT Bin Sensors
+            </button>
+<button class="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-space-md py-2.5 rounded-lg bg-civic-navy-subtle hover:bg-surface-container text-civic-navy-dark font-label-md text-label-md font-semibold transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+              Daily MIS Report (PDF/Excel)
+            </button>
+<button class="flex-1 md:flex-none inline-flex items-center justify-center gap-1.5 px-space-md py-2.5 rounded-lg bg-civic-navy-subtle hover:bg-surface-container text-civic-navy-dark font-label-md text-label-md font-semibold transition-colors">
+<span class="material-symbols-outlined text-[18px]">campaign</span>
+              Broadcast Alert
+            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div></main><footer class="w-full bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-auto"><div class="max-w-7xl mx-auto px-gutter py-space-xl grid grid-cols-1 md:grid-cols-4 gap-space-lg"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">recycling</span></div><span class="font-headline-md text-headline-md text-primary font-bold">Swachh Bharat Mission</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Ministry of Housing and Urban Affairs, Government of India. Empowering citizens and urban local bodies for zero-landfill smart cities.</p><div class="flex items-center gap-space-xs font-label-md text-label-md text-primary"><span class="material-symbols-outlined text-[18px]">call</span><span>National Helpline: 1969</span></div></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">Citizen Services</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="report-waste" href="#">Lodge Waste Complaint</a></li><li><a class="hover:text-on-surface transition-colors" data-path="pickup-request" href="#">Bulk &amp; E-Waste Pickup</a></li><li><a class="hover:text-on-surface transition-colors" data-path="track-complaint" href="#">Live Status Tracking</a></li><li><a class="hover:text-on-surface transition-colors" data-path="awareness-guide" href="#">Waste Segregation Guide</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">ULB &amp; Admin</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="admin-portal" href="#">Ward Management</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-portal" href="#">Crew Allocation</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-portal" href="#">Sanitation Fleet GPS</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-portal" href="#">Swachh Survekshan</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">Contact &amp; Support</span><p class="font-body-sm text-body-sm text-on-surface-variant">Swachhata Directorate, Nirman Bhawan, New Delhi - 110011</p><p class="font-body-sm text-body-sm text-on-surface-variant">Email: support-swachhbharat@gov.in</p><div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-status-resolved">verified</span><span>Gov.in Certified Municipal Service Node</span></div></div></div><div class="bg-surface-container-high py-space-md"><div class="max-w-7xl mx-auto px-gutter flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Swachh Bharat Mission (Urban), Government of India. All rights reserved.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Hyperlinking Policy</a><a class="hover:text-on-surface transition-colors" href="#">Accessibility Statement</a></div></div></div></footer></body></html>

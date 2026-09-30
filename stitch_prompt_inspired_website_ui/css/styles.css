@@ -1,0 +1,278 @@
+/* Civic Waste Portal Custom Stylesheet */
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6, .font-headline {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+/* Tabular figures for stats counters */
+.stat-counter, .tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* AI Scan Laser Line Animation */
+@keyframes scanLaser {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 95%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+.ai-scan-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #15803d, #79db8d, #15803d, transparent);
+  box-shadow: 0 0 12px #79db8d, 0 0 20px #15803d;
+  animation: scanLaser 2.2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+/* Pulsing Map Pin Radar */
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(21, 128, 61, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 14px rgba(21, 128, 61, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(21, 128, 61, 0);
+  }
+}
+
+.radar-pin {
+  animation: radarPulse 2s infinite;
+}
+
+/* Active Nav State */
+.nav-link.active {
+  color: #00652c !important;
+  font-weight: 700 !important;
+  border-bottom: 2px solid #00652c;
+  padding-bottom: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Toast Container */
+#toastContainer {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  min-width: 280px;
+  max-width: 420px;
+  padding: 14px 18px;
+  background: #0A1B2C;
+  color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Printable Receipt Styles */
+@media print {
+  header, footer, nav, #toastContainer, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-receipt {
+    display: block !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+  }
+}
+
+/* ================= LEAFLET MAP CUSTOM CIVIC STYLING ================= */
+.leaflet-container {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  z-index: 10 !important;
+  background: #f1f5f9 !important;
+}
+
+.leaflet-pane {
+  z-index: 10 !important;
+}
+
+.leaflet-top, .leaflet-bottom {
+  z-index: 20 !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  color: #0A1B2C !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(10, 27, 44, 0.15) !important;
+  border: 1px solid #E2E8F0 !important;
+  padding: 6px !important;
+}
+
+.leaflet-popup-content {
+  margin: 8px 10px !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-popup-tip {
+  background: #FFFFFF !important;
+}
+
+/* Custom Marker Pills & Vehicle Markers */
+.map-badge-marker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(10, 27, 44, 0.28);
+  white-space: nowrap;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.map-badge-marker:hover {
+  transform: scale(1.08) translateY(-2px);
+}
+
+.map-vehicle-marker {
+  width: 36px;
+  height: 36px;
+  background: #0284C7;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.45);
+  border: 2.5px solid #ffffff;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.map-vehicle-marker:hover {
+  transform: scale(1.15);
+}
+
+.map-pin-pulse {
+  width: 14px;
+  height: 14px;
+  background: #15803D;
+  border: 2.5px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.4);
+}
+
+/* Explicit container dimensions for reliable Leaflet rendering */
+#homeRadarMap {
+  min-height: 320px;
+  height: 100%;
+  width: 100%;
+}
+
+#reportLocationMap {
+  min-height: 224px;
+  height: 100%;
+  width: 100%;
+}
+
+#trackVehicleMap {
+  min-height: 224px;
+  height: 100%;
+  width: 100%;
+}
+
+.leaflet-tile-container img {
+  max-width: none !important;
+}
+
+/* Login Page Role Tabs & OTP */
+.role-tab-btn {
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.role-tab-btn.active-citizen {
+  background: #FFFFFF !important;
+  color: #00652c !important;
+  box-shadow: 0 4px 14px rgba(0, 101, 44, 0.15) !important;
+  font-weight: 700 !important;
+}
+
+.role-tab-btn.active-admin {
+  background: #0A1B2C !important;
+  color: #FBBF24 !important;
+  box-shadow: 0 4px 14px rgba(10, 27, 44, 0.35) !important;
+  font-weight: 700 !important;
+}
+
+.otp-digit-input {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  letter-spacing: 0.25em;
+}
+
+
+

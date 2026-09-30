@@ -1,0 +1,2803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>पवित्र वसुथा - Integrated Waste Management Portal | Government of India</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <!-- Leaflet Interactive Maps (Local Assets for instant offline-ready loading) -->
+  <link rel="stylesheet" href="css/leaflet.css"/>
+  <script src="js/leaflet.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#00652c",
+            "primary-container": "#15803d",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#d3ffd5",
+            "primary-fixed": "#95f8a7",
+            "primary-fixed-dim": "#79db8d",
+            "civic-navy-dark": "#0A1B2C",
+            "civic-navy-subtle": "#F0F4F8",
+            "surface": "#f8f9ff",
+            "surface-card": "#FFFFFF",
+            "surface-canvas": "#F8FAFC",
+            "surface-border": "#E2E8F0",
+            "surface-container": "#e5eeff",
+            "surface-container-low": "#eff4ff",
+            "surface-container-high": "#dce9ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#3f493f",
+            "secondary": "#49607c",
+            "secondary-container": "#c7dfff",
+            "secondary-fixed": "#d1e4ff",
+            "secondary-fixed-dim": "#b0c9e8",
+            "on-secondary-fixed-variant": "#314863",
+            "alert-amber": "#D97706",
+            "alert-amber-soft": "#FEF3C7",
+            "status-resolved": "#15803D",
+            "status-resolved-soft": "#DCFCE7",
+            "status-progress": "#0284C7",
+            "status-progress-soft": "#E0F2FE",
+            "status-critical": "#DC2626",
+            "status-critical-soft": "#FEE2E2",
+            "segregation-wet": "#16A34A",
+            "segregation-dry": "#2563EB",
+            "segregation-hazardous": "#EA580C",
+            "inverse-on-surface": "#eaf1ff",
+            "inverse-surface": "#213145",
+            "outline": "#6f7a6e",
+            "outline-variant": "#becabc",
+            "tertiary": "#00625a",
+            "tertiary-fixed": "#89f5e7"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            "2xl": "1rem",
+            full: "9999px"
+          },
+          spacing: {
+            gutter: "1.25rem",
+            margin: "2rem",
+            "space-xs": "0.25rem",
+            "space-sm": "0.5rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2.25rem"
+          },
+          fontFamily: {
+            headline: ["'Plus Jakarta Sans'", "sans-serif"],
+            body: ["'Inter'", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased min-h-screen flex flex-col selection:bg-primary-fixed-dim selection:text-civic-navy-dark">
+
+  <!-- ================= TOP GOVERNMENT HEADER ================= -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-surface-card/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <!-- Tricolor Flag Ribbon -->
+    <div class="h-1 w-full flex">
+      <div class="flex-1 bg-[#FF9933]"></div>
+      <div class="flex-1 bg-white"></div>
+      <div class="flex-1 bg-[#138808]"></div>
+    </div>
+    
+    <!-- Top National Utility Bar -->
+    <div class="bg-civic-navy-dark text-inverse-on-surface">
+      <div class="max-w-7xl mx-auto px-gutter flex items-center justify-between h-9 text-xs">
+        <div class="flex items-center gap-space-md">
+          <span class="flex items-center gap-1 font-semibold text-primary-fixed">
+            <span class="material-symbols-outlined text-[16px]">assured_workload</span>
+            <span data-i18n="gov_title">Government of India</span>
+          </span>
+          <span class="hidden sm:inline text-secondary-fixed-dim">•</span>
+          <span class="hidden sm:inline text-secondary-fixed-dim" data-i18n="sbm_mission">Swachh Bharat Mission (Urban)</span>
+        </div>
+        <div class="flex items-center gap-space-md">
+          <a href="tel:1969" class="flex items-center gap-1 hover:text-primary-fixed transition-colors">
+            <span class="material-symbols-outlined text-[15px] text-alert-amber">call</span>
+            <span class="hidden md:inline text-secondary-fixed-dim">Toll Free:</span>
+            <span class="font-bold text-surface-card">1969</span>
+          </a>
+          <!-- Language Toggle Pill -->
+          <div class="flex items-center rounded-full bg-inverse-surface p-0.5 border border-slate-700">
+            <button onclick="setPortalLanguage('en')" data-lang-btn="en" class="px-2 py-0.5 rounded-full text-xs font-bold transition-all bg-primary text-on-primary">EN</button>
+            <button onclick="setPortalLanguage('hi')" data-lang-btn="hi" class="px-2 py-0.5 rounded-full text-xs font-bold transition-all text-secondary-fixed-dim hover:text-white">हिन्दी</button>
+            <button onclick="openLanguageModal()" class="px-1 text-secondary-fixed-dim hover:text-white" title="All Languages">
+              <span class="material-symbols-outlined text-[14px]">translate</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="h-20 max-w-7xl mx-auto px-gutter flex items-center justify-between">
+      <!-- Portal Brand -->
+      <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-space-md cursor-pointer group">
+        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center p-1 border border-primary/20 shadow-sm">
+          <img alt="Swachh Bharat Emblem" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBms-fBXHu3hmhKWsrc6Kkuy-hvBJsP_oQeyhfZS5NMRHcf2PMNYwzsMB3A1AvSN1Mt6abUfV9ktrvZflZN4q15fcqNmEixFa2WuvuL5xZ3X_5iqsfZbtMnI09Gd8avjOktzsxOvJGIQHrTXb5NAnFYztYwfA7gyQdZrSsF-avH3RaypByDI7i1k10QRKsRmhA_VMBHIQjGCSbrMDOrFqOU4d80G5z5rCMO12B9pDnkfd9WBjoMn_qD"/>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-headline font-bold text-lg text-primary tracking-tight leading-tight group-hover:text-primary-container transition-colors" data-i18n="portal_title">पवित्र वसुथा</span>
+          <span class="text-xs text-on-surface-variant font-medium leading-tight" data-i18n="portal_sub">Integrated Waste Management System</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden xl:flex items-center gap-6 text-sm font-medium">
+        <a href="#home" onclick="navigateTo('home')" data-path="home" class="nav-link text-primary font-bold transition-colors">Home</a>
+        <a href="#report-waste" onclick="navigateTo('report-waste')" data-path="report-waste" class="nav-link text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+          <span>Report Waste</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-status-resolved-soft text-status-resolved text-[10px] font-bold">+25 Pts</span>
+        </a>
+        <a href="#pickup-request" onclick="navigateTo('pickup-request')" data-path="pickup-request" class="nav-link text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+          <span>Pickup Request</span>
+          <span class="px-1.5 py-0.2 rounded-full bg-primary-fixed text-civic-navy-dark text-[10px] font-bold">2 Free</span>
+        </a>
+        <a href="#track-complaint" onclick="navigateTo('track-complaint')" data-path="track-complaint" class="nav-link text-on-surface-variant hover:text-primary transition-colors">Track Complaint</a>
+        <a href="#green-karma-rewards" onclick="navigateTo('green-karma-rewards')" data-path="green-karma-rewards" class="nav-link text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-primary">eco</span>
+          <span>Green Karma</span>
+        </a>
+        <a href="#awareness-guide" onclick="navigateTo('awareness-guide')" data-path="awareness-guide" class="nav-link text-on-surface-variant hover:text-primary transition-colors">Awareness Guide</a>
+        <a href="#admin-portal" onclick="navigateTo('admin-portal')" data-path="admin-portal" class="nav-link text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px] text-alert-amber">dashboard</span>
+          <span>Admin Portal</span>
+        </a>
+        <a href="#login" onclick="navigateTo('login')" data-path="login" class="nav-link text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-[16px]">lock</span>
+          <span>Login</span>
+        </a>
+      </nav>
+
+      <!-- Right Header Actions (Karma Balance + Citizen Profile) -->
+      <div class="flex items-center gap-3">
+        <!-- Live Karma Pill -->
+        <a href="#green-karma-rewards" onclick="navigateTo('green-karma-rewards')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-status-resolved-soft hover:bg-status-resolved/20 border border-status-resolved/30 transition-all text-primary font-bold text-xs shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">eco</span>
+          <span id="headerKarmaBalance">1,450</span>
+          <span class="text-[11px] text-on-surface-variant font-normal">Karma</span>
+        </a>
+
+        <!-- Citizen Profile / Login Button with Dropdown -->
+        <div class="relative">
+          <button id="headerUserBtn" onclick="handleHeaderUserBtnClick()" class="px-3.5 py-2 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-medium text-xs shadow-sm transition-all flex items-center gap-2 active:scale-95">
+            <span class="material-symbols-outlined text-[16px]">person</span>
+            <span class="hidden sm:inline">Citizen Portal</span>
+          </button>
+
+          <!-- User Account / Role Menu Dropdown -->
+          <div id="userProfileDropdown" class="hidden absolute right-0 mt-2 w-72 bg-surface-card rounded-2xl shadow-2xl border border-surface-border p-4 z-50 flex flex-col gap-3">
+            <div id="dropdownUserProfileInfo"></div>
+            <div class="border-t border-surface-border pt-2 flex flex-col gap-1 text-xs">
+              <a href="#home" onclick="navigateTo('home'); closeProfileDropdown();" class="p-2 rounded-lg hover:bg-surface-container flex items-center gap-2 text-civic-navy-dark">
+                <span class="material-symbols-outlined text-[18px] text-primary">home</span> Home Portal
+              </a>
+              <a href="#track-complaint" onclick="navigateTo('track-complaint'); closeProfileDropdown();" class="p-2 rounded-lg hover:bg-surface-container flex items-center gap-2 text-civic-navy-dark">
+                <span class="material-symbols-outlined text-[18px] text-primary">troubleshoot</span> My Grievances
+              </a>
+              <a href="#admin-portal" onclick="navigateTo('admin-portal'); closeProfileDropdown();" class="p-2 rounded-lg hover:bg-surface-container flex items-center gap-2 text-civic-navy-dark">
+                <span class="material-symbols-outlined text-[18px] text-alert-amber">admin_panel_settings</span> Municipal Admin Console
+              </a>
+              <a href="#login" onclick="navigateTo('login'); closeProfileDropdown();" class="p-2 rounded-lg hover:bg-surface-container flex items-center gap-2 text-civic-navy-dark">
+                <span class="material-symbols-outlined text-[18px] text-secondary">sync_alt</span> Switch Role / Login
+              </a>
+            </div>
+            <div class="border-t border-surface-border pt-2">
+              <button onclick="handleLogout()" class="w-full py-2 px-3 rounded-lg bg-status-critical-soft hover:bg-status-critical/20 text-status-critical font-bold text-xs flex items-center justify-center gap-1.5 transition-colors">
+                <span class="material-symbols-outlined text-[16px]">logout</span> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Trigger -->
+        <button onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface transition-colors">
+          <span class="material-symbols-outlined text-[24px]">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileNavMenu" class="hidden xl:hidden bg-surface-card border-b border-surface-border px-4 py-3 shadow-lg">
+      <div class="flex flex-col gap-2 text-sm font-medium">
+        <a href="#home" onclick="navigateTo('home'); toggleMobileMenu();" class="py-2 px-3 rounded hover:bg-surface-container flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px]">home</span> Home
+        </a>
+        <a href="#report-waste" onclick="navigateTo('report-waste'); toggleMobileMenu();" class="py-2 px-3 rounded hover:bg-surface-container flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px]">photo_camera</span> Report Waste Issue (+25 Pts)
+        </a>
+        <a href="#pickup-request" onclick="navigateTo('pickup-request'); toggleMobileMenu();" class="py-2 px-3 rounded hover:bg-surface-container flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px]">calendar_month</span> Doorstep Pickup (2 Free)
+        </a>
+        <a href="#track-complaint" onclick="navigateTo('track-complaint'); toggleMobileMenu();" class="py-2 px-3 rounded hover:bg-surface-container flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px]">troubleshoot</span> Track Grievance Timeline
+        </a>
+        <a href="#green-karma-rewards" onclick="navigateTo('green-karma-rewards'); toggleMobileMenu();" class="py-2 px-3 rounded hover:bg-surface-container flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px]">eco</span> Green Karma Rewards Catalog
+        </a>
+        <a href="#awareness-guide" onclick="navigateTo('awareness-guide'); toggleMobileMenu();" class="py-2 px-3 rounded hover:bg-surface-container flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[18px]">menu_book</span> Waste Segregation Guide
+        </a>
+        <a href="#admin-portal" onclick="navigateTo('admin-portal'); toggleMobileMenu();" class="py-2 px-3 rounded hover:bg-surface-container flex items-center gap-2">
+          <span class="material-symbols-outlined text-alert-amber text-[18px]">admin_panel_settings</span> Municipal Admin Console
+        </a>
+        <a href="#login" onclick="navigateTo('login'); toggleMobileMenu();" class="py-2 px-3 rounded bg-surface-container hover:bg-surface-container-high flex items-center gap-2 text-primary font-bold">
+          <span class="material-symbols-outlined text-primary text-[18px]">lock</span> Citizen &amp; Admin Login
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT APP VIEWS ================= -->
+  <main class="w-full pt-28 bg-surface flex-1">
+
+    <!-- ================= VIEW 1: HOME PORTAL ================= -->
+    <section id="view-home" class="app-view">
+      <!-- Live Alert Strip -->
+      <div class="bg-civic-navy-dark text-inverse-on-surface py-2.5 px-gutter">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2 text-xs">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-status-resolved text-on-primary font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-on-primary animate-pulse"></span>
+              <span data-i18n="live_badge">LIVE PORTAL</span>
+            </span>
+            <span class="text-surface-container-high" data-i18n="live_strip_text">
+              Swachh Survekshan 2025: Ward-level Real-time Waste Tracking &amp; Citizen AI Grievance Redressal Active
+            </span>
+          </div>
+          <div class="flex items-center gap-4 text-secondary-fixed-dim">
+            <span class="hidden lg:inline" data-i18n="ulb_link">Integrated with 4,372 Urban Local Bodies (ULBs)</span>
+            <button onclick="navigateTo('admin-portal')" class="text-primary-fixed hover:underline flex items-center gap-0.5 font-bold">
+              ULB Control Room <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Section -->
+      <div class="relative bg-gradient-to-b from-surface-container-low via-surface to-surface-canvas py-12 lg:py-16 overflow-hidden">
+        <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-primary-fixed-dim/20 blur-3xl pointer-events-none"></div>
+        <div class="absolute left-1/3 -bottom-20 w-80 h-80 rounded-full bg-status-progress-soft blur-2xl pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-gutter relative z-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            
+            <!-- Left Hero Info -->
+            <div class="lg:col-span-7 flex flex-col gap-5">
+              <div class="inline-flex items-center gap-2 self-start px-3.5 py-1.5 rounded-full bg-primary-fixed text-civic-navy-dark font-semibold text-xs shadow-sm">
+                <span class="material-symbols-outlined text-[16px] text-primary">eco</span>
+                <span data-i18n="hero_badge">National Cleanliness Initiative • National Waste Action Plan</span>
+              </div>
+              <h1 class="font-headline font-extrabold text-3xl sm:text-4xl lg:text-5xl text-civic-navy-dark tracking-tight leading-tight" data-i18n="hero_title">
+                Building a Cleaner India: The Integrated Waste Management Platform
+              </h1>
+              <p class="text-base sm:text-lg text-on-surface-variant max-w-2xl leading-relaxed" data-i18n="hero_desc">
+                A centralized digital ecosystem to report waste issues, schedule automated pickups, track complaints in real-time, and optimize municipal waste logistics across every urban ward.
+              </p>
+              
+              <!-- Quick Hero CTAs -->
+              <div class="flex flex-wrap items-center gap-4 pt-2">
+                <button onclick="navigateTo('report-waste')" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-md transition-all active:scale-95">
+                  <span class="material-symbols-outlined text-[20px]">photo_camera</span>
+                  <span data-i18n="hero_btn_report">Report Waste Issue</span>
+                  <span class="bg-primary-fixed/20 px-2 py-0.5 rounded text-xs">+25 Pts</span>
+                </button>
+                <button onclick="navigateTo('pickup-request')" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-civic-navy-dark hover:bg-inverse-surface text-inverse-on-surface font-bold text-sm shadow-sm transition-all active:scale-95">
+                  <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                  <span data-i18n="hero_btn_schedule">Schedule Pickup</span>
+                </button>
+              </div>
+
+              <!-- Micro Trust Indicators -->
+              <div class="flex flex-wrap items-center gap-4 pt-2 text-xs text-on-surface-variant font-medium">
+                <div class="flex items-center gap-1.5 text-status-resolved">
+                  <span class="material-symbols-outlined text-[18px]">verified</span>
+                  <span data-i18n="trust_mohua">MoHUA Verified Citizen Framework</span>
+                </div>
+                <span class="text-outline-variant">•</span>
+                <div class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-[18px] text-alert-amber">timer</span>
+                  <span data-i18n="trust_sla">Avg SLA Resolution: 4.2 Hours</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Hero Widget: Quick Report / Track Tabbed Box -->
+            <div class="lg:col-span-5" id="quick-action-widget">
+              <div class="bg-surface-card rounded-2xl shadow-xl border border-surface-border p-6 flex flex-col gap-4">
+                
+                <!-- Widget Tabs -->
+                <div class="flex items-center bg-surface-container rounded-xl p-1">
+                  <button id="heroTabReportBtn" onclick="switchHeroWidgetTab('report')" class="flex-1 py-2.5 rounded-lg font-bold text-xs bg-surface-card text-primary shadow-sm transition-all">
+                    Quick Report
+                  </button>
+                  <button id="heroTabTrackBtn" onclick="switchHeroWidgetTab('track')" class="flex-1 py-2.5 rounded-lg font-medium text-xs text-on-surface-variant hover:text-on-surface transition-all">
+                    Track Status
+                  </button>
+                </div>
+
+                <!-- Tab 1: Quick Report -->
+                <div id="heroReportTabContent" class="flex flex-col gap-3">
+                  <div class="flex items-center justify-between">
+                    <span class="font-headline font-bold text-sm text-civic-navy-dark" data-i18n="report_box_title">1-Click Waste Reporting</span>
+                    <span class="px-2 py-0.5 rounded-full bg-status-critical-soft text-status-critical font-bold text-[10px]">Geo-Verified</span>
+                  </div>
+                  <p class="text-xs text-on-surface-variant" data-i18n="report_box_sub">
+                    Capture or upload photo; our geo-spatial AI auto-tags your municipal ward.
+                  </p>
+
+                  <!-- Direct drop or trigger -->
+                  <div onclick="navigateTo('report-waste')" class="bg-surface-canvas rounded-xl p-5 border-2 border-dashed border-outline-variant/60 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-low transition-colors group">
+                    <div class="w-12 h-12 rounded-full bg-primary-fixed-dim/40 flex items-center justify-center text-primary mb-1 group-hover:scale-105 transition-transform">
+                      <span class="material-symbols-outlined text-[24px]">add_a_photo</span>
+                    </div>
+                    <span class="font-bold text-xs text-civic-navy-dark" data-i18n="drag_drop_text">Click to take photo or drop image</span>
+                    <span class="text-[11px] text-outline" data-i18n="drag_drop_sub">Geo-location &amp; timestamp will be pinned</span>
+                  </div>
+
+                  <!-- Quick Categories -->
+                  <div>
+                    <label class="block text-xs text-on-surface-variant font-medium mb-1.5" data-i18n="waste_category_label">Waste Category</label>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                      <button onclick="navigateTo('report-waste')" class="p-2 rounded-lg bg-surface-container text-left hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-segregation-dry"></span> Overflowing Bin
+                      </button>
+                      <button onclick="navigateTo('report-waste')" class="p-2 rounded-lg bg-surface-container text-left hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-alert-amber"></span> Open Dumpsite
+                      </button>
+                      <button onclick="navigateTo('report-waste')" class="p-2 rounded-lg bg-surface-container text-left hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-status-critical"></span> Bio/Sanitary Hazard
+                      </button>
+                      <button onclick="navigateTo('report-waste')" class="p-2 rounded-lg bg-surface-container text-left hover:bg-surface-container-high transition-colors flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-segregation-hazardous"></span> C&amp;D Debris
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Submit redirect -->
+                  <button onclick="navigateTo('report-waste')" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">send</span>
+                    <span data-i18n="btn_submit_report">Open Full Reporting Studio</span>
+                  </button>
+                </div>
+
+                <!-- Tab 2: Track Status -->
+                <div id="heroTrackTabContent" class="hidden flex flex-col gap-4">
+                  <div class="flex items-center justify-between">
+                    <span class="font-headline font-bold text-sm text-civic-navy-dark">Real-Time Ticket Telemetry</span>
+                    <span class="px-2 py-0.5 rounded-full bg-status-resolved-soft text-status-resolved font-bold text-[10px]">24/7 SLA</span>
+                  </div>
+                  <p class="text-xs text-on-surface-variant">Enter your Grievance Reference ID or mobile number to see vehicle ETA and cleanup status.</p>
+
+                  <div class="flex items-center bg-surface-canvas rounded-xl px-3 py-2 border border-surface-border">
+                    <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+                    <input id="heroTrackInput" type="text" placeholder="e.g. SBM-2026-9812 or 9876543210" value="#SBM-2026-9812" class="w-full bg-transparent text-sm font-semibold focus:outline-none placeholder:text-secondary-fixed-dim"/>
+                  </div>
+
+                  <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+                    <span>Recent:</span>
+                    <button onclick="document.getElementById('heroTrackInput').value='#SBM-2026-9812'" class="text-primary font-bold hover:underline">#SBM-2026-9812</button>
+                    <button onclick="document.getElementById('heroTrackInput').value='#SBM-2026-9799'" class="text-primary font-bold hover:underline">#SBM-2026-9799</button>
+                  </div>
+
+                  <button onclick="heroQuickTrack()" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+                    <span class="material-symbols-outlined text-[18px]">troubleshoot</span>
+                    <span>Track Status Timeline</span>
+                  </button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- National Operational KPI Ticker Strip -->
+      <section class="bg-civic-navy-dark text-on-primary py-8 px-gutter border-y border-surface-border/10">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div class="flex flex-col items-center">
+            <span class="font-headline font-extrabold text-3xl sm:text-4xl text-primary-fixed stat-counter">4,372</span>
+            <span class="text-xs text-secondary-fixed-dim uppercase tracking-wider mt-1 font-semibold">Urban Local Bodies</span>
+            <span class="text-[11px] text-surface-container-high mt-0.5">100% Digital Geo-Coverage</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="font-headline font-extrabold text-3xl sm:text-4xl text-surface-card stat-counter">94.6%</span>
+            <span class="text-xs text-secondary-fixed-dim uppercase tracking-wider mt-1 font-semibold">24-Hour Redressal SLA</span>
+            <span class="text-[11px] text-status-resolved font-medium mt-0.5">+3.2% this quarter</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="font-headline font-extrabold text-3xl sm:text-4xl text-tertiary-fixed stat-counter">184,200 MT</span>
+            <span class="text-xs text-secondary-fixed-dim uppercase tracking-wider mt-1 font-semibold">Daily Waste Processed</span>
+            <span class="text-[11px] text-surface-container-high mt-0.5">Scientific Biomining &amp; Composting</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="font-headline font-extrabold text-3xl sm:text-4xl text-primary-fixed stat-counter">12.8M+</span>
+            <span class="text-xs text-secondary-fixed-dim uppercase tracking-wider mt-1 font-semibold">Active Swachhata Champions</span>
+            <span class="text-[11px] text-surface-container-high mt-0.5">Green Karma Citizen League</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Citizen Services Bento Grid -->
+      <section class="max-w-7xl mx-auto px-gutter py-14">
+        <div class="flex flex-col items-center text-center max-w-2xl mx-auto mb-10">
+          <span class="px-3 py-1 rounded-full bg-primary-fixed-dim/30 text-primary font-bold text-xs uppercase tracking-wider mb-2">Core Citizen Touchpoints</span>
+          <h2 class="font-headline font-bold text-2xl sm:text-3xl text-civic-navy-dark tracking-tight">
+            Transparent, Zero-Friction Municipal Services
+          </h2>
+          <p class="text-sm text-on-surface-variant mt-2">
+            Every module is designed to eliminate bureaucratic hurdles, providing instant accountability from phone to municipal truck.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Bento 1: Report Waste -->
+          <div onclick="navigateTo('report-waste')" class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-status-resolved-soft text-status-resolved flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-[28px]">photo_camera</span>
+              </div>
+              <h3 class="font-headline font-bold text-lg text-civic-navy-dark group-hover:text-primary transition-colors">Lodge Waste Issue</h3>
+              <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                Take a photo of overflowing bins or illegal dumpsites. Our AI auto-identifies waste volume and notifies the local ward sanitation team immediately.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-bold text-primary">
+              <span>Report in 30 Seconds →</span>
+              <span class="bg-status-resolved-soft px-2 py-0.5 rounded text-[10px]">+25 Karma</span>
+            </div>
+          </div>
+
+          <!-- Bento 2: Doorstep Pickup -->
+          <div onclick="navigateTo('pickup-request')" class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-secondary-container text-secondary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-[28px]">local_shipping</span>
+              </div>
+              <h3 class="font-headline font-bold text-lg text-civic-navy-dark group-hover:text-primary transition-colors">Doorstep Bulk &amp; E-Waste</h3>
+              <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                Schedule specialized EV trucks for bulky furniture, construction debris, electronics, and garden trimmings safely. Every household gets 2 free pickups per quarter.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-bold text-secondary">
+              <span>Book Collection Slot →</span>
+              <span class="bg-primary-fixed px-2 py-0.5 rounded text-civic-navy-dark text-[10px]">2 Free Quota</span>
+            </div>
+          </div>
+
+          <!-- Bento 3: Track Resolution -->
+          <div onclick="navigateTo('track-complaint')" class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-status-progress-soft text-status-progress flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-[28px]">troubleshoot</span>
+              </div>
+              <h3 class="font-headline font-bold text-lg text-civic-navy-dark group-hover:text-primary transition-colors">Live Status &amp; Timeline</h3>
+              <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                Watch your complaint progress across 4 verification milestones: Grievance Logged, Driver Dispatched, On-Site Action, and Inspector AI-Verified Resolution.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-bold text-status-progress">
+              <span>Track Active Grievance →</span>
+              <span class="text-outline text-[10px]">GPS Telemetry</span>
+            </div>
+          </div>
+
+          <!-- Bento 4: Green Karma Rewards -->
+          <div onclick="navigateTo('green-karma-rewards')" class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-alert-amber-soft text-alert-amber flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-[28px]">military_tech</span>
+              </div>
+              <h3 class="font-headline font-bold text-lg text-civic-navy-dark group-hover:text-primary transition-colors">Green Karma Rewards</h3>
+              <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                Earn verified civic coins for reporting garbage, segregating household waste, and booking pickups. Redeem for 10% Property Tax rebates and Metro smart card recharges.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-bold text-alert-amber">
+              <span>View Rewards Catalog →</span>
+              <span class="bg-alert-amber-soft px-2 py-0.5 rounded text-[10px]">Tier 3: Gold</span>
+            </div>
+          </div>
+
+          <!-- Bento 5: 3-Bin Segregation Formula -->
+          <div onclick="navigateTo('awareness-guide')" class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border hover:shadow-md transition-all cursor-pointer flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-primary-fixed text-primary flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-[28px]">palette</span>
+              </div>
+              <h3 class="font-headline font-bold text-lg text-civic-navy-dark group-hover:text-primary transition-colors">3-Bin Segregation Guide</h3>
+              <p class="text-xs text-on-surface-variant mt-2 leading-relaxed">
+                Master the Green (Wet), Blue (Dry), and Red (Hazardous) waste formula. Use the instant fuzzy search to check whether items like pizza boxes or blister packs can be recycled.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-bold text-primary">
+              <span>Explore 3-Bin Guide →</span>
+              <span class="text-outline text-[10px]">50+ Items Search</span>
+            </div>
+          </div>
+
+          <!-- Bento 6: Command & Control Console -->
+          <div onclick="navigateTo('admin-portal')" class="bg-civic-navy-dark text-on-primary rounded-2xl p-6 shadow-md hover:shadow-lg transition-all cursor-pointer flex flex-col justify-between group">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-surface-card/10 text-primary-fixed flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-[28px]">query_stats</span>
+              </div>
+              <h3 class="font-headline font-bold text-lg text-white">Municipal Command Center</h3>
+              <p class="text-xs text-secondary-fixed-dim mt-2 leading-relaxed">
+                Zonal officer dashboard with real-time geospatial heatmap, live GPS fleet telemetry (184 active vehicles), driver allocation, and triage queues.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-surface-border/20 flex items-center justify-between text-xs font-bold text-primary-fixed">
+              <span>Open Executive Dashboard →</span>
+              <span class="inline-flex items-center gap-1 bg-status-resolved/20 px-2 py-0.5 rounded text-[10px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary-fixed animate-ping"></span> Live 24/7
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Ward 28 Radar Snapshot & Recent Escalations -->
+      <section class="bg-surface-canvas py-12 px-gutter border-t border-surface-border">
+        <div class="max-w-7xl mx-auto">
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-2 text-xs font-bold text-primary uppercase tracking-wider">
+                <span class="w-2 h-2 rounded-full bg-status-resolved animate-ping"></span>
+                <span>Ward 28 - Central Karol Bagh Sector</span>
+              </div>
+              <h3 class="font-headline font-bold text-xl sm:text-2xl text-civic-navy-dark mt-1">Live Municipal Hotspot Radar</h3>
+            </div>
+            <button onclick="navigateTo('admin-portal')" class="text-primary hover:underline text-xs font-bold flex items-center gap-1">
+              Open Full Ward Telemetry →
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            
+            <!-- Map Graphic Container -->
+            <div class="lg:col-span-8 bg-surface-card rounded-2xl p-4 shadow-sm border border-surface-border flex flex-col justify-between">
+              <div class="relative w-full h-80 sm:h-96 rounded-xl overflow-hidden shadow-inner">
+                <!-- Live Interactive Leaflet Map -->
+                <div id="homeRadarMap" class="w-full h-full relative z-0"></div>
+
+                <!-- Floating Legend -->
+                <div class="absolute bottom-3 left-3 bg-surface-card/95 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs shadow-md border border-surface-border flex items-center gap-3 z-30 pointer-events-auto">
+                  <div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-resolved"></span> Optimal</div>
+                  <div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-alert-amber"></span> 75% Full</div>
+                  <div class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-status-critical"></span> Critical Hotspot</div>
+                </div>
+
+                <!-- Quick Recenter Button -->
+                <button onclick="resetHomeMap()" class="absolute top-3 right-3 bg-surface-card/95 hover:bg-white text-civic-navy-dark px-2.5 py-1.5 rounded-lg text-xs font-bold shadow-md border border-surface-border flex items-center gap-1 z-30 transition-all">
+                  <span class="material-symbols-outlined text-[16px]">my_location</span>
+                  <span>Recenter Ward 28</span>
+                </button>
+              </div>
+              
+              <div class="flex items-center justify-between text-xs text-on-surface-variant pt-3 px-1">
+                <span>Interactive live GIS map. Click markers to inspect grievance status or track vehicles.</span>
+                <span class="font-mono text-status-resolved font-bold flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-status-resolved animate-ping"></span>
+                  Latency: 14 mins
+                </span>
+              </div>
+            </div>
+
+            <!-- Recent Redressal Feed -->
+            <div class="lg:col-span-4 bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border flex flex-col justify-between">
+              <div>
+                <span class="font-headline font-bold text-sm text-civic-navy-dark block mb-3">Recent Ward Activity Feed</span>
+                <div class="flex flex-col gap-3">
+                  
+                  <div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-status-resolved text-[20px] mt-0.5">check_circle</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-civic-navy-dark truncate">Ticket #SBM-2026-9799</span>
+                        <span class="text-outline text-[10px]">Yesterday</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant truncate mt-0.5">Kailash Market Gate 2 cleared</p>
+                      <span class="text-[10px] text-status-resolved font-semibold">AI photo match verified clean</span>
+                    </div>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-status-progress text-[20px] mt-0.5">pending_actions</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-civic-navy-dark truncate">Ticket #SBM-2026-9812</span>
+                        <span class="text-outline text-[10px]">Today</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant truncate mt-0.5">Overfilled Green Bin reported</p>
+                      <span class="text-[10px] text-status-progress font-semibold">Van assigned: ETA 14 mins</span>
+                    </div>
+                  </div>
+
+                  <div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-2.5">
+                    <span class="material-symbols-outlined text-alert-amber text-[20px] mt-0.5">calendar_month</span>
+                    <div class="flex-1 min-w-0">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-civic-navy-dark truncate">Bulk E-Waste Pickup</span>
+                        <span class="text-outline text-[10px]">Tomorrow</span>
+                      </div>
+                      <p class="text-xs text-on-surface-variant truncate mt-0.5">Silver Crest Apts: 2 Laptops &amp; TV</p>
+                      <span class="text-[10px] text-alert-amber font-semibold">CPCB Recycler dispatched</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Ward 28 Score Meter -->
+              <div class="mt-4 pt-3 border-t border-surface-border bg-surface-canvas p-3 rounded-xl">
+                <div class="flex items-center justify-between text-xs mb-1">
+                  <span class="font-bold text-civic-navy-dark">Ward 28 Cleanliness Index</span>
+                  <span class="text-status-resolved font-bold">96.8 / 100 (Tier-1)</span>
+                </div>
+                <div class="w-full h-2 rounded-full bg-surface-container overflow-hidden">
+                  <div class="h-full bg-status-resolved rounded-full" style="width: 96.8%;"></div>
+                </div>
+                <span class="text-[10px] text-on-surface-variant mt-1 block">Eligible for National Swachh Survekshan Presidential Honors</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom CTA Banner -->
+      <section class="py-12 bg-gradient-to-r from-primary via-primary-container to-civic-navy-dark text-on-primary">
+        <div class="max-w-7xl mx-auto px-gutter flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <h3 class="font-headline font-bold text-2xl sm:text-3xl leading-snug">
+              Empowering Citizens, Optimizing Logistics, For a Swachh Bharat
+            </h3>
+            <p class="text-sm text-surface-container-low mt-2">
+              Every photo reported and segregated bin logged brings your neighborhood closer to zero-landfill status. Be an active Swachhata Champion today.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <button onclick="navigateTo('report-waste')" class="px-6 py-3 rounded-xl bg-surface-card text-primary hover:bg-surface font-bold text-sm shadow-md transition-all active:scale-95">
+              Report Now
+            </button>
+            <button onclick="openLoginModal()" class="px-6 py-3 rounded-xl bg-on-primary/10 hover:bg-on-primary/20 text-on-primary font-bold text-sm border border-white/20 transition-all">
+              Citizen Register
+            </button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ================= VIEW 2: REPORT WASTE ================= -->
+    <section id="view-report-waste" class="app-view hidden">
+      <!-- Status Strip -->
+      <div class="bg-civic-navy-dark text-inverse-on-surface py-2.5 px-gutter">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-primary-container text-on-primary font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary-fixed mr-1.5 animate-pulse"></span>
+              AI Geo-Routing Live
+            </span>
+            <span class="text-secondary-fixed-dim hidden md:inline">Urban Ward Fleet Dispatch Latency: ~14 mins</span>
+          </div>
+          <div class="flex items-center gap-3 text-secondary-fixed-dim">
+            <span class="text-tertiary-fixed flex items-center gap-1 font-medium">
+              <span class="material-symbols-outlined text-[15px]">verified_user</span>
+              Zero-Penalty Civic Safe Harbor Policy
+            </span>
+            <span>Node: DEL-NW-WD28</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-gutter py-8 flex flex-col gap-6">
+        
+        <!-- Header & Page Title -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mb-1 font-medium">
+              <a href="#home" onclick="navigateTo('home')" class="hover:text-primary">Home</a>
+              <span>/</span>
+              <span class="text-primary font-bold">Lodge Waste Issue (Report Waste)</span>
+            </div>
+            <h1 class="font-headline font-extrabold text-3xl sm:text-4xl text-civic-navy-dark tracking-tight">
+              Report Waste <span class="font-light text-secondary">(Lodge Waste Issue)</span>
+            </h1>
+            <p class="text-sm text-on-surface-variant mt-1 max-w-2xl">
+              AI-assisted geo-reporting with automatic municipal ward identification, fleet routing, and verified citizen dispatch tracking.
+            </p>
+          </div>
+          
+          <div class="flex items-center gap-3 bg-surface-container-low px-4 py-2.5 rounded-2xl shadow-sm border border-surface-border">
+            <div class="w-10 h-10 rounded-full bg-status-resolved-soft text-status-resolved flex items-center justify-center">
+              <span class="material-symbols-outlined text-[22px]">eco</span>
+            </div>
+            <div>
+              <div class="font-bold text-xs text-civic-navy-dark">Swachhata Green Karma</div>
+              <div class="text-xs text-status-resolved font-bold">+25 Coins per verified fix</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8-Col Form + 4-Col Context Feed Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Primary Form -->
+          <form onsubmit="handleReportSubmit(event)" class="lg:col-span-8 flex flex-col gap-6">
+            
+            <!-- Section 1: Photographic Evidence -->
+            <div class="bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">1</span>
+                  <h2 class="font-headline font-bold text-lg text-civic-navy-dark">Visual Evidence (Photographic Record)</h2>
+                </div>
+                <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-status-resolved-soft text-status-resolved">
+                  <span class="material-symbols-outlined text-[14px]">my_location</span>
+                  Geo-Tagging GPS Active
+                </span>
+              </div>
+              <p class="text-xs text-on-surface-variant">
+                Upload clear photographs of the waste hotspot. Our automated machine vision system auto-detects waste classification and volumetric density.
+              </p>
+
+              <!-- Upload Drag & Drop Box -->
+              <div class="bg-surface-canvas rounded-xl p-6 border-2 border-dashed border-outline-variant flex flex-col items-center justify-center text-center relative group hover:bg-surface-container-low transition-all">
+                <input type="file" accept="image/*" onchange="handleImageSelect(event)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"/>
+                <div class="w-14 h-14 rounded-full bg-secondary-container text-primary flex items-center justify-center mb-2 group-hover:scale-105 transition-transform">
+                  <span class="material-symbols-outlined text-[28px]">add_a_photo</span>
+                </div>
+                <span class="font-bold text-sm text-civic-navy-dark">Take Photo or Upload (Tap to Capture / Drag Photo)</span>
+                <span class="text-xs text-on-surface-variant mt-1">Supports JPG, PNG, HEIC up to 15MB • EXIF Metadata preserved</span>
+                
+                <div class="flex items-center gap-3 mt-4">
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-card text-xs font-semibold text-secondary shadow-sm">
+                    <span class="material-symbols-outlined text-[16px] text-primary">center_focus_strong</span> Direct Camera
+                  </span>
+                  <span class="inline-flex items-center gap-1 px-3 py-1 rounded-lg bg-surface-card text-xs font-semibold text-secondary shadow-sm">
+                    <span class="material-symbols-outlined text-[16px] text-segregation-dry">folder_open</span> Choose File
+                  </span>
+                </div>
+              </div>
+
+              <!-- Quick Sample Picker for Demo Testing -->
+              <div class="flex items-center gap-2 flex-wrap text-xs">
+                <span class="text-on-surface-variant font-medium">Or test with demo photo:</span>
+                <button type="button" onclick="pickSampleImage('dumpster')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-civic-navy-dark font-medium transition-colors">
+                  Overflowing Dumpster
+                </button>
+                <button type="button" onclick="pickSampleImage('market')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high text-civic-navy-dark font-medium transition-colors">
+                  Market Street Debris
+                </button>
+              </div>
+
+              <!-- AI Vision Scan Preview Simulation -->
+              <div id="aiPreviewBox" class="bg-surface-container-low rounded-xl p-4 flex flex-col sm:flex-row items-center gap-4 relative overflow-hidden">
+                <div class="relative w-full sm:w-36 h-28 rounded-lg overflow-hidden shrink-0 shadow-sm">
+                  <img id="aiPreviewImage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADdUw6ZLKowCGVxMj0mLFHf1vjVq5V6M_dXw5gL0rGIn5WY1o2b8HDcqURN0-Qk22pqprSr822ZLDstKNpk9RwtYYnu4i7FEgAjTTiRoPgy0FZnsmwFMOG-bLzM6rXX_9rag_SMd3NVtr_FEkDT-VPc7IDZGFRU9xopnFlvLwvecJoRnLPA_Frh-56EfdwPSn4--LfTPklLE5RbBKE2k8PFHifwb5bavxmYefXXk3SehG55pPOBM-r" class="w-full h-full object-cover" alt="Selected Waste Photo"/>
+                  <div class="absolute bottom-1 right-1 bg-civic-navy-dark/90 text-white px-1.5 py-0.5 rounded text-[10px] font-mono">
+                    28.6139° N
+                  </div>
+                  <!-- Laser animation line -->
+                  <div id="aiScanLaser" class="ai-scan-line hidden"></div>
+                </div>
+                
+                <div class="flex-1 flex flex-col gap-1 w-full">
+                  <div class="flex items-center justify-between text-xs">
+                    <span id="aiScanStatusLabel" class="inline-flex items-center gap-1 text-status-resolved font-bold">
+                      <span class="material-symbols-outlined text-[14px]">psychology</span>
+                      AI Vision Scan Complete
+                    </span>
+                    <span id="aiConfidenceScore" class="font-mono text-on-surface-variant font-semibold">Confidence: 96.8%</span>
+                  </div>
+                  <div id="aiDetectedCategory" class="font-headline font-bold text-sm text-civic-navy-dark">
+                    Detected: Overflowing Public Bin &amp; Spillover
+                  </div>
+                  <div class="flex flex-wrap items-center gap-2 mt-1">
+                    <span id="aiVolumeTag" class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-status-critical-soft text-status-critical">
+                      Volume: High (~2.4 m³)
+                    </span>
+                    <span id="aiDecayTag" class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-alert-amber-soft text-alert-amber">
+                      Organic Decay Risk: Moderate
+                    </span>
+                    <span class="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-secondary-fixed text-civic-navy-dark">
+                      Auto-Classified
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Section 2: Precise Geolocation & Ward Details -->
+            <div class="bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-5">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">2</span>
+                  <h2 class="font-headline font-bold text-lg text-civic-navy-dark">Location &amp; Municipal Ward Details</h2>
+                </div>
+                <button type="button" onclick="refreshGeoLocation()" class="inline-flex items-center gap-1 text-xs text-primary font-bold hover:underline">
+                  <span class="material-symbols-outlined text-[15px]">refresh</span> Recalibrate GPS
+                </button>
+              </div>
+
+              <!-- Map Visual -->
+              <div class="rounded-xl overflow-hidden shadow-sm relative h-56 sm:h-64 border border-surface-border">
+                <div id="reportLocationMap" class="w-full h-full relative z-0"></div>
+                <div id="gpsAccuracyBadge" class="absolute top-3 left-3 bg-surface-card/95 backdrop-blur-md px-3 py-1.5 rounded-lg shadow-sm flex items-center gap-2 text-xs font-bold text-civic-navy-dark z-30 border border-surface-border">
+                  <span class="w-2.5 h-2.5 rounded-full bg-status-resolved animate-ping"></span>
+                  GPS Accuracy: ±2.4 meters (Click or Drag Pin)
+                </div>
+              </div>
+
+              <!-- Location Inputs -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-on-surface-variant mb-1">Detected Ward / ULB Zone</label>
+                  <div id="reportWardDisplay" class="p-3 bg-surface-container rounded-xl text-xs font-semibold text-civic-navy-dark flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-[18px]">location_on</span>
+                    Sector 14, Main Avenue, Urban Ward 28, New Delhi
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-on-surface-variant mb-1">Prominent Landmark / Street Note</label>
+                  <input id="reportLandmark" type="text" placeholder="e.g. Opposite Metro Pillar 142, near Community Park Gate" value="Near Community Park Main Gate" class="w-full p-2.5 bg-surface-canvas border border-surface-border rounded-xl text-xs font-medium focus:ring-2 focus:ring-primary focus:outline-none"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Waste Category & Urgency -->
+            <div class="bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-5">
+              <div class="flex items-center gap-2.5">
+                <span class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">3</span>
+                <h2 class="font-headline font-bold text-lg text-civic-navy-dark">Waste Category &amp; Severity Level</h2>
+              </div>
+
+              <!-- Radio Cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <label class="flex items-center gap-3 p-3.5 rounded-xl border border-surface-border bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+                  <input type="radio" name="reportWasteCat" value="Overflowing Public Bin" checked class="accent-primary w-4 h-4"/>
+                  <div>
+                    <span class="font-bold text-xs text-civic-navy-dark block">Overflowing Public Bin</span>
+                    <span class="text-[11px] text-on-surface-variant">Community dumpster spilling into street</span>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 p-3.5 rounded-xl border border-surface-border bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+                  <input type="radio" name="reportWasteCat" value="Open Illegal Dumpsite" class="accent-primary w-4 h-4"/>
+                  <div>
+                    <span class="font-bold text-xs text-civic-navy-dark block">Open Illegal Dumpsite</span>
+                    <span class="text-[11px] text-on-surface-variant">Vacant plot or roadside accumulated garbage</span>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 p-3.5 rounded-xl border border-surface-border bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+                  <input type="radio" name="reportWasteCat" value="Dead Animal / Bio Hazard" class="accent-primary w-4 h-4"/>
+                  <div>
+                    <span class="font-bold text-xs text-civic-navy-dark block">Dead Animal / Bio Hazard</span>
+                    <span class="text-[11px] text-on-surface-variant">Carcass, medical waste, or sanitary hazard</span>
+                  </div>
+                </label>
+                <label class="flex items-center gap-3 p-3.5 rounded-xl border border-surface-border bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+                  <input type="radio" name="reportWasteCat" value="Construction & Demolition Debris" class="accent-primary w-4 h-4"/>
+                  <div>
+                    <span class="font-bold text-xs text-civic-navy-dark block">Construction Debris (C&amp;D)</span>
+                    <span class="text-[11px] text-on-surface-variant">Concrete, bricks, plaster blocking pathways</span>
+                  </div>
+                </label>
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-on-surface-variant mb-1">Optional Additional Details</label>
+                <textarea id="reportDescription" rows="2" placeholder="Provide any extra details for the sanitation driver (e.g. narrow alleyway, dog pack nearby, offensive odor)..." class="w-full p-3 bg-surface-canvas border border-surface-border rounded-xl text-xs font-medium focus:ring-2 focus:ring-primary focus:outline-none"></textarea>
+              </div>
+            </div>
+
+            <!-- Submit Button Bar -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-[18px] text-status-resolved">security</span>
+                <span>Submitting anonymously or with verified citizen phone</span>
+              </div>
+              <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">send</span>
+                <span>Submit Grievance (+25 Karma)</span>
+              </button>
+            </div>
+
+          </form>
+
+          <!-- Right Sidebar Context & Help -->
+          <div class="lg:col-span-4 flex flex-col gap-6">
+            
+            <!-- Safe Harbor Guarantee Card -->
+            <div class="bg-civic-navy-dark text-on-primary rounded-2xl p-6 shadow-md">
+              <div class="flex items-center gap-2 mb-2 text-primary-fixed">
+                <span class="material-symbols-outlined text-[20px]">policy</span>
+                <span class="font-headline font-bold text-sm">Citizen Safe Harbor</span>
+              </div>
+              <p class="text-xs text-secondary-fixed-dim leading-relaxed">
+                Under the Swachh Bharat Mission (Urban), whistleblowers and active citizens reporting public sanitation issues are protected from liability. All data is geotagged directly to the municipal zonal command room.
+              </p>
+              <div class="mt-4 pt-3 border-t border-surface-border/20 flex items-center justify-between text-[11px] text-surface-container-high">
+                <span>MoHUA Directive 2024-SBM</span>
+                <span class="font-bold text-primary-fixed">100% Protected</span>
+              </div>
+            </div>
+
+            <!-- SLA Resolution Commitment -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-3">
+              <span class="font-headline font-bold text-sm text-civic-navy-dark">Citizen Service Guarantee</span>
+              
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low">
+                <span class="material-symbols-outlined text-alert-amber text-[24px]">timer</span>
+                <div>
+                  <span class="font-bold text-xs text-civic-navy-dark">4.0 Hour Standard SLA</span>
+                  <span class="text-[11px] text-on-surface-variant block">Van dispatched within 15 minutes of lodging</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low">
+                <span class="material-symbols-outlined text-status-resolved text-[24px]">verified</span>
+                <div>
+                  <span class="font-bold text-xs text-civic-navy-dark">AI Photo Re-Verification</span>
+                  <span class="text-[11px] text-on-surface-variant block">Sanitary Inspector must upload after-cleaning photo</span>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low">
+                <span class="material-symbols-outlined text-status-progress text-[24px]">troubleshoot</span>
+                <div>
+                  <span class="font-bold text-xs text-civic-navy-dark">Live GPS Tracking</span>
+                  <span class="text-[11px] text-on-surface-variant block">Track collection vehicle on interactive map</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Active Tickets Quick Switcher -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border">
+              <span class="font-headline font-bold text-sm text-civic-navy-dark block mb-2">Track Existing Grievance</span>
+              <p class="text-xs text-on-surface-variant mb-3">Already filed a complaint? Track it live with your reference ID.</p>
+              <button onclick="navigateTo('track-complaint')" class="w-full py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-civic-navy-dark text-xs font-bold transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[16px]">search</span>
+                <span>Open Grievance Tracker</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW 3: PICKUP REQUEST ================= -->
+    <section id="view-pickup-request" class="app-view hidden">
+      <div class="max-w-7xl mx-auto px-gutter py-8 flex flex-col gap-6">
+        
+        <!-- Header Banner -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mb-1 font-medium">
+              <a href="#home" onclick="navigateTo('home')" class="hover:text-primary">Home</a>
+              <span>/</span>
+              <span class="text-primary font-bold">Doorstep Pickup Utility</span>
+            </div>
+            <h1 class="font-headline font-extrabold text-3xl sm:text-4xl text-civic-navy-dark tracking-tight">
+              Doorstep Waste Pickup Request
+            </h1>
+            <p class="text-sm text-secondary max-w-2xl mt-1">
+              Schedule municipal zero-emission EV trucks for domestic e-waste, oversized bulky furniture, garden cuttings, and renovation debris safely.
+            </p>
+          </div>
+
+          <!-- Free Quota Status Badge -->
+          <div class="bg-surface-card rounded-2xl p-4 shadow-sm border border-surface-border flex items-center gap-3 shrink-0">
+            <div class="w-12 h-12 rounded-xl bg-status-resolved-soft flex items-center justify-center text-status-resolved">
+              <span class="material-symbols-outlined text-[26px]">eco</span>
+            </div>
+            <div class="flex flex-col">
+              <div class="flex items-center gap-2">
+                <span id="quotaBadge" class="font-headline font-bold text-base text-civic-navy-dark">2 of 2 Free</span>
+                <span class="bg-status-resolved-soft text-status-resolved text-[10px] font-bold px-2 py-0.5 rounded-full">Active Quota</span>
+              </div>
+              <span class="text-xs text-secondary">Q3 Free Doorstep Pickups Remaining</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3-Step Wizard Indicator -->
+        <div class="bg-surface-card rounded-2xl p-4 shadow-sm border border-surface-border grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div class="flex items-center gap-3 bg-surface-container-low rounded-xl p-3">
+            <div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-xs">1</div>
+            <div>
+              <span class="text-[10px] font-bold text-primary uppercase tracking-wider block">Step 1</span>
+              <span class="text-xs font-bold text-civic-navy-dark">Select Waste Stream</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-canvas">
+            <div class="w-8 h-8 rounded-full bg-surface-container text-secondary flex items-center justify-center font-bold text-xs">2</div>
+            <div>
+              <span class="text-[10px] font-bold text-secondary uppercase tracking-wider block">Step 2</span>
+              <span class="text-xs font-bold text-secondary">Choose Slot &amp; Address</span>
+            </div>
+          </div>
+          <div class="flex items-center gap-3 p-3 rounded-xl bg-surface-canvas">
+            <div class="w-8 h-8 rounded-full bg-surface-container text-secondary flex items-center justify-center font-bold text-xs">3</div>
+            <div>
+              <span class="text-[10px] font-bold text-secondary uppercase tracking-wider block">Step 3</span>
+              <span class="text-xs font-bold text-secondary">Confirm &amp; Download Receipt</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Split: 8-Col Form + 4-Col Recycler Certification -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <form onsubmit="handlePickupSubmit(event)" class="lg:col-span-8 flex flex-col gap-6">
+            
+            <!-- Category Selector Bento -->
+            <div class="bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h2 class="font-headline font-bold text-lg text-civic-navy-dark">1. Select Waste Stream</h2>
+                  <p class="text-xs text-secondary mt-0.5">Choose the type of non-standard household material for segregation and specialized recycling.</p>
+                </div>
+                <span class="text-[11px] bg-primary-fixed text-civic-navy-dark font-bold px-2.5 py-1 rounded-full">CPCB Authorized</span>
+              </div>
+
+              <!-- Stream Cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <label class="cursor-pointer relative flex flex-col p-4 rounded-2xl bg-status-resolved-soft/40 hover:bg-status-resolved-soft/60 border-2 border-primary transition-all shadow-sm">
+                  <input type="radio" name="waste_category" value="ewaste" checked class="sr-only"/>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center">
+                      <span class="material-symbols-outlined text-[24px]">devices</span>
+                    </div>
+                    <span class="text-[10px] bg-status-resolved text-on-primary font-bold px-2 py-0.5 rounded-full">Free Quota</span>
+                  </div>
+                  <span class="font-headline font-bold text-sm text-civic-navy-dark">E-Waste</span>
+                  <span class="text-xs text-secondary mt-1">Laptops, phones, CRT/LED TVs, lithium batteries, cables, PCBs.</span>
+                  <div class="mt-3 flex items-center gap-1 text-[11px] text-status-resolved font-bold">
+                    <span class="material-symbols-outlined text-[14px]">verified</span>
+                    Certified Responsible Dismantling
+                  </div>
+                </label>
+
+                <label class="cursor-pointer relative flex flex-col p-4 rounded-2xl bg-surface-canvas hover:bg-surface-container-low border border-surface-border transition-all">
+                  <input type="radio" name="waste_category" value="bulky" class="sr-only"/>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-secondary text-on-secondary flex items-center justify-center">
+                      <span class="material-symbols-outlined text-[24px]">chair</span>
+                    </div>
+                    <span class="text-[10px] bg-surface-container-high text-civic-navy-dark font-semibold px-2 py-0.5 rounded-full">Subsidized</span>
+                  </div>
+                  <span class="font-headline font-bold text-sm text-civic-navy-dark">Bulky Furniture</span>
+                  <span class="text-xs text-secondary mt-1">Sofas, metal/wooden cot, broken mattresses, wardrobe panels.</span>
+                  <div class="mt-3 flex items-center gap-1 text-[11px] text-secondary font-medium">
+                    <span class="material-symbols-outlined text-[14px]">scale</span>
+                    First 50 kg free on monthly quota
+                  </div>
+                </label>
+
+                <label class="cursor-pointer relative flex flex-col p-4 rounded-2xl bg-surface-canvas hover:bg-surface-container-low border border-surface-border transition-all">
+                  <input type="radio" name="waste_category" value="construction" class="sr-only"/>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-segregation-hazardous text-on-primary flex items-center justify-center">
+                      <span class="material-symbols-outlined text-[24px]">construction</span>
+                    </div>
+                    <span class="text-[10px] bg-alert-amber-soft text-alert-amber font-bold px-2 py-0.5 rounded-full">Pre-Booking Req</span>
+                  </div>
+                  <span class="font-headline font-bold text-sm text-civic-navy-dark">C&amp;D Renovation Debris</span>
+                  <span class="text-xs text-secondary mt-1">Tiles, sanitaryware, plaster, cement bags, demolition rubble.</span>
+                  <div class="mt-3 flex items-center gap-1 text-[11px] text-secondary font-medium">
+                    <span class="material-symbols-outlined text-[14px]">recycling</span>
+                    Recycled into paver blocks at C&amp;D Plant
+                  </div>
+                </label>
+
+                <label class="cursor-pointer relative flex flex-col p-4 rounded-2xl bg-surface-canvas hover:bg-surface-container-low border border-surface-border transition-all">
+                  <input type="radio" name="waste_category" value="garden" class="sr-only"/>
+                  <div class="flex items-center justify-between mb-3">
+                    <div class="w-10 h-10 rounded-xl bg-segregation-wet text-on-primary flex items-center justify-center">
+                      <span class="material-symbols-outlined text-[24px]">yard</span>
+                    </div>
+                    <span class="text-[10px] bg-status-resolved-soft text-status-resolved font-bold px-2 py-0.5 rounded-full">100% Compost</span>
+                  </div>
+                  <span class="font-headline font-bold text-sm text-civic-navy-dark">Garden &amp; Tree Prunings</span>
+                  <span class="text-xs text-secondary mt-1">Tree branches, lawn trimmings, horticultural green waste.</span>
+                  <div class="mt-3 flex items-center gap-1 text-[11px] text-status-resolved font-medium">
+                    <span class="material-symbols-outlined text-[14px]">compost</span>
+                    Chipped and converted to municipal mulch
+                  </div>
+                </label>
+
+              </div>
+
+              <div>
+                <label class="block text-xs font-semibold text-on-surface-variant mb-1">Itemized Description / Approximate Weight</label>
+                <input id="pickupItemsDesc" type="text" placeholder="e.g. 2 old laptops, 1 CRT TV, 4 charger cables (Approx ~14 kg)" value="2 Old Laptops, 1 CRT Television, Cables & Batteries" class="w-full p-3 bg-surface-canvas border border-surface-border rounded-xl text-xs font-medium focus:ring-2 focus:ring-primary focus:outline-none"/>
+              </div>
+            </div>
+
+            <!-- Slot & Address -->
+            <div class="bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-5">
+              <h2 class="font-headline font-bold text-lg text-civic-navy-dark">2. Slot Selection &amp; Doorstep Address</h2>
+
+              <!-- Slots -->
+              <div>
+                <label class="block text-xs font-semibold text-on-surface-variant mb-2">Available Time Window (Zero-Emission EV Fleet)</label>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <label class="flex items-center gap-2.5 p-3 rounded-xl border border-primary bg-primary/5 cursor-pointer">
+                    <input type="radio" name="pickup_slot" value="Tomorrow Morning (09:00 AM - 12:00 PM)" checked class="accent-primary"/>
+                    <div>
+                      <span class="text-xs font-bold text-civic-navy-dark block">Tomorrow Morning</span>
+                      <span class="text-[10px] text-secondary">09:00 AM - 12:00 PM</span>
+                    </div>
+                  </label>
+                  <label class="flex items-center gap-2.5 p-3 rounded-xl border border-surface-border bg-surface-canvas hover:bg-surface-container-low cursor-pointer">
+                    <input type="radio" name="pickup_slot" value="Tomorrow Afternoon (02:00 PM - 05:00 PM)" class="accent-primary"/>
+                    <div>
+                      <span class="text-xs font-bold text-civic-navy-dark block">Tomorrow Afternoon</span>
+                      <span class="text-[10px] text-secondary">02:00 PM - 05:00 PM</span>
+                    </div>
+                  </label>
+                  <label class="flex items-center gap-2.5 p-3 rounded-xl border border-surface-border bg-surface-canvas hover:bg-surface-container-low cursor-pointer">
+                    <input type="radio" name="pickup_slot" value="Day After Tomorrow (10:00 AM - 01:00 PM)" class="accent-primary"/>
+                    <div>
+                      <span class="text-xs font-bold text-civic-navy-dark block">Day After Tomorrow</span>
+                      <span class="text-[10px] text-secondary">10:00 AM - 01:00 PM</span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- Address Details -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="sm:col-span-2">
+                  <label class="block text-xs font-semibold text-on-surface-variant mb-1">Doorstep Address</label>
+                  <input id="pickupAddress" type="text" placeholder="House/Flat number, Building Name, Street..." value="Flat 402, Block B, Silver Crest Apartments, Sector 14, Karol Bagh" class="w-full p-2.5 bg-surface-canvas border border-surface-border rounded-xl text-xs font-medium focus:ring-2 focus:ring-primary focus:outline-none"/>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-on-surface-variant mb-1">Floor &amp; Elevator Availability</label>
+                  <select class="w-full p-2.5 bg-surface-canvas border border-surface-border rounded-xl text-xs font-medium focus:ring-2 focus:ring-primary focus:outline-none">
+                    <option>4th Floor - Service Elevator Available</option>
+                    <option>Ground Floor - Direct Road Access</option>
+                    <option>Upper Floor - Staircase Only</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-on-surface-variant mb-1">Citizen Contact Phone (for Driver SMS)</label>
+                  <input type="tel" value="9876543210" class="w-full p-2.5 bg-surface-canvas border border-surface-border rounded-xl text-xs font-medium focus:ring-2 focus:ring-primary focus:outline-none"/>
+                </div>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-2 text-xs text-status-resolved font-bold">
+                <span class="material-symbols-outlined text-[18px]">verified</span>
+                <span>Includes Official CPCB Recycling Certificate</span>
+              </div>
+              <button type="submit" class="w-full sm:w-auto px-8 py-3.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+                <span>Confirm Pickup Request (+35 Karma)</span>
+              </button>
+            </div>
+
+          </form>
+
+          <!-- Right Sidebar Instructions -->
+          <div class="lg:col-span-4 flex flex-col gap-6">
+            
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border">
+              <span class="font-headline font-bold text-sm text-civic-navy-dark block mb-2">Doorstep Pickup Rules</span>
+              <ul class="flex flex-col gap-2.5 text-xs text-on-surface-variant">
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5">check_circle</span>
+                  <span>Items should be placed near doorway or building reception 15 minutes before the slot.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5">check_circle</span>
+                  <span>Lithium batteries must have terminals taped to prevent short-circuit sparks.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5">check_circle</span>
+                  <span>All e-waste receives an official CPCB disposal certificate with unique IMEI/Serial ledger.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="material-symbols-outlined text-primary text-[16px] shrink-0 mt-0.5">check_circle</span>
+                  <span>Earn +35 Green Karma coins upon driver digital handover signature.</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Certified Recycling Partner -->
+            <div class="bg-civic-navy-dark text-on-primary rounded-2xl p-6 shadow-md flex flex-col gap-3">
+              <div class="flex items-center gap-2 text-primary-fixed">
+                <span class="material-symbols-outlined text-[20px]">eco</span>
+                <span class="font-headline font-bold text-sm">Certified Green Recyclers</span>
+              </div>
+              <p class="text-xs text-secondary-fixed-dim leading-relaxed">
+                Operated by Central Pollution Control Board (CPCB) authorized PROs with zero-landfill diversion protocols and state-of-the-art hydrometallurgical metal recovery.
+              </p>
+              <div class="pt-2 border-t border-surface-border/20 text-[11px] text-surface-container-high font-mono">
+                CPCB Reg: DL-PRO-EW-2024/9021
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW 4: TRACK COMPLAINT ================= -->
+    <section id="view-track-complaint" class="app-view hidden">
+      <div class="max-w-7xl mx-auto px-gutter py-8 flex flex-col gap-6">
+        
+        <!-- Top Track Header -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="flex items-center gap-1.5 text-xs text-on-surface-variant mb-1 font-medium">
+              <a href="#home" onclick="navigateTo('home')" class="hover:text-primary">Home</a>
+              <span>/</span>
+              <span class="text-primary font-bold">Complaint Status Tracking (Live)</span>
+            </div>
+            <h1 class="font-headline font-extrabold text-3xl sm:text-4xl text-civic-navy-dark tracking-tight">
+              Track Grievance &amp; Resolution Timeline
+            </h1>
+            <p class="text-sm text-secondary mt-1 max-w-2xl">
+              Monitor the live status, assigned sanitation team, GPS vehicle telemetry, and geo-tagged resolution proof in real-time under Swachh Bharat Mission (Urban).
+            </p>
+          </div>
+
+          <button onclick="escalateCurrentComplaint()" class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-alert-amber-soft text-alert-amber hover:bg-alert-amber/20 font-bold text-xs border border-alert-amber/30 transition-all shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">priority_high</span>
+            <span>Escalate SLA</span>
+          </button>
+        </div>
+
+        <!-- Search Bar & Switcher -->
+        <div class="bg-surface-card rounded-2xl p-4 shadow-sm border border-surface-border">
+          <form onsubmit="handleTrackingSearch(event)" class="grid grid-cols-1 md:grid-cols-12 gap-3 items-center">
+            <div class="md:col-span-9 flex items-center bg-surface-canvas rounded-xl px-4 py-2 border border-surface-border">
+              <span class="material-symbols-outlined text-on-surface-variant mr-2 text-[20px]">search</span>
+              <input id="trackingSearchInput" type="text" placeholder="Enter Complaint Number (e.g. SBM-2026-9812) or Mobile..." value="#SBM-2026-9812" class="w-full bg-transparent text-sm font-semibold focus:outline-none placeholder:text-secondary-fixed-dim"/>
+            </div>
+            <div class="md:col-span-3">
+              <button type="submit" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-[18px]">troubleshoot</span>
+                <span>Track Grievance</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Recent Chips Container -->
+          <div class="flex items-center gap-2 flex-wrap mt-3 pt-3 border-t border-surface-border/60">
+            <span class="text-xs text-on-surface-variant font-medium">Quick Select Ticket:</span>
+            <div id="recentTicketChips" class="flex items-center gap-2 flex-wrap"></div>
+          </div>
+        </div>
+
+        <!-- Active Ticket Overview Card -->
+        <div class="bg-civic-navy-dark text-on-primary rounded-2xl p-6 sm:p-8 shadow-md relative overflow-hidden">
+          <div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
+            <span class="material-symbols-outlined text-[180px]">recycling</span>
+          </div>
+
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="flex flex-col gap-2 max-w-2xl">
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="trackTicketBadge" class="bg-surface-card/15 px-3 py-1 rounded text-primary-fixed font-mono font-bold text-xs">
+                  #SBM-2026-9812
+                </span>
+                <span id="trackStatusPill" class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-status-progress-soft text-status-progress font-bold text-xs">
+                  In Progress
+                </span>
+                <span class="px-2.5 py-0.5 rounded-full bg-alert-amber-soft text-alert-amber text-[10px] font-bold">
+                  High Severity
+                </span>
+              </div>
+              <h2 id="trackTitle" class="font-headline font-bold text-xl sm:text-2xl text-white mt-1">
+                Overflowing Public Bin &amp; Garbage Spillover near Community Park
+              </h2>
+              <div class="flex flex-wrap items-center gap-3 text-secondary-fixed-dim text-xs">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[15px] text-primary-fixed">location_on</span>
+                  <span id="trackLocation">Sector 14, Main Avenue, Urban Ward 28, New Delhi</span>
+                </span>
+                <span>•</span>
+                <span id="trackLoggedTime">Logged: Today, 08:15 AM</span>
+                <span>•</span>
+                <span id="trackCategory">Category: Overflowing Public Bin</span>
+              </div>
+            </div>
+
+            <!-- SLA Clock Card -->
+            <div class="bg-inverse-surface/80 rounded-xl p-4 flex items-center gap-4 shrink-0 border border-white/10">
+              <div class="w-12 h-12 rounded-full bg-status-progress-soft flex items-center justify-center text-status-progress">
+                <span class="material-symbols-outlined text-[26px]">timer</span>
+              </div>
+              <div>
+                <span class="text-[10px] text-secondary-fixed-dim uppercase tracking-wider block">Guaranteed SLA Target</span>
+                <span id="trackSlaDeadline" class="font-headline font-bold text-lg text-white">Today, 12:30 PM</span>
+                <span id="trackSlaRemaining" class="text-xs text-primary-fixed font-semibold block flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">check_circle</span> Within SLA (01 hr 45 min)
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Split: Timeline Stepper + Evidence / Telemetry -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left 7 Cols: Stepper Timeline -->
+          <div class="lg:col-span-7 flex flex-col gap-6">
+            <div class="bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-6">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-primary text-[22px]">timeline</span>
+                  <h3 class="font-headline font-bold text-lg text-civic-navy-dark">Resolution Workflow Timeline</h3>
+                </div>
+                <span class="text-xs font-semibold px-2.5 py-1 rounded bg-surface-container text-on-surface">Live Stepper</span>
+              </div>
+
+              <!-- Stepper Container -->
+              <div id="trackTimelineStepper" class="relative flex flex-col gap-6 pl-2"></div>
+            </div>
+
+            <!-- Driver & Field Team Card -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+              <span class="font-headline font-bold text-sm text-civic-navy-dark">Assigned Field Sanitation Crew</span>
+              
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-xl bg-surface-canvas border border-surface-border">
+                <div class="flex items-center gap-3">
+                  <div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center font-bold">
+                    <span class="material-symbols-outlined text-[26px]">local_shipping</span>
+                  </div>
+                  <div>
+                    <div class="flex items-center gap-2">
+                      <span id="trackDriverName" class="font-bold text-sm text-civic-navy-dark">Ramesh Kumar</span>
+                      <span class="px-2 py-0.5 rounded-full bg-status-resolved-soft text-status-resolved text-[10px] font-bold">Verified Driver</span>
+                    </div>
+                    <span id="trackVehicleNo" class="text-xs font-mono text-secondary block mt-0.5">DL-1VC-8402 (EV Tipper)</span>
+                    <span class="text-[11px] text-on-surface-variant">Sanitation Unit 04 • 3 Field Workers</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button onclick="showToast('Calling driver Ramesh Kumar (+91 98101 23456)...', 'info')" class="px-3.5 py-2 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-sm transition-all flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-[16px]">call</span>
+                    <span>Call Driver</span>
+                  </button>
+                  <button onclick="showToast('SMS dispatched to driver terminal DL-1VC-8402', 'info')" class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-civic-navy-dark transition-colors" title="Send Direct Note">
+                    <span class="material-symbols-outlined text-[18px]">chat</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 5 Cols: Photos & Telemetry Map -->
+          <div class="lg:col-span-5 flex flex-col gap-6">
+            
+            <!-- Before & After Comparison -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <span class="font-headline font-bold text-sm text-civic-navy-dark">Photographic Verification</span>
+                <span class="text-xs text-primary font-bold">AI Verified</span>
+              </div>
+
+              <!-- Before Photo -->
+              <div class="flex flex-col gap-1.5">
+                <span class="text-xs font-semibold text-secondary flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px] text-alert-amber">report_problem</span>
+                  Reported Issue (Before Cleanup)
+                </span>
+                <div class="relative w-full h-44 rounded-xl overflow-hidden shadow-sm">
+                  <img id="trackBeforeImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADdUw6ZLKowCGVxMj0mLFHf1vjVq5V6M_dXw5gL0rGIn5WY1o2b8HDcqURN0-Qk22pqprSr822ZLDstKNpk9RwtYYnu4i7FEgAjTTiRoPgy0FZnsmwFMOG-bLzM6rXX_9rag_SMd3NVtr_FEkDT-VPc7IDZGFRU9xopnFlvLwvecJoRnLPA_Frh-56EfdwPSn4--LfTPklLE5RbBKE2k8PFHifwb5bavxmYefXXk3SehG55pPOBM-r" class="w-full h-full object-cover" alt="Before Cleanup"/>
+                  <div class="absolute bottom-2 left-2 bg-civic-navy-dark/90 text-white text-[10px] px-2 py-0.5 rounded font-mono">
+                    Citizen Upload • 08:15 AM
+                  </div>
+                </div>
+              </div>
+
+              <!-- After Photo (If Resolved) -->
+              <div id="trackAfterBox" class="flex flex-col gap-1.5">
+                <span class="text-xs font-semibold text-status-resolved flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">task_alt</span>
+                  Inspector Verification (After Cleanup)
+                </span>
+                <div class="relative w-full h-44 rounded-xl overflow-hidden shadow-sm">
+                  <img id="trackAfterImg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxSJYZ8Fzx4GcM1737iUpLp-dgcnMiLDYNcMfvbRXqBGmsilyMnhIJyUUsPMye6XCm6yVaFg9PQfkhZ1XCGn6bOQ-8mSR-5ZaFNuWLa5b8GreGy_ZWKdQrNBkaKjsv10126ewXcug9Wfr3J6s4Gfe9dwOMSRYHIUwA3iTVXf4_jBAKWcHK2HR8hZXtFKrEPipX6lIkko6gnCIcw1tEr8Pg_qTttteJGftcQdaJqSSTZoq8xJqRVfxw" class="w-full h-full object-cover" alt="After Cleanup"/>
+                  <div class="absolute bottom-2 left-2 bg-status-resolved/90 text-white text-[10px] px-2 py-0.5 rounded font-mono">
+                    AI Match Confirmed 100% Clean
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Vehicle Telemetry & Map -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <span class="font-headline font-bold text-sm text-civic-navy-dark">Live GPS Vehicle Radar</span>
+                <span class="text-xs font-bold text-status-progress flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-status-progress animate-ping"></span>
+                  ETA: <span id="trackEta">14 mins</span>
+                </span>
+              </div>
+
+              <div class="relative w-full h-56 rounded-xl overflow-hidden shadow-inner border border-surface-border">
+                <div id="trackVehicleMap" class="w-full h-full relative z-0"></div>
+              </div>
+
+              <div class="flex items-center justify-between text-xs text-on-surface-variant">
+                <span>Speed: 24 km/h</span>
+                <span>Current Route: Sector 14 Ring Arterial</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW 5: GREEN KARMA REWARDS ================= -->
+    <section id="view-green-karma-rewards" class="app-view hidden">
+      <div class="max-w-7xl mx-auto px-gutter py-8 flex flex-col gap-6">
+        
+        <!-- Header Banner -->
+        <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-primary to-civic-navy-dark text-on-primary p-6 sm:p-10 shadow-md">
+          <div class="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+            <div class="max-w-2xl">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-card/15 backdrop-blur-md text-primary-fixed text-xs font-semibold mb-2">
+                <span class="material-symbols-outlined text-[15px]">workspace_premium</span>
+                <span>Swachh Survekshan 2026 Citizen Action Scheme</span>
+              </div>
+              <h1 class="font-headline font-extrabold text-3xl sm:text-4xl text-white tracking-tight">
+                Swachhata Cleanliness Points &amp; Green Karma
+              </h1>
+              <p class="text-sm text-surface-container-high/90 mt-2 leading-relaxed">
+                Earn verified civic reward points for reporting garbage, scheduling bulk pickups, segregating household waste, and actively helping your municipal ward stay spotless.
+              </p>
+            </div>
+
+            <!-- Mini Tier Badge -->
+            <div class="bg-surface-card/10 backdrop-blur-md rounded-xl p-4 lg:min-w-[220px] text-left lg:text-right border border-white/10">
+              <span class="text-[10px] text-secondary-fixed-dim uppercase tracking-wider block font-semibold">Civic Honor Rating</span>
+              <span class="font-headline font-bold text-2xl text-white block">Tier 3 : Gold</span>
+              <span class="text-xs text-primary-fixed font-semibold flex items-center lg:justify-end gap-1 mt-1">
+                <span class="material-symbols-outlined text-[16px]">military_tech</span> Top 5% in Ward 28
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Balance Card & Verification Index Bento Split -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Left 8 Cols: Balance, Meter, CTAs -->
+          <div class="lg:col-span-8 bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col justify-between gap-6">
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <span class="text-xs text-on-surface-variant uppercase tracking-wider font-semibold">Available Citizen Balance</span>
+                <div class="flex items-baseline gap-2 mt-1">
+                  <span id="karmaBalanceMain" class="font-headline font-extrabold text-4xl text-primary stat-counter">1,450</span>
+                  <span class="text-base text-on-surface-variant font-medium">Swachh Points</span>
+                </div>
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-alert-amber-soft text-alert-amber text-xs font-bold mt-2">
+                  <span class="material-symbols-outlined text-[16px]">eco</span>
+                  <span>Level 3 : Swachhata Champion / हरित नागरिक</span>
+                </div>
+              </div>
+
+              <div class="bg-surface-canvas p-3 rounded-xl text-right">
+                <span class="text-[11px] text-on-surface-variant block">Monthly Earnings</span>
+                <span class="text-base font-bold text-status-resolved flex items-center justify-end gap-0.5">
+                  <span class="material-symbols-outlined text-[16px]">trending_up</span> +320 pts
+                </span>
+                <span class="text-[10px] text-on-surface-variant">Cycle resets in 14 days</span>
+              </div>
+            </div>
+
+            <!-- Tier Progress Bar -->
+            <div class="bg-surface-canvas p-4 rounded-xl flex flex-col gap-2">
+              <div class="flex items-center justify-between text-xs font-bold text-civic-navy-dark">
+                <span class="flex items-center gap-1.5">
+                  <span class="material-symbols-outlined text-primary text-[18px]">shield</span>
+                  Next Tier: Gold Civic Guardian
+                </span>
+                <span id="karmaTierProgressLabel" class="text-on-surface-variant font-semibold">1,450 / 2,000 Points (72.5%)</span>
+              </div>
+              <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+                <div id="karmaTierProgress" class="h-full bg-gradient-to-r from-primary to-primary-container rounded-full transition-all duration-500" style="width: 72.5%;"></div>
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-on-surface-variant pt-1">
+                <span>550 points remaining to unlock 10% Municipal Property Tax Rebate</span>
+                <span class="text-primary font-bold flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-[14px]">card_membership</span> Mayor's Merit Citation
+                </span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3">
+              <button onclick="navigateTo('report-waste')" class="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-sm flex items-center gap-1.5 active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[16px]">photo_camera</span>
+                <span>Report Waste to Earn (+25 to +50 pts)</span>
+              </button>
+              <a href="#redemptionCatalog" class="px-5 py-2.5 rounded-xl bg-civic-navy-dark text-white hover:bg-inverse-surface font-bold text-xs flex items-center gap-1.5 transition-colors">
+                <span class="material-symbols-outlined text-[16px]">redeem</span>
+                <span>Redeem Rewards</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Right 4 Cols: Verification Index -->
+          <div class="lg:col-span-4 bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between pb-2 border-b border-surface-border/60">
+                <span class="font-headline font-bold text-sm text-civic-navy-dark">Verification Index</span>
+                <span class="px-2 py-0.5 rounded-full bg-status-resolved-soft text-status-resolved text-[11px] font-bold">100% Genuine</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 my-3">
+                <div class="bg-surface-canvas p-3 rounded-xl">
+                  <span class="text-[11px] text-on-surface-variant block">Reports Filed</span>
+                  <p id="userReportsCount" class="font-headline font-bold text-2xl text-civic-navy-dark">34</p>
+                  <span id="userResolvedCount" class="text-[11px] text-status-resolved font-semibold">31 Resolved (91%)</span>
+                </div>
+                <div class="bg-surface-canvas p-3 rounded-xl">
+                  <span class="text-[11px] text-on-surface-variant block">Bulky Pickups</span>
+                  <p class="font-headline font-bold text-2xl text-civic-navy-dark">8</p>
+                  <span class="text-[11px] text-secondary font-semibold">100% Diverted</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earning Matrix Box -->
+            <div class="bg-primary/5 rounded-xl p-3 border border-primary/10 flex flex-col gap-1.5 text-xs">
+              <span class="font-bold text-civic-navy-dark flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px] text-primary">currency_exchange</span>
+                Quick Earning Matrix
+              </span>
+              <div class="flex justify-between text-on-surface-variant text-[11px]">
+                <span>Report Geo-Verified Dump:</span>
+                <span class="font-bold text-primary">+25 pts</span>
+              </div>
+              <div class="flex justify-between text-on-surface-variant text-[11px]">
+                <span>E-Waste Doorstep Pickup:</span>
+                <span class="font-bold text-primary">+35 pts</span>
+              </div>
+              <div class="flex justify-between text-on-surface-variant text-[11px]">
+                <span>7-Day Home Segregation:</span>
+                <span class="font-bold text-primary">+50 pts</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Rewards Redemption Catalog -->
+        <div id="redemptionCatalog" class="flex flex-col gap-4 mt-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-headline font-bold text-xl text-civic-navy-dark">Redeem Green Karma Rewards</h2>
+              <p class="text-xs text-on-surface-variant">Convert your civic points into municipal tax rebates, transport subsidies, and sustainable household kits.</p>
+            </div>
+            <span class="text-xs text-primary font-bold">4 Rewards Available</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- Reward 1: Property Tax -->
+            <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border flex flex-col justify-between group hover:shadow-md transition-all">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-status-resolved-soft text-status-resolved flex items-center justify-center mb-3">
+                  <span class="material-symbols-outlined text-[24px]">receipt_long</span>
+                </div>
+                <h3 class="font-headline font-bold text-sm text-civic-navy-dark">10% Property Tax Rebate</h3>
+                <p class="text-xs text-on-surface-variant mt-1">Official rebate on residential municipal property tax for your registered address.</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-surface-border flex items-center justify-between">
+                <span class="font-mono font-bold text-primary text-sm">800 pts</span>
+                <button onclick="triggerRedeem('tax', 800, '10% Municipal Property Tax Rebate')" class="px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-sm transition-all active:scale-95">
+                  Redeem
+                </button>
+              </div>
+            </div>
+
+            <!-- Reward 2: Metro Card -->
+            <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border flex flex-col justify-between group hover:shadow-md transition-all">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-secondary-container text-secondary flex items-center justify-center mb-3">
+                  <span class="material-symbols-outlined text-[24px]">directions_subway</span>
+                </div>
+                <h3 class="font-headline font-bold text-sm text-civic-navy-dark">₹100 Metro Smart Card</h3>
+                <p class="text-xs text-on-surface-variant mt-1">Instant digital coupon for Delhi Metro or city transit smart card recharge balance.</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-surface-border flex items-center justify-between">
+                <span class="font-mono font-bold text-secondary text-sm">300 pts</span>
+                <button onclick="triggerRedeem('metro', 300, '₹100 Metro Smart Card Recharge')" class="px-3 py-1.5 rounded-lg bg-secondary hover:bg-inverse-surface text-on-secondary font-bold text-xs shadow-sm transition-all active:scale-95">
+                  Redeem
+                </button>
+              </div>
+            </div>
+
+            <!-- Reward 3: Compost Kit -->
+            <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border flex flex-col justify-between group hover:shadow-md transition-all">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-status-resolved-soft text-segregation-wet flex items-center justify-center mb-3">
+                  <span class="material-symbols-outlined text-[24px]">compost</span>
+                </div>
+                <h3 class="font-headline font-bold text-sm text-civic-navy-dark">Home Composting Starter Kit</h3>
+                <p class="text-xs text-on-surface-variant mt-1">Dual-chamber aerated compost bucket, cocopeat brick, and organic microbes powder.</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-surface-border flex items-center justify-between">
+                <span class="font-mono font-bold text-segregation-wet text-sm">500 pts</span>
+                <button onclick="triggerRedeem('compost-kit', 500, 'Home Composting Starter Kit')" class="px-3 py-1.5 rounded-lg bg-segregation-wet hover:bg-primary-container text-white font-bold text-xs shadow-sm transition-all active:scale-95">
+                  Redeem
+                </button>
+              </div>
+            </div>
+
+            <!-- Reward 4: Solar Garden Light -->
+            <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border flex flex-col justify-between group hover:shadow-md transition-all">
+              <div>
+                <div class="w-10 h-10 rounded-xl bg-alert-amber-soft text-alert-amber flex items-center justify-center mb-3">
+                  <span class="material-symbols-outlined text-[24px]">solar_power</span>
+                </div>
+                <h3 class="font-headline font-bold text-sm text-civic-navy-dark">Solar LED Garden Lantern</h3>
+                <p class="text-xs text-on-surface-variant mt-1">Solar-powered outdoor weather-proof LED light with auto dusk-to-dawn sensor.</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-surface-border flex items-center justify-between">
+                <span class="font-mono font-bold text-alert-amber text-sm">450 pts</span>
+                <button onclick="triggerRedeem('solar-light', 450, 'Solar LED Garden Lantern')" class="px-3 py-1.5 rounded-lg bg-alert-amber hover:bg-alert-amber/90 text-white font-bold text-xs shadow-sm transition-all active:scale-95">
+                  Redeem
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Passbook Transaction Ledger -->
+        <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4 mt-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 class="font-headline font-bold text-lg text-civic-navy-dark">Swachhata Passbook History</h2>
+              <p class="text-xs text-on-surface-variant">Complete audit ledger of civic rewards earned and redeemed.</p>
+            </div>
+            
+            <!-- Filters -->
+            <div class="flex items-center gap-1 bg-surface-container p-1 rounded-xl">
+              <button onclick="renderPassbookLedger('all')" class="px-3 py-1 rounded-lg text-xs font-bold bg-surface-card text-civic-navy-dark shadow-sm">All</button>
+              <button onclick="renderPassbookLedger('credit')" class="px-3 py-1 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface">Credits (+)</button>
+              <button onclick="renderPassbookLedger('debit')" class="px-3 py-1 rounded-lg text-xs font-medium text-on-surface-variant hover:text-on-surface">Debits (-)</button>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-surface-border text-on-surface-variant font-semibold">
+                  <th class="py-2.5 px-4">Transaction Details</th>
+                  <th class="py-2.5 px-4">Reference ID</th>
+                  <th class="py-2.5 px-4">Timestamp</th>
+                  <th class="py-2.5 px-4 text-right">Points</th>
+                </tr>
+              </thead>
+              <tbody id="passbookTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW 6: AWARENESS GUIDE ================= -->
+    <section id="view-awareness-guide" class="app-view hidden">
+      <div class="max-w-7xl mx-auto px-gutter py-8 flex flex-col gap-6">
+        
+        <!-- Header Banner -->
+        <div class="w-full bg-surface-canvas py-8 px-6 rounded-2xl border border-surface-border relative overflow-hidden">
+          <div class="max-w-3xl flex flex-col gap-2 relative z-10">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-status-resolved-soft text-status-resolved text-xs font-bold w-fit">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>MoHUA Civic Learning Hub • Swachh Survekshan</span>
+            </div>
+            <h1 class="font-headline font-extrabold text-3xl sm:text-4xl text-civic-navy-dark tracking-tight">
+              Waste Segregation &amp; Sustainable Resource Guide
+            </h1>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              Segregate waste at source before it leaves your home. Learn 3-Bin Rules, Home Composting DIY, and the municipal end-to-end processing lifecycle.
+            </p>
+          </div>
+        </div>
+
+        <!-- Quick Bin Finder Live Search -->
+        <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+          <div class="flex items-center gap-2 text-primary font-bold text-sm">
+            <span class="material-symbols-outlined text-[20px]">psychology_alt</span>
+            <span>Quick Bin Finder: Live Waste Classifier</span>
+          </div>
+
+          <div class="relative w-full">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-on-surface-variant">
+              <span class="material-symbols-outlined text-[20px]">search</span>
+            </span>
+            <input id="wasteSearchInput" type="text" placeholder="Search household waste item (e.g. Pizza Box, Used Tea Leaves, Battery, Glass Bottle, Milk Packet)..." class="w-full pl-10 pr-20 py-3 rounded-xl bg-surface border border-surface-border text-xs sm:text-sm font-medium focus:ring-2 focus:ring-primary focus:outline-none"/>
+            <button onclick="document.getElementById('wasteSearchInput').value=''; searchWasteItem('');" class="absolute inset-y-0 right-0 pr-4 flex items-center text-xs font-semibold text-on-surface-variant hover:text-on-surface">
+              Reset
+            </button>
+          </div>
+
+          <!-- Quick Filter Buttons -->
+          <div class="flex items-center gap-2 flex-wrap text-xs">
+            <span class="text-on-surface-variant font-medium">Try searching:</span>
+            <button onclick="applyQuickFilter('Pizza Box')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-medium">Pizza Box</button>
+            <button onclick="applyQuickFilter('Batteries')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-medium">Batteries</button>
+            <button onclick="applyQuickFilter('Tea Leaves')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-medium">Tea Leaves</button>
+            <button onclick="applyQuickFilter('Medicine')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-medium">Expired Medicine</button>
+            <button onclick="applyQuickFilter('Eggshells')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-medium">Eggshells</button>
+            <button onclick="applyQuickFilter('Sanitary')" class="px-2.5 py-1 rounded-lg bg-surface-container hover:bg-surface-container-high transition-colors font-medium">Sanitary Napkins</button>
+          </div>
+
+          <!-- Search Results Popover -->
+          <div id="searchResultsBox" class="hidden">
+            <div id="searchMessage"></div>
+          </div>
+        </div>
+
+        <!-- The 3-Bin Color Rule Visual System -->
+        <div class="flex flex-col gap-4">
+          <div>
+            <span class="text-xs font-bold text-primary uppercase tracking-wider">3-Color Civic Formula</span>
+            <h2 class="font-headline font-bold text-xl sm:text-2xl text-civic-navy-dark mt-0.5">The 3-Bin Classification System</h2>
+            <p class="text-xs text-on-surface-variant">Using 3 separate color-coded bins is mandatory across every residence, commercial store, and housing society.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Green Bin (Wet) -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4 relative overflow-hidden">
+              <div class="h-2 w-full absolute top-0 left-0 bg-segregation-wet"></div>
+              
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-10 h-10 rounded-xl bg-status-resolved-soft text-segregation-wet flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[24px]">delete</span>
+                  </div>
+                  <div>
+                    <span class="font-headline font-bold text-base text-civic-navy-dark block">Green Bin</span>
+                    <span class="text-[10px] text-segregation-wet font-bold uppercase tracking-wider">Wet / Biodegradable</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-status-resolved-soft text-status-resolved">100% Compost</span>
+              </div>
+
+              <div class="relative w-full h-36 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQhy2YxZGxdrvz8xftbPCFoUzL7_AtXExm0KIGe1ZCUE_FL02d1V9ZDscU7tmHNZ2Bpg2v41WiyVlCsUUyKvM-ycAOGKTDmCvE7RXjndRZuJnlAZG0plbPIobEV96_pd7Ie0kIH6FdBH3s2Ux-_LFw0do21mjhZLAlZQZ9OndJyT9uF5E2__1X_HRABlok7WKQnyGmsFXviwz9Yjff4KD5innKHoBZ6h9oBeuNFeGjFScxc-nq0uiA" class="w-full h-full object-cover" alt="Wet Waste"/>
+              </div>
+
+              <div class="flex flex-col gap-2 text-xs">
+                <span class="font-bold text-civic-navy-dark">What goes inside:</span>
+                <ul class="text-on-surface-variant flex flex-col gap-1 text-[11px]">
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-wet"></span> Kitchen vegetable &amp; fruit peels</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-wet"></span> Leftover cooked food (drained)</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-wet"></span> Tea leaves, coffee grounds, eggshells</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-wet"></span> Garden fallen leaves &amp; grass clippings</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Blue Bin (Dry) -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4 relative overflow-hidden">
+              <div class="h-2 w-full absolute top-0 left-0 bg-segregation-dry"></div>
+              
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-10 h-10 rounded-xl bg-status-progress-soft text-segregation-dry flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[24px]">delete</span>
+                  </div>
+                  <div>
+                    <span class="font-headline font-bold text-base text-civic-navy-dark block">Blue Bin</span>
+                    <span class="text-[10px] text-segregation-dry font-bold uppercase tracking-wider">Dry / Recyclable</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-status-progress-soft text-status-progress">Recyclable</span>
+              </div>
+
+              <div class="relative w-full h-36 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcx0i4KAkYwPQqkf_DIyUkbNSRIsW3kNbJuJxhcej49m9jdrywdHI79vi9kwTqgzHkNf4CxJcoZlB00jhlYCUEKa0KTZUZNgucN2cCqRs2f-7rujg8sDtjM7aLpx_u9gyn3XNOyu2KKSa2wmR0UNo1cnh5JRwGyDZViv0rRiAr75oHFXTRLlgNIQGbGpFlaFZxDx9JphbvznaCdLYFTOzvDrn61xEo2BCNo3HlgmqGKTr734lMtRCP" class="w-full h-full object-cover" alt="Dry Waste"/>
+              </div>
+
+              <div class="flex flex-col gap-2 text-xs">
+                <span class="font-bold text-civic-navy-dark">What goes inside:</span>
+                <ul class="text-on-surface-variant flex flex-col gap-1 text-[11px]">
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-dry"></span> Flattened cardboard &amp; newspapers</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-dry"></span> Clean plastic bottles (PET &amp; HDPE)</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-dry"></span> Aluminum beverage cans &amp; foil</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-dry"></span> Glass bottles &amp; jars (unbroken)</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Red Bin (Hazardous) -->
+            <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4 relative overflow-hidden">
+              <div class="h-2 w-full absolute top-0 left-0 bg-segregation-hazardous"></div>
+              
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-10 h-10 rounded-xl bg-status-critical-soft text-segregation-hazardous flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[24px]">delete</span>
+                  </div>
+                  <div>
+                    <span class="font-headline font-bold text-base text-civic-navy-dark block">Red / Orange Bin</span>
+                    <span class="text-[10px] text-segregation-hazardous font-bold uppercase tracking-wider">Domestic Hazardous</span>
+                  </div>
+                </div>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-status-critical-soft text-status-critical">Special Care</span>
+              </div>
+
+              <div class="relative w-full h-36 rounded-xl overflow-hidden shadow-sm">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNK-MC1yfkQk-BTd2AvDFi2yMbOXkpjX6Eu1de082b6gg9T3kNN15Mr5U4NJ3TaoUAlQGxXu9RMY8sQ7X6N2egXoc4wDEeQ93Zw75vHTUyM9seVU619n5eESrwnstpetnYmWTjwDs8j1unE64R5KGvbAXaiK-YwHeT_hsCB0LdmPz506TuZu0bu51KnYj8tmTyRTU3OmjHjDJ3tR4giLgDDD8WCox-zKQggiIdH12YJlw40TQZM2Ks" class="w-full h-full object-cover" alt="Hazardous Waste"/>
+              </div>
+
+              <div class="flex flex-col gap-2 text-xs">
+                <span class="font-bold text-civic-navy-dark">What goes inside:</span>
+                <ul class="text-on-surface-variant flex flex-col gap-1 text-[11px]">
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-hazardous"></span> Batteries (taped terminals)</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-hazardous"></span> Expired medicines &amp; blister strips</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-hazardous"></span> CFL bulbs, tubelights &amp; paints</li>
+                  <li class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-segregation-hazardous"></span> Sanitary pads &amp; diapers (wrapped)</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- DIY Home Composting 4-Step Visual Guide -->
+        <div class="bg-surface-card rounded-2xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-6">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-status-resolved uppercase tracking-wider">Zero-Cost Organic Humus</span>
+              <h3 class="font-headline font-bold text-xl text-civic-navy-dark">DIY Home Composting in 4 Easy Steps</h3>
+              <p class="text-xs text-on-surface-variant">Turn 100% of your daily kitchen wet waste into nutrient-dense black gold for your balcony plants.</p>
+            </div>
+            <span class="text-xs font-bold px-3 py-1 rounded-full bg-status-resolved-soft text-status-resolved">30-Day Cycle</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div class="bg-surface-canvas p-4 rounded-xl border border-surface-border flex flex-col gap-2">
+              <span class="w-7 h-7 rounded-full bg-primary text-on-primary font-bold text-xs flex items-center justify-center">1</span>
+              <h4 class="font-bold text-xs text-civic-navy-dark">Chop &amp; Collect</h4>
+              <p class="text-[11px] text-on-surface-variant">Chop fruit and vegetable scraps into small 2-3 cm pieces so microbes can digest them rapidly.</p>
+            </div>
+
+            <div class="bg-surface-canvas p-4 rounded-xl border border-surface-border flex flex-col gap-2">
+              <span class="w-7 h-7 rounded-full bg-primary text-on-primary font-bold text-xs flex items-center justify-center">2</span>
+              <h4 class="font-bold text-xs text-civic-navy-dark">The 2:1 Layering Rule</h4>
+              <p class="text-[11px] text-on-surface-variant">For every 1 bucket of wet kitchen scraps (Green/Nitrogen), add 2 buckets of dry leaves or shredded egg trays (Brown/Carbon).</p>
+            </div>
+
+            <div class="bg-surface-canvas p-4 rounded-xl border border-surface-border flex flex-col gap-2">
+              <span class="w-7 h-7 rounded-full bg-primary text-on-primary font-bold text-xs flex items-center justify-center">3</span>
+              <h4 class="font-bold text-xs text-civic-navy-dark">Aeration &amp; Moisture</h4>
+              <p class="text-[11px] text-on-surface-variant">Turn the pile once a week with a trowel for oxygen flow. Keep it as damp as a wrung-out sponge.</p>
+            </div>
+
+            <div class="bg-surface-canvas p-4 rounded-xl border border-surface-border flex flex-col gap-2">
+              <span class="w-7 h-7 rounded-full bg-primary text-on-primary font-bold text-xs flex items-center justify-center">4</span>
+              <h4 class="font-bold text-xs text-civic-navy-dark">Harvest Sweet Humus</h4>
+              <p class="text-[11px] text-on-surface-variant">In 30-40 days, the volume shrinks by 70%, turning into rich, dark, sweet-smelling organic soil amendment.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW 7: MUNICIPAL ADMIN COMMAND CONSOLE ================= -->
+    <section id="view-admin-portal" class="app-view hidden">
+      <!-- Admin Context Sub-Bar -->
+      <div class="bg-civic-navy-dark text-on-primary py-3 px-gutter border-b border-surface-border/10">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
+          <div class="flex items-center gap-3 flex-wrap">
+            <div class="flex items-center gap-2 bg-surface-card/10 px-3 py-1.5 rounded-lg border border-surface-card/15">
+              <span class="material-symbols-outlined text-[18px] text-primary-fixed">domain</span>
+              <div>
+                <span class="text-[10px] text-secondary-fixed-dim block">Urban Local Body</span>
+                <span class="text-xs font-bold text-white">North Delhi Municipal Corporation (North DMC)</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 bg-surface-card/10 px-3 py-1.5 rounded-lg border border-surface-card/15">
+              <span class="material-symbols-outlined text-[18px] text-alert-amber">location_on</span>
+              <div>
+                <span class="text-[10px] text-secondary-fixed-dim block">Active Zone</span>
+                <span class="text-xs font-bold text-white">Zone 04 - Ward 28</span>
+              </div>
+            </div>
+            <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-status-resolved/20 border border-status-resolved/30">
+              <span class="w-2 h-2 rounded-full bg-primary-fixed animate-ping"></span>
+              <span class="text-[11px] font-bold text-primary-fixed uppercase tracking-wider">24/7 Command Live Telemetry</span>
+            </div>
+          </div>
+
+          <div id="adminOfficerBarProfile" class="flex items-center gap-3">
+            <div class="text-right">
+              <span id="adminOfficerName" class="text-xs font-bold text-white block">Rajesh Kumar, IAS</span>
+              <span id="adminOfficerTitle" class="text-[10px] text-secondary-fixed-dim">Joint Commissioner (Solid Waste)</span>
+            </div>
+            <div id="adminOfficerAvatar" class="w-9 h-9 rounded-lg bg-primary text-white font-bold flex items-center justify-center text-xs shadow-sm">
+              RK
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-gutter py-8 flex flex-col gap-6">
+        
+        <!-- Executive KPI Counters -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border">
+            <div class="flex items-center justify-between text-xs text-secondary font-semibold">
+              <span>Active Grievances</span>
+              <span class="w-8 h-8 rounded-lg bg-status-critical-soft text-status-critical flex items-center justify-center">
+                <span class="material-symbols-outlined text-[18px]">report_problem</span>
+              </span>
+            </div>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="font-headline font-extrabold text-3xl text-civic-navy-dark">1,428</span>
+              <span class="text-xs text-status-resolved font-bold flex items-center">
+                <span class="material-symbols-outlined text-[14px]">arrow_downward</span> 12%
+              </span>
+            </div>
+            <span class="text-[11px] text-on-surface-variant mt-1 block">92 resolved today (93.5% Cleared)</span>
+          </div>
+
+          <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border">
+            <div class="flex items-center justify-between text-xs text-secondary font-semibold">
+              <span>Active Sanitation Fleet</span>
+              <span class="w-8 h-8 rounded-lg bg-status-progress-soft text-status-progress flex items-center justify-center">
+                <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+              </span>
+            </div>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="font-headline font-extrabold text-3xl text-civic-navy-dark">184<span class="text-lg font-normal text-secondary">/196</span></span>
+              <span class="text-xs text-status-progress font-bold">94% Route</span>
+            </div>
+            <span class="text-[11px] text-on-surface-variant mt-1 block">48 Zero-Emission EV Tippers</span>
+          </div>
+
+          <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border">
+            <div class="flex items-center justify-between text-xs text-secondary font-semibold">
+              <span>Mean Resolution Time</span>
+              <span class="w-8 h-8 rounded-lg bg-status-resolved-soft text-status-resolved flex items-center justify-center">
+                <span class="material-symbols-outlined text-[18px]">timer</span>
+              </span>
+            </div>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="font-headline font-extrabold text-3xl text-civic-navy-dark">2.4<span class="text-lg font-normal text-secondary"> hrs</span></span>
+              <span class="text-xs text-status-resolved font-bold">Target: 4.0h</span>
+            </div>
+            <span class="text-[11px] text-on-surface-variant mt-1 block">98.2% Strict SLA Compliance</span>
+          </div>
+
+          <div class="bg-surface-card rounded-2xl p-5 shadow-sm border border-surface-border">
+            <div class="flex items-center justify-between text-xs text-secondary font-semibold">
+              <span>Daily Waste Collected</span>
+              <span class="w-8 h-8 rounded-lg bg-surface-container-high text-primary flex items-center justify-center">
+                <span class="material-symbols-outlined text-[18px]">delete_sweep</span>
+              </span>
+            </div>
+            <div class="mt-2 flex items-baseline gap-2">
+              <span class="font-headline font-extrabold text-3xl text-civic-navy-dark">1,840<span class="text-lg font-normal text-secondary"> MT</span></span>
+              <span class="text-xs text-primary font-bold">+4.1%</span>
+            </div>
+            <span class="text-[11px] text-on-surface-variant mt-1 block">85% Processed &amp; Diverted</span>
+          </div>
+        </div>
+
+        <!-- Live Grievance Triage Table -->
+        <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div>
+              <h2 class="font-headline font-bold text-lg text-civic-navy-dark">Incoming Citizen Grievance Triage Queue</h2>
+              <p class="text-xs text-on-surface-variant">Live complaints registered across Ward 28 with one-click dispatch and resolution.</p>
+            </div>
+            <span class="text-xs text-primary font-bold">Real-Time Reactive Store</span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-surface-border text-on-surface-variant font-semibold">
+                  <th class="py-2.5 px-4">Ticket</th>
+                  <th class="py-2.5 px-4">Description &amp; Ward</th>
+                  <th class="py-2.5 px-4">Status</th>
+                  <th class="py-2.5 px-4">Vehicle Telemetry</th>
+                  <th class="py-2.5 px-4">SLA Clock</th>
+                  <th class="py-2.5 px-4 text-right">Admin Actions</th>
+                </tr>
+              </thead>
+              <tbody id="adminTriageTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Active Fleet Telemetry Monitor -->
+        <div class="bg-surface-card rounded-2xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <h2 class="font-headline font-bold text-lg text-civic-navy-dark">Ward 28 Sanitation Fleet Telemetry</h2>
+              <p class="text-xs text-on-surface-variant">Live vehicle status, driver contacts, battery levels, and route capacities.</p>
+            </div>
+            <span class="text-xs text-status-resolved font-bold flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-status-resolved animate-ping"></span> Live Fleet Radar
+            </span>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead>
+                <tr class="border-b border-surface-border text-on-surface-variant font-semibold">
+                  <th class="py-2.5 px-3">Vehicle ID</th>
+                  <th class="py-2.5 px-3">Type</th>
+                  <th class="py-2.5 px-3">Driver / Phone</th>
+                  <th class="py-2.5 px-3">Battery</th>
+                  <th class="py-2.5 px-3">Fill Capacity</th>
+                  <th class="py-2.5 px-3">Status</th>
+                </tr>
+              </thead>
+              <tbody id="adminFleetTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= VIEW 8: LOGIN PORTAL (ADMIN & CITIZEN) ================= -->
+    <section id="view-login" class="app-view hidden py-8 px-gutter">
+      <div class="max-w-5xl mx-auto flex flex-col gap-8">
+        
+        <!-- Institutional Gov Auth Header Strip -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-surface-border">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-primary-fixed text-primary flex items-center justify-center shadow-sm">
+              <span class="material-symbols-outlined text-[28px]">lock_person</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="text-[10px] font-bold tracking-wider uppercase text-primary bg-primary-fixed/40 px-2 py-0.5 rounded-full">MoHUA Digital Gateway</span>
+                <span class="text-[10px] text-on-surface-variant font-medium">Digital India Single Sign-On</span>
+              </div>
+              <h1 class="font-headline font-extrabold text-2xl sm:text-3xl text-civic-navy-dark tracking-tight">
+                पवित्र वसुथा Portal Authentication
+              </h1>
+            </div>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="flex items-center gap-2 self-start sm:self-center">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-civic-navy-dark font-semibold text-xs border border-surface-border">
+              <span class="material-symbols-outlined text-[16px] text-status-resolved">verified</span>
+              <span>DigiLocker SSO</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-civic-navy-dark font-semibold text-xs border border-surface-border">
+              <span class="material-symbols-outlined text-[16px] text-alert-amber">security</span>
+              <span>256-Bit SSL</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Role Switcher Segmented Control -->
+        <div class="bg-surface-container-high/60 p-1.5 rounded-2xl max-w-xl mx-auto w-full grid grid-cols-2 gap-2 border border-surface-border shadow-sm">
+          <button id="roleTabCitizenBtn" type="button" onclick="switchLoginRole('citizen')" class="role-tab-btn active-citizen py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs sm:text-sm font-bold transition-all">
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            <span>Citizen Portal (नागरिक)</span>
+          </button>
+          <button id="roleTabAdminBtn" type="button" onclick="switchLoginRole('admin')" class="role-tab-btn py-3 px-4 rounded-xl flex items-center justify-center gap-2 text-xs sm:text-sm font-medium text-on-surface-variant hover:text-civic-navy-dark transition-all">
+            <span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+            <span>Municipal Admin (अधिकारी)</span>
+          </button>
+        </div>
+
+        <!-- ================= PANEL 1: CITIZEN LOGIN ================= -->
+        <div id="loginCitizenPanel" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left 7 Cols: Citizen Login Form -->
+          <div class="lg:col-span-7 bg-surface-card rounded-3xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-6">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-primary uppercase tracking-wider">Citizen Verification</span>
+                <span class="px-2.5 py-0.5 rounded-full bg-status-resolved-soft text-status-resolved text-[10px] font-bold">Fast Mobile OTP</span>
+              </div>
+              <h2 class="font-headline font-bold text-xl sm:text-2xl text-civic-navy-dark mt-1">
+                Access Citizen Civic Wallet &amp; Grievances
+              </h2>
+              <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+                Log in using your registered 10-digit mobile number for instant DigiLocker sync, Green Karma passbook, and real-time grievance tracking.
+              </p>
+            </div>
+
+            <form onsubmit="handleCitizenLoginSubmit(event)" class="flex flex-col gap-5">
+              <!-- Mobile Phone Field with Send OTP Button -->
+              <div>
+                <label class="block text-xs font-semibold text-civic-navy-dark mb-1.5">Mobile Phone Number</label>
+                <div class="flex items-center bg-surface-canvas border border-surface-border rounded-xl px-3.5 py-3 focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+                  <span class="text-xs font-extrabold text-secondary mr-2.5 flex items-center gap-1">
+                    <span>🇮🇳</span> +91
+                  </span>
+                  <input id="citizenPhoneInput" type="tel" maxlength="10" placeholder="98765 43210" value="9876543210" required class="flex-1 bg-transparent text-sm font-semibold text-civic-navy-dark focus:outline-none"/>
+                  <button type="button" id="btnRequestOtp" onclick="handleSendOtp()" class="ml-2 px-3 py-1.5 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-sm transition-all whitespace-nowrap">
+                    Send OTP
+                  </button>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1.5 px-0.5">
+                  <span id="otpStatusNotice" class="text-status-resolved font-medium flex items-center gap-1">
+                    <span class="material-symbols-outlined text-[14px]">info</span>
+                    OTP 123456 ready for testing
+                  </span>
+                  <span id="otpTimerNotice" class="text-outline">Resend code in <strong id="otpTimerSec">30</strong>s</span>
+                </div>
+              </div>
+
+              <!-- 6-Digit OTP Field -->
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label class="text-xs font-semibold text-civic-navy-dark">Enter 6-Digit Verification Code</label>
+                  <button type="button" onclick="autofillDemoOtp()" class="text-primary hover:underline text-[11px] font-bold flex items-center gap-0.5">
+                    <span class="material-symbols-outlined text-[13px]">bolt</span> Auto-Fill Demo OTP
+                  </button>
+                </div>
+                <input id="citizenOtpInput" type="text" maxlength="6" value="123456" placeholder="• • • • • •" class="otp-digit-input w-full p-3 bg-surface-canvas border border-surface-border rounded-xl text-center text-xl font-mono font-bold text-civic-navy-dark focus:border-primary focus:ring-2 focus:ring-primary/20 focus:outline-none transition-all"/>
+              </div>
+
+              <!-- Ward Auto-Tag Notice -->
+              <div class="p-3 rounded-xl bg-surface-container-low border border-surface-border/80 flex items-start gap-2.5 text-xs text-on-surface-variant">
+                <span class="material-symbols-outlined text-primary text-[18px] shrink-0 mt-0.5">location_on</span>
+                <div>
+                  <span class="font-bold text-civic-navy-dark block">Ward 28 - Central Karol Bagh, New Delhi</span>
+                  <span class="text-[11px]">Your urban ward is automatically locked based on your municipal telecom sector.</span>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" id="btnCitizenSubmit" class="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-[20px]">login</span>
+                <span>Verify OTP &amp; Enter Citizen Portal</span>
+              </button>
+
+              <!-- 1-Click Fast Demo Login -->
+              <div class="pt-2 border-t border-surface-border flex flex-col gap-2">
+                <span class="text-center text-[11px] text-outline uppercase font-semibold">Or One-Click Instant Sign-In</span>
+                <button type="button" onclick="quickLoginCitizen()" class="w-full py-2.5 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-civic-navy-dark font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                  <span class="material-symbols-outlined text-primary text-[18px]">bolt</span>
+                  <span>1-Click Demo Login as Citizen (Aarav Sharma)</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right 5 Cols: Citizen Benefits & Wallet Snapshot -->
+          <div class="lg:col-span-5 flex flex-col gap-5">
+            <!-- Green Karma Citizen Passbook Card -->
+            <div class="bg-gradient-to-br from-primary via-primary-container to-civic-navy-dark text-on-primary rounded-3xl p-6 shadow-md flex flex-col gap-4">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[22px] text-primary-fixed">eco</span>
+                  <span class="font-bold text-xs tracking-wider uppercase text-primary-fixed">Civic Wallet</span>
+                </div>
+                <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[10px] font-bold">Tier 3 Gold</span>
+              </div>
+              <div>
+                <span class="text-3xl font-extrabold font-headline">1,450 <span class="text-lg font-normal text-primary-fixed">Karma</span></span>
+                <span class="text-xs text-surface-container-low block mt-1">Earned through verified waste segregation &amp; reporting</span>
+              </div>
+              <div class="pt-3 border-t border-white/15 flex items-center justify-between text-xs text-primary-fixed-dim">
+                <span>Free Pickups Remaining:</span>
+                <span class="font-bold text-white">2 of 2 Free Quota</span>
+              </div>
+            </div>
+
+            <!-- Perks Card -->
+            <div class="bg-surface-card rounded-3xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+              <span class="font-headline font-bold text-sm text-civic-navy-dark">Citizen Rights &amp; Privileges</span>
+              
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-status-resolved-soft text-status-resolved flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">add_a_photo</span>
+                </div>
+                <div class="text-xs">
+                  <span class="font-bold text-civic-navy-dark block">1-Click Waste Reporting</span>
+                  <span class="text-on-surface-variant">Capture dumpsites with AI photo recognition and earn +25 Green Karma.</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-secondary-container text-secondary flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+                </div>
+                <div class="text-xs">
+                  <span class="font-bold text-civic-navy-dark block">Quarterly EV Pickup Quota</span>
+                  <span class="text-on-surface-variant">Schedule door-to-door bulk furniture and electronic waste collection free.</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-alert-amber-soft text-alert-amber flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">redeem</span>
+                </div>
+                <div class="text-xs">
+                  <span class="font-bold text-civic-navy-dark block">10% Property Tax Rebate</span>
+                  <span class="text-on-surface-variant">Redeem civic points for municipal property tax and Metro smart card credits.</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-status-progress-soft text-status-progress flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">policy</span>
+                </div>
+                <div class="text-xs">
+                  <span class="font-bold text-civic-navy-dark block">Whistleblower Safe Harbor</span>
+                  <span class="text-on-surface-variant">100% legal protection under MoHUA guidelines for civic reporting.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ================= PANEL 2: ADMIN & OFFICER LOGIN ================= -->
+        <div id="loginAdminPanel" class="hidden grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Left 7 Cols: Admin Credentials Form -->
+          <div class="lg:col-span-7 bg-surface-card rounded-3xl p-6 sm:p-8 shadow-sm border border-surface-border flex flex-col gap-6">
+            <div>
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-alert-amber uppercase tracking-wider flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[16px]">shield</span> Municipal Authority
+                </span>
+                <span class="px-2.5 py-0.5 rounded-full bg-civic-navy-dark text-amber-300 text-[10px] font-bold">NIC Parichay SSO</span>
+              </div>
+              <h2 class="font-headline font-bold text-xl sm:text-2xl text-civic-navy-dark mt-1">
+                Urban Local Body Command Access
+              </h2>
+              <p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">
+                Single Sign-On for Joint Commissioners, Ward Sanitation Inspectors, and Central Waste Logistics Dispatchers.
+              </p>
+            </div>
+
+            <!-- Caution Notice Strip -->
+            <div class="p-3 rounded-xl bg-alert-amber-soft border border-alert-amber/30 flex items-start gap-2.5 text-xs text-amber-900">
+              <span class="material-symbols-outlined text-alert-amber text-[18px] shrink-0 mt-0.5">warning</span>
+              <div>
+                <span class="font-bold block">Authorized Personnel Only</span>
+                <span class="text-[11px]">All administrative commands, dispatch updates, and photo verifications are cryptographically audited.</span>
+              </div>
+            </div>
+
+            <form onsubmit="handleAdminLoginSubmit(event)" class="flex flex-col gap-5">
+              <!-- ULB Corporation & Zone Selection -->
+              <div>
+                <label class="block text-xs font-semibold text-civic-navy-dark mb-1.5">Municipal Corporation &amp; Zonal Jurisdiction</label>
+                <select id="adminUlbSelect" class="w-full p-3 bg-surface-canvas border border-surface-border rounded-xl text-xs font-semibold text-civic-navy-dark focus:border-alert-amber focus:ring-2 focus:ring-alert-amber/20 focus:outline-none">
+                  <option value="North Delhi Municipal Corporation (North DMC) - Zone 04, Ward 28" selected>North Delhi Municipal Corporation (North DMC) - Zone 04, Ward 28</option>
+                  <option value="Municipal Corporation of Delhi (MCD Central Command)">Municipal Corporation of Delhi (MCD Central Command)</option>
+                  <option value="New Delhi Municipal Council (NDMC)">New Delhi Municipal Council (NDMC)</option>
+                  <option value="South Delhi Municipal Corporation (SDMC - Zone 02)">South Delhi Municipal Corporation (SDMC - Zone 02)</option>
+                </select>
+              </div>
+
+              <!-- Officer Email / Employee ID -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-civic-navy-dark mb-1.5">Official Gov Email</label>
+                  <div class="flex items-center bg-surface-canvas border border-surface-border rounded-xl px-3 py-2.5 focus-within:border-alert-amber focus-within:ring-2 focus-within:ring-alert-amber/20">
+                    <span class="material-symbols-outlined text-[18px] text-secondary mr-2">badge</span>
+                    <input id="adminEmailInput" type="email" value="rajesh.ias@delhi.gov.in" required class="w-full bg-transparent text-xs font-semibold text-civic-navy-dark focus:outline-none"/>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-civic-navy-dark mb-1.5">ULB Officer ID</label>
+                  <div class="flex items-center bg-surface-canvas border border-surface-border rounded-xl px-3 py-2.5 focus-within:border-alert-amber focus-within:ring-2 focus-within:ring-alert-amber/20">
+                    <span class="material-symbols-outlined text-[18px] text-secondary mr-2">tag</span>
+                    <input id="adminEmpIdInput" type="text" value="MCD-ADM-2024-09" required class="w-full bg-transparent text-xs font-mono font-semibold text-civic-navy-dark focus:outline-none"/>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Security Password & 2FA Token -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-civic-navy-dark mb-1.5">Officer Security PIN / Password</label>
+                  <div class="flex items-center bg-surface-canvas border border-surface-border rounded-xl px-3 py-2.5 focus-within:border-alert-amber focus-within:ring-2 focus-within:ring-alert-amber/20">
+                    <span class="material-symbols-outlined text-[18px] text-secondary mr-2">lock</span>
+                    <input id="adminPasswordInput" type="password" value="CivilServices@2026" required class="w-full bg-transparent text-xs font-semibold text-civic-navy-dark focus:outline-none"/>
+                  </div>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-civic-navy-dark mb-1.5">NIC Parichay 2FA Token</label>
+                  <div class="flex items-center bg-surface-canvas border border-surface-border rounded-xl px-3 py-2.5 focus-within:border-alert-amber focus-within:ring-2 focus-within:ring-alert-amber/20">
+                    <span class="material-symbols-outlined text-[18px] text-alert-amber mr-2">token</span>
+                    <input id="adminTokenInput" type="text" value="PARICHAY-9402" class="w-full bg-transparent text-xs font-mono font-bold text-civic-navy-dark focus:outline-none"/>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Submit Admin Button -->
+              <button type="submit" id="btnAdminSubmit" class="w-full py-3.5 rounded-xl bg-civic-navy-dark hover:bg-inverse-surface text-amber-300 font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2 border border-amber-400/30">
+                <span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>
+                <span>Authorize &amp; Launch Command Console</span>
+              </button>
+
+              <!-- 1-Click Fast Demo Admin Login -->
+              <div class="pt-2 border-t border-surface-border flex flex-col gap-2">
+                <span class="text-center text-[11px] text-outline uppercase font-semibold">Or One-Click Officer Authorization</span>
+                <button type="button" onclick="quickLoginAdmin()" class="w-full py-2.5 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-civic-navy-dark font-bold text-xs flex items-center justify-center gap-2 transition-all">
+                  <span class="material-symbols-outlined text-alert-amber text-[18px]">verified_user</span>
+                  <span>1-Click Login as Joint Commissioner (Rajesh Kumar, IAS)</span>
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right 5 Cols: Admin Telemetry & Command Center Snapshot -->
+          <div class="lg:col-span-5 flex flex-col gap-5">
+            <!-- Command Telemetry Card -->
+            <div class="bg-civic-navy-dark text-on-primary rounded-3xl p-6 shadow-md flex flex-col gap-4 border border-surface-border/20">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-primary-fixed animate-ping"></span>
+                  <span class="font-bold text-xs tracking-wider uppercase text-primary-fixed">Zone 04 Command Telemetry</span>
+                </div>
+                <span class="px-2 py-0.5 rounded-full bg-white/10 text-xs font-mono text-white">Live 24/7</span>
+              </div>
+
+              <div class="grid grid-cols-2 gap-3 pt-2">
+                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                  <span class="text-[10px] text-secondary-fixed-dim uppercase block">Active Fleet</span>
+                  <span class="text-xl font-headline font-extrabold text-white">184 / 196</span>
+                  <span class="text-[10px] text-status-resolved block">48 EV Tippers</span>
+                </div>
+                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                  <span class="text-[10px] text-secondary-fixed-dim uppercase block">SLA Compliance</span>
+                  <span class="text-xl font-headline font-extrabold text-white">98.2%</span>
+                  <span class="text-[10px] text-primary-fixed block">Avg 2.4h Triage</span>
+                </div>
+                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                  <span class="text-[10px] text-secondary-fixed-dim uppercase block">Daily Tonnage</span>
+                  <span class="text-xl font-headline font-extrabold text-white">1,840 MT</span>
+                  <span class="text-[10px] text-secondary-fixed-dim block">Ward 28 Karol Bagh</span>
+                </div>
+                <div class="bg-white/5 p-3 rounded-xl border border-white/10">
+                  <span class="text-[10px] text-secondary-fixed-dim uppercase block">Active Grievances</span>
+                  <span class="text-xl font-headline font-extrabold text-alert-amber">1,428</span>
+                  <span class="text-[10px] text-status-resolved block">93.5% Cleared</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Command Responsibilities -->
+            <div class="bg-surface-card rounded-3xl p-6 shadow-sm border border-surface-border flex flex-col gap-4">
+              <span class="font-headline font-bold text-sm text-civic-navy-dark">Officer Command Privileges</span>
+              
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-status-progress-soft text-status-progress flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+                </div>
+                <div class="text-xs">
+                  <span class="font-bold text-civic-navy-dark block">Direct Fleet Dispatch</span>
+                  <span class="text-on-surface-variant">Route mechanical sweepers, EV tippers, and biohazard crews instantly.</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-status-resolved-soft text-status-resolved flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">verified</span>
+                </div>
+                <div class="text-xs">
+                  <span class="font-bold text-civic-navy-dark block">AI Resolution Verification</span>
+                  <span class="text-on-surface-variant">Review sanitary inspector after-cleanup photos and approve closure.</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-alert-amber-soft text-alert-amber flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">priority_high</span>
+                </div>
+                <div class="text-xs">
+                  <span class="font-bold text-civic-navy-dark block">Emergency SLA Escalation</span>
+                  <span class="text-on-surface-variant">Prioritize red-flagged biohazards and hazardous open dumpsites.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= INSTITUTIONAL FOOTER ================= -->
+  <footer class="w-full bg-surface-container-low border-t border-surface-border mt-auto">
+    <div class="max-w-7xl mx-auto px-gutter py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+      
+      <!-- Brand & Mission -->
+      <div class="flex flex-col gap-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+            <span class="material-symbols-outlined text-on-primary text-[18px]">recycling</span>
+          </div>
+          <span class="font-headline font-bold text-base text-primary">पवित्र वसुथा</span>
+        </div>
+        <p class="text-xs text-on-surface-variant leading-relaxed">
+          Ministry of Housing and Urban Affairs, Government of India. Empowering citizens and urban local bodies for zero-landfill smart cities.
+        </p>
+        <div class="flex items-center gap-1.5 text-xs text-primary font-bold mt-1">
+          <span class="material-symbols-outlined text-[18px]">call</span>
+          <span>National Toll Free Helpline: 1969</span>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="flex flex-col gap-2.5 text-xs">
+        <span class="font-headline font-bold text-sm text-civic-navy-dark">Citizen Services</span>
+        <a href="#report-waste" onclick="navigateTo('report-waste')" class="text-on-surface-variant hover:text-primary transition-colors">Lodge Waste Issue</a>
+        <a href="#pickup-request" onclick="navigateTo('pickup-request')" class="text-on-surface-variant hover:text-primary transition-colors">Doorstep E-Waste &amp; Bulk Pickup</a>
+        <a href="#track-complaint" onclick="navigateTo('track-complaint')" class="text-on-surface-variant hover:text-primary transition-colors">Live Status Tracking</a>
+        <a href="#green-karma-rewards" onclick="navigateTo('green-karma-rewards')" class="text-on-surface-variant hover:text-primary transition-colors">Green Karma Rewards</a>
+        <a href="#awareness-guide" onclick="navigateTo('awareness-guide')" class="text-on-surface-variant hover:text-primary transition-colors">3-Bin Waste Segregation Guide</a>
+      </div>
+
+      <!-- ULB Admin Links -->
+      <div class="flex flex-col gap-2.5 text-xs">
+        <span class="font-headline font-bold text-sm text-civic-navy-dark">ULB &amp; Administration</span>
+        <a href="#admin-portal" onclick="navigateTo('admin-portal')" class="text-on-surface-variant hover:text-primary transition-colors">Ward Command Dashboard</a>
+        <a href="#admin-portal" onclick="navigateTo('admin-portal')" class="text-on-surface-variant hover:text-primary transition-colors">Fleet Telemetry &amp; Route Maps</a>
+        <a href="#admin-portal" onclick="navigateTo('admin-portal')" class="text-on-surface-variant hover:text-primary transition-colors">Sanitary Inspector Verification</a>
+        <a href="#admin-portal" onclick="navigateTo('admin-portal')" class="text-on-surface-variant hover:text-primary transition-colors">Swachh Survekshan National Rankings</a>
+      </div>
+
+      <!-- Office Info -->
+      <div class="flex flex-col gap-2.5 text-xs">
+        <span class="font-headline font-bold text-sm text-civic-navy-dark">Directorate Office</span>
+        <p class="text-on-surface-variant">Swachhata Directorate, Nirman Bhawan, New Delhi - 110011</p>
+        <p class="text-on-surface-variant">Email: support-swachhbharat@gov.in</p>
+        <div class="flex items-center gap-1 text-status-resolved font-semibold mt-1">
+          <span class="material-symbols-outlined text-[16px]">verified</span>
+          <span>Gov.in Certified Municipal Service Node</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sub-Footer -->
+    <div class="bg-surface-container-high py-4 border-t border-surface-border/40">
+      <div class="max-w-7xl mx-auto px-gutter flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left text-xs text-on-surface-variant">
+        <p>© 2026 पवित्र वसुथा • Swachh Bharat Mission (Urban), Government of India. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+          <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+          <a href="#" class="hover:text-primary transition-colors">Accessibility Statement</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MOBILE PERSISTENT BOTTOM BAR ================= -->
+  <div class="xl:hidden fixed bottom-0 left-0 right-0 z-40 bg-surface-card/95 backdrop-blur-md border-t border-surface-border py-2 px-4 flex items-center justify-around shadow-lg">
+    <button onclick="navigateTo('home')" data-mobile-path="home" class="flex flex-col items-center gap-0.5 text-primary text-[10px] font-bold">
+      <span class="material-symbols-outlined text-[20px]">home</span>
+      <span>Home</span>
+    </button>
+    <button onclick="navigateTo('report-waste')" data-mobile-path="report-waste" class="flex flex-col items-center gap-0.5 text-on-surface-variant text-[10px] font-medium">
+      <span class="material-symbols-outlined text-[20px]">photo_camera</span>
+      <span>Report</span>
+    </button>
+    <button onclick="navigateTo('pickup-request')" data-mobile-path="pickup-request" class="flex flex-col items-center gap-0.5 text-on-surface-variant text-[10px] font-medium">
+      <span class="material-symbols-outlined text-[20px]">calendar_month</span>
+      <span>Pickup</span>
+    </button>
+    <button onclick="navigateTo('track-complaint')" data-mobile-path="track-complaint" class="flex flex-col items-center gap-0.5 text-on-surface-variant text-[10px] font-medium">
+      <span class="material-symbols-outlined text-[20px]">troubleshoot</span>
+      <span>Track</span>
+    </button>
+    <button onclick="navigateTo('green-karma-rewards')" data-mobile-path="green-karma-rewards" class="flex flex-col items-center gap-0.5 text-on-surface-variant text-[10px] font-medium">
+      <span class="material-symbols-outlined text-[20px]">eco</span>
+      <span>Karma</span>
+    </button>
+  </div>
+
+  <!-- ================= MODALS ================= -->
+
+  <!-- 1. Language Selection Modal -->
+  <div id="languageModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-civic-navy-dark/75 backdrop-blur-sm transition-all duration-300">
+    <div class="relative w-full max-w-lg bg-surface-card rounded-2xl shadow-2xl border border-surface-border overflow-hidden">
+      <!-- Tricolor Accent -->
+      <div class="h-2 w-full flex">
+        <div class="flex-1 bg-[#FF9933]"></div>
+        <div class="flex-1 bg-white"></div>
+        <div class="flex-1 bg-[#138808]"></div>
+      </div>
+
+      <div class="p-6 md:p-8 text-center flex flex-col items-center">
+        <div class="flex items-center justify-center gap-2 mb-2">
+          <span class="material-symbols-outlined text-primary text-[28px]">assured_workload</span>
+          <span class="text-xs font-bold tracking-wider text-secondary uppercase">भारत सरकार • Government of India</span>
+        </div>
+
+        <h2 class="font-headline font-bold text-2xl text-civic-navy-dark">
+          अपनी भाषा चुनें / Select Language
+        </h2>
+        <p class="text-xs text-on-surface-variant mt-1">
+          पवित्र वसुथा - एकीकृत अपशिष्ट प्रबंधन पोर्टल<br/>
+          Pavitra Vasutha - Integrated Waste Management Portal
+        </p>
+
+        <!-- Two Language Option Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-6">
+          <button onclick="setPortalLanguage('hi')" class="p-4 rounded-xl border-2 border-primary bg-primary-fixed-dim/20 flex flex-col items-start gap-2 text-left hover:shadow-md transition-all">
+            <div class="flex items-center justify-between w-full">
+              <span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm">अ</span>
+              <span class="w-5 h-5 rounded-full border-2 border-primary flex items-center justify-center"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span></span>
+            </div>
+            <div>
+              <span class="font-headline font-bold text-base text-civic-navy-dark block">हिंदी</span>
+              <span class="text-xs text-primary font-semibold">Hindi Version</span>
+            </div>
+            <p class="text-[11px] text-on-surface-variant">कचरा रिपोर्ट, डोरस्टेप पिकअप और लाइव शिकायत ट्रैकिंग हिंदी में देखें।</p>
+          </button>
+
+          <button onclick="setPortalLanguage('en')" class="p-4 rounded-xl border-2 border-surface-border bg-surface-card hover:border-primary flex flex-col items-start gap-2 text-left hover:shadow-md transition-all">
+            <div class="flex items-center justify-between w-full">
+              <span class="w-8 h-8 rounded-full bg-surface-container text-civic-navy-dark flex items-center justify-center font-bold text-sm">EN</span>
+              <span class="w-5 h-5 rounded-full border-2 border-slate-300"></span>
+            </div>
+            <div>
+              <span class="font-headline font-bold text-base text-civic-navy-dark block">English</span>
+              <span class="text-xs text-secondary font-semibold">Default Global</span>
+            </div>
+            <p class="text-[11px] text-on-surface-variant">Report issues, schedule bulk pickups, and track redressal in English.</p>
+          </button>
+        </div>
+
+        <button onclick="closeLanguageModal()" class="w-full mt-6 py-3 rounded-xl bg-surface-container hover:bg-surface-container-high text-civic-navy-dark font-bold text-xs transition-colors">
+          Dismiss / Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Citizen Login Modal -->
+  <div id="loginModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-civic-navy-dark/75 backdrop-blur-sm">
+    <div class="relative w-full max-w-md bg-surface-card rounded-2xl shadow-2xl border border-surface-border p-6 sm:p-8">
+      <div class="flex items-center justify-between mb-4">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[24px]">verified_user</span>
+          <h3 class="font-headline font-bold text-lg text-civic-navy-dark">Citizen Authentication</h3>
+        </div>
+        <button onclick="closeLoginModal()" class="text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <p class="text-xs text-on-surface-variant mb-4">
+        Login with your 10-digit mobile number for instant DigiLocker sync, Green Karma passbook, and grievance history.
+      </p>
+
+      <form onsubmit="handleLoginSubmit(event)" class="flex flex-col gap-4">
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant mb-1">Mobile Number</label>
+          <div class="flex items-center bg-surface-canvas border border-surface-border rounded-xl px-3 py-2.5">
+            <span class="text-xs font-bold text-secondary mr-2">+91</span>
+            <input id="loginPhone" type="tel" value="9876543210" maxlength="10" required class="w-full bg-transparent text-sm font-semibold focus:outline-none"/>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold text-on-surface-variant mb-1">One-Time Password (OTP)</label>
+          <input type="text" value="1969" maxlength="4" class="w-full p-2.5 bg-surface-canvas border border-surface-border rounded-xl text-center font-mono text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-primary"/>
+          <span class="text-[10px] text-status-resolved font-medium mt-1 block">Simulation OTP auto-filled (1969)</span>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-sm shadow-md transition-all active:scale-95">
+          Verify &amp; Enter Portal
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Report Success Modal -->
+  <div id="reportSuccessModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-civic-navy-dark/75 backdrop-blur-sm">
+    <div class="relative w-full max-w-md bg-surface-card rounded-2xl shadow-2xl border border-surface-border p-6 sm:p-8 text-center flex flex-col items-center gap-4">
+      <div class="w-16 h-16 rounded-full bg-status-resolved-soft text-status-resolved flex items-center justify-center">
+        <span class="material-symbols-outlined text-[36px]">check_circle</span>
+      </div>
+      <div>
+        <h3 class="font-headline font-bold text-xl text-civic-navy-dark">Grievance Successfully Logged!</h3>
+        <p class="text-xs text-on-surface-variant mt-1">Geo-spatial AI verified. Assigned to Ward 28 Rapid Sanitation Fleet.</p>
+      </div>
+
+      <div class="bg-surface-canvas p-4 rounded-xl w-full border border-surface-border flex flex-col gap-1 font-mono text-center">
+        <span class="text-[10px] text-secondary uppercase font-sans font-semibold">Official Tracking Reference</span>
+        <span id="successTicketId" class="text-lg font-extrabold text-primary">#SBM-2026-9824</span>
+        <span class="text-[11px] text-status-resolved font-sans font-bold">+25 Green Karma Added to Wallet!</span>
+      </div>
+
+      <div class="flex items-center gap-3 w-full">
+        <button onclick="document.getElementById('reportSuccessModal').classList.add('hidden'); navigateTo('track-complaint', { id: document.getElementById('successTicketId').textContent });" class="flex-1 py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs shadow-md transition-all">
+          Track Live Status Now
+        </button>
+        <button onclick="document.getElementById('reportSuccessModal').classList.add('hidden'); navigateTo('home');" class="py-3 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-civic-navy-dark font-bold text-xs transition-colors">
+          Home
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Pickup Receipt Modal -->
+  <div id="pickupReceiptModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-civic-navy-dark/75 backdrop-blur-sm">
+    <div class="relative w-full max-w-lg bg-surface-card rounded-2xl shadow-2xl border border-surface-border p-6 sm:p-8 flex flex-col gap-4 print-receipt">
+      <div class="flex items-center justify-between pb-3 border-b border-surface-border">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-primary text-[24px]">verified</span>
+          <span class="font-headline font-bold text-base text-civic-navy-dark">Municipal Doorstep Collection Receipt</span>
+        </div>
+        <button onclick="document.getElementById('pickupReceiptModal').classList.add('hidden')" class="no-print text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+      </div>
+
+      <div class="bg-surface-canvas p-4 rounded-xl border border-surface-border flex flex-col gap-2 text-xs">
+        <div class="flex justify-between"><span class="text-secondary font-medium">Booking Reference:</span><span id="receiptRefId" class="font-mono font-bold text-primary">#EV-PICK-2026-8814</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-medium">Stream Category:</span><span id="receiptCategory" class="font-bold text-civic-navy-dark">E-Waste</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-medium">Scheduled Window:</span><span id="receiptSlot" class="font-bold text-civic-navy-dark">Tomorrow Morning</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-medium">Pickup Address:</span><span id="receiptAddress" class="font-semibold text-civic-navy-dark text-right truncate max-w-xs">Sector 14, Ward 28</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-medium">Assigned EV Van:</span><span class="font-mono text-status-resolved font-bold">DL-EV-0982 (Anita Devi)</span></div>
+        <div class="flex justify-between"><span class="text-secondary font-medium">Green Karma Credited:</span><span class="font-bold text-primary">+35 Points</span></div>
+      </div>
+
+      <div class="flex items-center justify-between no-print gap-3 pt-2">
+        <button onclick="window.print()" class="flex-1 py-2.5 rounded-xl bg-civic-navy-dark hover:bg-inverse-surface text-white font-bold text-xs flex items-center justify-center gap-2">
+          <span class="material-symbols-outlined text-[16px]">print</span> Print / Save Receipt
+        </button>
+        <button onclick="document.getElementById('pickupReceiptModal').classList.add('hidden'); navigateTo('green-karma-rewards');" class="py-2.5 px-4 rounded-xl bg-primary hover:bg-primary-container text-white font-bold text-xs">
+          View in Passbook
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Rewards Voucher Modal -->
+  <div id="voucherModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-civic-navy-dark/75 backdrop-blur-sm">
+    <div class="relative w-full max-w-md bg-surface-card rounded-2xl shadow-2xl border border-surface-border p-6 text-center flex flex-col items-center gap-4">
+      <div class="w-14 h-14 rounded-full bg-primary-fixed text-primary flex items-center justify-center">
+        <span class="material-symbols-outlined text-[30px]">redeem</span>
+      </div>
+      <div>
+        <h3 id="voucherTitle" class="font-headline font-bold text-lg text-civic-navy-dark">Reward Voucher Redeemed</h3>
+        <p id="voucherDesc" class="text-xs text-on-surface-variant mt-1">Present this code or QR code at the municipal payment desk or partner application.</p>
+      </div>
+
+      <div class="bg-surface-canvas p-4 rounded-xl w-full border border-surface-border flex flex-col items-center gap-2">
+        <span class="text-[10px] text-secondary uppercase font-semibold">Digital Coupon Code</span>
+        <span id="voucherCode" class="font-mono font-extrabold text-xl text-primary tracking-wider">SBM-TAX-8841</span>
+        <div class="w-24 h-24 bg-white p-2 rounded-lg border border-surface-border flex items-center justify-center">
+          <span class="material-symbols-outlined text-[72px] text-civic-navy-dark">qr_code_2</span>
+        </div>
+        <span class="text-[10px] text-on-surface-variant font-mono">Valid for 90 days across all Delhi Municipal counters</span>
+      </div>
+
+      <button onclick="document.getElementById('voucherModal').classList.add('hidden')" class="w-full py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs">
+        Done / Saved to Passbook
+      </button>
+    </div>
+  </div>
+
+  <!-- 6. SLA Escalation Modal -->
+  <div id="escalateModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-civic-navy-dark/75 backdrop-blur-sm">
+    <div class="relative w-full max-w-md bg-surface-card rounded-2xl shadow-2xl border border-surface-border p-6 flex flex-col gap-4">
+      <div class="flex items-center justify-between pb-2 border-b border-surface-border">
+        <div class="flex items-center gap-2 text-alert-amber">
+          <span class="material-symbols-outlined text-[22px]">priority_high</span>
+          <h3 class="font-headline font-bold text-base text-civic-navy-dark">Escalate Grievance SLA</h3>
+        </div>
+        <button onclick="document.getElementById('escalateModal').classList.add('hidden')" class="text-on-surface-variant hover:text-on-surface">
+          <span class="material-symbols-outlined text-[18px]">close</span>
+        </button>
+      </div>
+
+      <p class="text-xs text-on-surface-variant">
+        This sends an immediate red-flag alert to the Zonal Joint Commissioner and re-routes emergency sanitation equipment to the location.
+      </p>
+
+      <div class="flex flex-col gap-2">
+        <label class="block text-xs font-semibold text-on-surface-variant">Select Escalation Ground</label>
+        <select id="escalateReason" class="w-full p-2.5 bg-surface-canvas border border-surface-border rounded-xl text-xs font-medium focus:ring-2 focus:ring-primary focus:outline-none">
+          <option>Resolution delay exceeded target SLA</option>
+          <option>Sanitation vehicle marked completed but waste remains</option>
+          <option>Biochemical hazard / toxic smell / health threat</option>
+          <option>Repeated unauthorized dumping at same coordinates</option>
+        </select>
+      </div>
+
+      <div class="flex items-center gap-2 pt-2">
+        <button onclick="submitEscalation(document.getElementById('escalateReason').value)" class="flex-1 py-2.5 rounded-xl bg-alert-amber hover:bg-alert-amber/90 text-white font-bold text-xs shadow-sm transition-all">
+          Confirm Escalation
+        </button>
+        <button onclick="document.getElementById('escalateModal').classList.add('hidden')" class="py-2.5 px-4 rounded-xl bg-surface-container hover:bg-surface-container-high text-civic-navy-dark font-bold text-xs">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Mount -->
+  <div id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/store.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileNavMenu');
+      if (menu) menu.classList.toggle('hidden');
+    }
+
+    function switchHeroWidgetTab(tab) {
+      const repBtn = document.getElementById('heroTabReportBtn');
+      const trkBtn = document.getElementById('heroTabTrackBtn');
+      const repContent = document.getElementById('heroReportTabContent');
+      const trkContent = document.getElementById('heroTrackTabContent');
+
+      if (tab === 'report') {
+        repBtn.className = "flex-1 py-2.5 rounded-lg font-bold text-xs bg-surface-card text-primary shadow-sm transition-all";
+        trkBtn.className = "flex-1 py-2.5 rounded-lg font-medium text-xs text-on-surface-variant hover:text-on-surface transition-all";
+        repContent.classList.remove('hidden');
+        trkContent.classList.add('hidden');
+      } else {
+        trkBtn.className = "flex-1 py-2.5 rounded-lg font-bold text-xs bg-surface-card text-primary shadow-sm transition-all";
+        repBtn.className = "flex-1 py-2.5 rounded-lg font-medium text-xs text-on-surface-variant hover:text-on-surface transition-all";
+        trkContent.classList.remove('hidden');
+        repContent.classList.add('hidden');
+      }
+    }
+
+    function heroQuickTrack() {
+      const val = document.getElementById('heroTrackInput').value.trim();
+      navigateTo('track-complaint', { id: val });
+    }
+  </script>
+</body>
+</html>

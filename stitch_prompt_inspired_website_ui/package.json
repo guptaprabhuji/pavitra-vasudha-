@@ -1,0 +1,18 @@
+{
+  "name": "civic-waste-portal",
+  "version": "1.0.0",
+  "description": "Swachh Bharat Integrated Waste Management Portal with AI Geo-Reporting, Doorstep Pickup, Live SLA Telemetry, Green Karma Rewards, and Municipal Command Console.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "swachh-bharat",
+    "civic-tech",
+    "waste-management",
+    "smart-city",
+    "ai-geo-reporting"
+  ],
+  "author": "Government of India - MoHUA Civic Tech Initiative",
+  "license": "MIT"
+}

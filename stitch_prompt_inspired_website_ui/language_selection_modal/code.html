@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Swachh Bharat - Integrated Waste Management Portal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#15803d',
+            'primary-dark': '#0f5b2b',
+            'primary-light': '#dcfce7',
+            navy: '#0b1c30',
+            'navy-light': '#1e324a',
+            surface: '#f8fafc',
+            'surface-card': '#ffffff',
+            'accent-amber': '#d97706',
+            'accent-red': '#dc2626',
+            'accent-blue': '#2563eb'
+          },
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .transition-lang { transition: opacity 0.25s ease-in-out, transform 0.25s ease-in-out; }
+    .fade-out { opacity: 0; transform: translateY(4px); }
+    .fade-in { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="bg-surface font-body text-navy antialiased min-h-screen flex flex-col relative selection:bg-primary-light selection:text-primary">
+
+  <!-- ================= POP-UP LANGUAGE SELECTION MODAL ================= -->
+  <div id="languageModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-navy/75 backdrop-blur-sm transition-all duration-300">
+    <div class="relative w-full max-w-lg bg-surface-card rounded-2xl shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95">
+      <!-- Tricolor Top Accent -->
+      <div class="h-2 w-full flex">
+        <div class="flex-1 bg-[#FF9933]"></div>
+        <div class="flex-1 bg-white flex items-center justify-center">
+          <span class="w-2 h-2 rounded-full border border-blue-900"></span>
+        </div>
+        <div class="flex-1 bg-[#138808]"></div>
+      </div>
+
+      <div class="p-6 md:p-8 text-center flex flex-col items-center">
+        <!-- Indian Emblem Tag -->
+        <div class="flex items-center justify-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-primary text-[28px]">assured_workload</span>
+          <span class="text-xs font-bold tracking-wider text-slate-600 uppercase">भारत सरकार • Government of India</span>
+        </div>
+
+        <h2 class="font-heading font-bold text-2xl text-navy">
+          अपनी भाषा चुनें / Select Language
+        </h2>
+        <p class="text-sm text-slate-500 mt-1 max-w-sm">
+          स्वच्छ भारत एकीकृत अपशिष्ट प्रबंधन पोर्टल<br/>
+          Swachh Bharat Integrated Waste Management Portal
+        </p>
+
+        <!-- Two Language Interactive Choice Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mt-6">
+          <!-- Hindi Option -->
+          <button id="cardHindi" onclick="pickLang('hi')" class="relative p-5 rounded-xl border-2 transition-all flex flex-col items-start gap-2.5 text-left border-primary bg-primary-light/40 group">
+            <div class="flex items-center justify-between w-full">
+              <span class="w-9 h-9 rounded-full bg-primary text-white flex items-center justify-center font-bold text-base shadow-sm">अ</span>
+              <div id="radioHi" class="w-6 h-6 rounded-full border-2 border-primary flex items-center justify-center">
+                <span class="w-3 h-3 rounded-full bg-primary"></span>
+              </div>
+            </div>
+            <div>
+              <span class="font-heading font-bold text-lg text-navy block">हिंदी</span>
+              <span class="text-xs text-primary font-semibold">Hindi Version</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              कचरा रिपोर्ट, डोरस्टेप पिकअप और लाइव शिकायत ट्रैकिंग हिंदी में देखें।
+            </p>
+          </button>
+
+          <!-- English Option -->
+          <button id="cardEnglish" onclick="pickLang('en')" class="relative p-5 rounded-xl border-2 transition-all flex flex-col items-start gap-2.5 text-left border-slate-200 bg-white hover:border-slate-300 group">
+            <div class="flex items-center justify-between w-full">
+              <span class="w-9 h-9 rounded-full bg-slate-100 text-navy group-hover:bg-primary group-hover:text-white transition-colors flex items-center justify-center font-bold text-base">EN</span>
+              <div id="radioEn" class="w-6 h-6 rounded-full border-2 border-slate-300 flex items-center justify-center">
+                <span class="w-3 h-3 rounded-full bg-primary hidden"></span>
+              </div>
+            </div>
+            <div>
+              <span class="font-heading font-bold text-lg text-navy block">English</span>
+              <span class="text-xs text-slate-500 font-semibold">Default Global</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Report issues, schedule bulk pickups, and track redressal in English.
+            </p>
+          </button>
+        </div>
+
+        <!-- Preference Checkbox & Apply Button -->
+        <div class="w-full mt-6 pt-4 border-t border-slate-100 flex flex-col gap-3">
+          <label class="flex items-center justify-center gap-2 cursor-pointer text-xs text-slate-600 select-none">
+            <input type="checkbox" id="chkRemember" checked class="accent-primary w-4 h-4 rounded" />
+            <span>मेरी प्राथमिकता याद रखें (Remember my preference)</span>
+          </label>
+          <button onclick="confirmLangChoice()" class="w-full py-3.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-heading font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 active:scale-[0.99]">
+            <span id="btnModalText">हिंदी में जारी रखें / Continue in Hindi</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TOP GOV HEADER ================= -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-sm">
+    <div class="bg-navy text-white text-xs py-1.5 px-4 sm:px-8">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[16px] text-green-400">assured_workload</span>
+          <span id="topGovText" class="font-medium">भारत सरकार • Government of India</span>
+          <span class="hidden sm:inline text-slate-400">|</span>
+          <span id="topSbmText" class="hidden sm:inline text-slate-300">स्वच्छ भारत मिशन (शहरी)</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="flex items-center gap-1 text-slate-300">
+            <span class="material-symbols-outlined text-[15px] text-accent-amber">call</span>
+            <span class="hidden md:inline text-[11px]" id="topHelpLabel">हेल्पलाइन:</span>
+            <span class="font-bold text-white text-xs">1969</span>
+          </div>
+          <!-- Language Pill Switcher in Header -->
+          <div class="flex items-center bg-navy-light rounded-full p-0.5 border border-slate-700">
+            <button id="navBtnHi" onclick="setLanguage('hi', true)" class="px-2.5 py-0.5 rounded-full text-xs font-bold transition-all bg-primary text-white">हिंदी</button>
+            <button id="navBtnEn" onclick="setLanguage('en', true)" class="px-2.5 py-0.5 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white">EN</button>
+            <button onclick="openLanguageModal()" title="भाषा पॉप-अप खोलें / Open Modal" class="px-1.5 text-slate-400 hover:text-white transition-colors">
+              <span class="material-symbols-outlined text-[14px]">tune</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shadow-sm">
+          <span class="material-symbols-outlined text-[24px]">recycling</span>
+        </div>
+        <div>
+          <span id="brandTitle" class="font-heading font-extrabold text-xl text-primary tracking-tight block leading-tight">स्वच्छ भारत</span>
+          <span id="brandSub" class="text-xs text-slate-500 font-medium block">एकीकृत अपशिष्ट प्रबंधन पोर्टल</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold">
+        <a href="#hero-section" id="navHome" class="text-primary border-b-2 border-primary pb-0.5">मुख्य पृष्ठ</a>
+        <a href="#quick-report" id="navReport" class="text-slate-600 hover:text-primary transition-colors">कचरा रिपोर्ट करें</a>
+        <a href="#pickup-booking" id="navPickup" class="text-slate-600 hover:text-primary transition-colors">पिकअप अनुरोध</a>
+        <a href="#tracking-section" id="navTrack" class="text-slate-600 hover:text-primary transition-colors">शिकायत ट्रैक करें</a>
+        <a href="#segregation-guide" id="navGuide" class="text-slate-600 hover:text-primary transition-colors">पृथक्करण निर्देशिका</a>
+        <a href="#admin-console" id="navAdmin" class="text-slate-600 hover:text-primary transition-colors">प्रशासन डैशबोर्ड</a>
+      </nav>
+
+      <!-- Citizen Login Button -->
+      <div class="flex items-center gap-3">
+        <button id="navLoginBtn" class="px-4 py-2 rounded-lg bg-primary hover:bg-primary-dark text-white text-xs sm:text-sm font-bold shadow-sm transition-all flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[18px]">lock</span>
+          <span id="btnLoginText">नागरिक लॉगिन / पंजीकरण</span>
+        </button>
+        <button onclick="openLanguageModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-navy transition-colors" title="Change Language Modal">
+          <span class="material-symbols-outlined text-[18px]">translate</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT CONTAINER ================= -->
+  <main id="mainContent" class="flex-1 transition-lang">
+    
+    <!-- Hero Notification Strip -->
+    <div class="bg-navy-light text-white text-xs py-2 px-4 border-b border-slate-700/50">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="px-2 py-0.5 rounded-full bg-primary text-white font-bold text-[10px] tracking-wide uppercase">लाइव पोर्टल</span>
+          <span id="alertStripText" class="text-slate-200">स्वच्छ सर्वेक्षण 2025: सभी शहरी वार्डों में रीयल-टाइम AI अपशिष्ट निवारण प्रणाली सक्रिय।</span>
+        </div>
+        <span id="ulbCountText" class="text-slate-400 text-[11px]">4,372 शहरी स्थानीय निकायों (ULBs) से सम्बद्ध</span>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="hero-section" class="relative bg-gradient-to-b from-green-50/60 via-white to-surface py-12 md:py-16 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Hero Text -->
+          <div class="lg:col-span-7 flex flex-col gap-4">
+            <div class="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-primary-light text-primary text-xs font-bold border border-primary/20">
+              <span class="material-symbols-outlined text-[15px]">eco</span>
+              <span id="heroPill">राष्ट्रीय स्वच्छता पहल • जीरो-लैंडफिल स्मार्ट सिटीज</span>
+            </div>
+            <h1 id="heroTitle" class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-navy leading-tight tracking-tight">
+              स्वच्छ भारत का निर्माण: एकीकृत डिजिटल अपशिष्ट प्रबंधन प्लेटफॉर्म
+            </h1>
+            <p id="heroDesc" class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-2xl">
+              कचरे की समस्या रिपोर्ट करने, भारी व ई-कचरे के डोरस्टेप पिकअप शेड्यूल करने, 4-चरणीय निवारण ट्रैक करने और म्यूनिसिपल स्वच्छता को सुगम बनाने का आधिकारिक मंच।
+            </p>
+
+            <!-- Hero CTAs -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a href="#quick-report" id="heroBtnReport" class="px-6 py-3 rounded-xl bg-primary hover:bg-primary-dark text-white font-heading font-bold text-sm shadow-md transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">photo_camera</span>
+                <span>कचरा रिपोर्ट करें</span>
+              </a>
+              <a href="#pickup-booking" id="heroBtnPickup" class="px-6 py-3 rounded-xl bg-navy hover:bg-navy-light text-white font-heading font-bold text-sm shadow-sm transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">local_shipping</span>
+                <span>पिकअप अनुरोध</span>
+              </a>
+            </div>
+
+            <!-- Trust Bar -->
+            <div class="flex items-center gap-4 pt-3 text-xs text-slate-500 font-medium">
+              <span class="flex items-center gap-1 text-primary"><span class="material-symbols-outlined text-[16px]">verified</span> <span id="heroTrust1">MoHUA सत्यापित नागरिक ढांचा</span></span>
+              <span>•</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-accent-amber">timer</span> <span id="heroTrust2">औसत समाधान SLA: 4.2 घंटे</span></span>
+            </div>
+          </div>
+
+          <!-- Hero Right Widget (1-Click Report / Track) -->
+          <div class="lg:col-span-5" id="quick-report">
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200/90 p-6 flex flex-col gap-4">
+              <!-- Widget Tabs -->
+              <div class="flex bg-slate-100 p-1 rounded-xl">
+                <button id="tabBtnReport" onclick="switchHeroTab('report')" class="flex-1 py-2 rounded-lg text-xs font-bold transition-all bg-white text-primary shadow-sm">1-क्लिक रिपोर्ट</button>
+                <button id="tabBtnTrack" onclick="switchHeroTab('track')" class="flex-1 py-2 rounded-lg text-xs font-bold transition-all text-slate-500 hover:text-navy">स्थिति ट्रैक करें</button>
+              </div>
+
+              <!-- Tab Content: Report -->
+              <div id="tabContentReport" class="flex flex-col gap-3">
+                <div class="flex items-center justify-between">
+                  <span id="qrHeader" class="font-heading font-bold text-sm text-navy">तुरंत फोटो से शिकायत दर्ज करें</span>
+                  <span class="px-2 py-0.5 rounded-full bg-red-100 text-accent-red font-bold text-[10px]">जियो-टैग्ड AI</span>
+                </div>
+                <!-- Photo Upload Box -->
+                <div class="border-2 border-dashed border-slate-300 hover:border-primary rounded-xl p-4 flex flex-col items-center justify-center text-center cursor-pointer transition-colors bg-slate-50">
+                  <div class="w-10 h-10 rounded-full bg-primary-light text-primary flex items-center justify-center mb-1">
+                    <span class="material-symbols-outlined text-[20px]">add_a_photo</span>
+                  </div>
+                  <span id="qrPhotoLabel" class="text-xs font-bold text-navy">कचरे की फोटो खींचें या अपलोड करें</span>
+                  <span id="qrPhotoSub" class="text-[11px] text-slate-400">वार्ड संख्या व GPS लोकेशन स्वतः पहचानी जाएगी</span>
+                </div>
+
+                <!-- Category Choices -->
+                <div>
+                  <label id="qrCatLabel" class="block text-xs font-semibold text-slate-600 mb-1.5">कचरा श्रेणी चुनें:</label>
+                  <div class="grid grid-cols-2 gap-2 text-xs">
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+                      <input type="radio" name="wasteCategory" checked class="accent-primary" />
+                      <span id="cat1">ओवरफ्लो डस्टबिन</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+                      <input type="radio" name="wasteCategory" class="accent-primary" />
+                      <span id="cat2">सड़क पर खुला ढेर</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+                      <input type="radio" name="wasteCategory" class="accent-primary" />
+                      <span id="cat3">मृत पशु / बायो-वेस्ट</span>
+                    </label>
+                    <label class="flex items-center gap-1.5 p-2 rounded-lg bg-slate-50 border border-slate-200 hover:bg-slate-100 cursor-pointer">
+                      <input type="radio" name="wasteCategory" class="accent-primary" />
+                      <span id="cat4">निर्माण मलबा (C&D)</span>
+                    </label>
+                  </div>
+                </div>
+
+                <!-- Detected GPS -->
+                <div class="flex items-center justify-between bg-green-50 border border-green-200 p-2.5 rounded-lg text-xs">
+                  <div class="flex items-center gap-1.5 text-primary font-medium">
+                    <span class="material-symbols-outlined text-[16px]">location_on</span>
+                    <span id="qrGpsText">पता: वार्ड 28, सेक्टर 14 मालवीय नगर</span>
+                  </div>
+                  <span id="qrGpsBadge" class="text-[10px] font-bold bg-primary text-white px-2 py-0.5 rounded">सत्यापित</span>
+                </div>
+
+                <button id="qrSubmitBtn" class="w-full py-2.5 rounded-xl bg-primary hover:bg-primary-dark text-white font-heading font-bold text-xs shadow-md transition-all flex items-center justify-center gap-1.5">
+                  <span id="qrSubmitText">शिकायत दर्ज करें (Submit Ticket)</span>
+                  <span class="material-symbols-outlined text-[16px]">send</span>
+                </button>
+              </div>
+
+              <!-- Tab Content: Track -->
+              <div id="tabContentTrack" class="hidden flex flex-col gap-3">
+                <span id="trackHead" class="font-heading font-bold text-sm text-navy">शिकायत स्थिति एवं समयरेखा</span>
+                <div class="flex gap-2">
+                  <input type="text" value="#SBM-2026-9812" class="flex-1 bg-slate-100 rounded-lg px-3 py-2 text-xs font-semibold text-navy outline-none border focus:border-primary" />
+                  <button id="trackBtn" class="px-4 py-2 bg-navy hover:bg-navy-light text-white text-xs font-bold rounded-lg transition-colors">जांचें</button>
+                </div>
+                <!-- 4 Step Tracker -->
+                <div class="bg-slate-50 rounded-xl p-3 border border-slate-200 flex flex-col gap-2">
+                  <div class="flex items-center justify-between text-xs">
+                    <span class="font-bold text-navy">#SBM-2026-9812</span>
+                    <span id="trackBadge" class="px-2 py-0.5 rounded-full bg-blue-100 text-accent-blue font-bold text-[10px]">सफाई वाहन रवाना</span>
+                  </div>
+                  <!-- Stepper dots -->
+                  <div class="grid grid-cols-4 gap-1 text-center py-2 text-[10px] font-bold">
+                    <div class="text-primary flex flex-col items-center">
+                      <span class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-[10px] mb-1">✓</span>
+                      <span id="step1">दर्ज</span>
+                    </div>
+                    <div class="text-primary flex flex-col items-center">
+                      <span class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-[10px] mb-1">✓</span>
+                      <span id="step2">सत्यापित</span>
+                    </div>
+                    <div class="text-accent-blue flex flex-col items-center">
+                      <span class="w-5 h-5 rounded-full bg-accent-blue text-white flex items-center justify-center text-[10px] mb-1 animate-pulse">🚚</span>
+                      <span id="step3">आवंटित</span>
+                    </div>
+                    <div class="text-slate-400 flex flex-col items-center">
+                      <span class="w-5 h-5 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center text-[10px] mb-1">4</span>
+                      <span id="step4">समाधान</span>
+                    </div>
+                  </div>
+                  <div class="bg-white p-2 rounded-lg border border-slate-200 flex items-center justify-between text-xs">
+                    <span id="trackVeh" class="text-slate-600">वाहन: DL-04-E-1982 (EV)</span>
+                    <span id="trackEta" class="font-bold text-primary">पहुंचने का समय: 18 मिनट</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Live Stats Strip -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-1">
+            <span id="stat1Label" class="text-[11px] font-bold uppercase tracking-wider text-slate-500">इस सप्ताह साफ कूड़ेदान</span>
+            <span class="font-heading font-extrabold text-2xl text-navy">24,850+</span>
+            <span id="stat1Sub" class="text-xs text-primary font-semibold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">trending_up</span> +14.2% पिछले सप्ताह
+            </span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-1">
+            <span id="stat2Label" class="text-[11px] font-bold uppercase tracking-wider text-slate-500">समय पर समाधान SLA</span>
+            <span class="font-heading font-extrabold text-2xl text-navy">98.4%</span>
+            <span id="stat2Sub" class="text-xs text-accent-blue font-semibold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">speed</span> 4.2 घंटे औसत
+            </span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-1">
+            <span id="stat3Label" class="text-[11px] font-bold uppercase tracking-wider text-slate-500">सक्रिय नागरिक रिपोर्टर</span>
+            <span class="font-heading font-extrabold text-2xl text-navy">15,200+</span>
+            <span id="stat3Sub" class="text-xs text-slate-600 font-semibold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">verified_user</span> 100% OTP सत्यापित
+            </span>
+          </div>
+          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm flex flex-col gap-1">
+            <span id="stat4Label" class="text-[11px] font-bold uppercase tracking-wider text-slate-500">पुनर्चक्रित ठोस कचरा</span>
+            <span class="font-heading font-extrabold text-2xl text-navy">1,240 MT</span>
+            <span id="stat4Sub" class="text-xs text-primary font-semibold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">recycling</span> खाद व बायोगैस में
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6 Core Modules Grid -->
+    <section class="py-14 bg-white border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span id="secModulesTag" class="text-xs font-bold text-primary uppercase tracking-widest block mb-1">एकीकृत अपशिष्ट प्रणाली</span>
+          <h2 id="secModulesTitle" class="font-heading font-bold text-2xl sm:text-3xl text-navy">
+            सम्पूर्ण डिजिटल स्वच्छता जीवनचक्र
+          </h2>
+          <p id="secModulesDesc" class="text-slate-500 text-xs sm:text-sm mt-1">
+            नागरिकों, स्वच्छता कर्मियों और नगर पालिका अधिकारियों को जोड़ने वाले 6 प्रमुख डिजिटल स्तंभ।
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Module 1 -->
+          <div class="bg-surface p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-xl bg-primary-light text-primary flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[22px]">how_to_reg</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 text-slate-700">MOD 01</span>
+              </div>
+              <h3 id="m1Title" class="font-heading font-bold text-base text-navy">नागरिक पंजीकरण एवं लॉगिन</h3>
+              <p id="m1Desc" class="text-xs text-slate-600 leading-relaxed">
+                ओटीपी व मेरी-पहचान एसएसओ द्वारा सुगम लॉगिन। आरडब्ल्यूए सोसायटी, अपार्टमेंट व व्यावसायिक प्रतिष्ठानों हेतु विशेष पोर्टल।
+              </p>
+            </div>
+            <a href="#" id="m1Link" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline">
+              <span>नागरिक लॉगिन करें</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+
+          <!-- Module 2 -->
+          <div class="bg-surface p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-xl bg-red-100 text-accent-red flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[22px]">add_a_photo</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-accent-red">MOD 02</span>
+              </div>
+              <h3 id="m2Title" class="font-heading font-bold text-base text-navy">कचरा रिपोर्टिंग (जियो-टैग्ड)</h3>
+              <p id="m2Desc" class="text-xs text-slate-600 leading-relaxed">
+                सड़क पर कूड़े के ढेर, ओवरफ्लो डस्टबिन व अवैध डंपिंग की फोटो खींचें; स्वचालित प्राथमिकता से सफाई दल की तैनाती।
+              </p>
+            </div>
+            <a href="#quick-report" id="m2Link" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-accent-red hover:underline">
+              <span>शिकायत दर्ज करें</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+
+          <!-- Module 3 -->
+          <div class="bg-surface p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-xl bg-blue-100 text-accent-blue flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[22px]">local_shipping</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-accent-blue">MOD 03</span>
+              </div>
+              <h3 id="m3Title" class="font-heading font-bold text-base text-navy">अपशिष्ट पिकअप अनुरोध</h3>
+              <p id="m3Desc" class="text-xs text-slate-600 leading-relaxed">
+                भारी फर्नीचर, पुराना इलेक्ट्रॉनिक कचरा (E-Waste) और उद्यान मलबे के लिए डोरस्टेप इलेक्ट्रिक वैन स्लॉट बुक करें।
+              </p>
+            </div>
+            <a href="#pickup-booking" id="m3Link" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-accent-blue hover:underline">
+              <span>पिकअप स्लॉट चुनें</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+
+          <!-- Module 4 -->
+          <div class="bg-surface p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-xl bg-amber-100 text-accent-amber flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[22px]">query_stats</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-amber-100 text-accent-amber">MOD 04</span>
+              </div>
+              <h3 id="m4Title" class="font-heading font-bold text-base text-navy">रीयल-टाइम शिकायत ट्रैकिंग</h3>
+              <p id="m4Desc" class="text-xs text-slate-600 leading-relaxed">
+                सफाई वाहन की लाइव GPS स्थिति, चालक का संपर्क, और सफाई के पहले व बाद (Before/After) की फोटो प्रमाण सहित सत्यापन।
+              </p>
+            </div>
+            <a href="#quick-report" id="m4Link" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-accent-amber hover:underline">
+              <span>स्थिति ट्रैक करें</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+
+          <!-- Module 5 -->
+          <div class="bg-surface p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-xl bg-slate-200 text-navy flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[22px]">monitoring</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-300 text-navy">MOD 05</span>
+              </div>
+              <h3 id="m5Title" class="font-heading font-bold text-base text-navy">प्रशासन व हॉटस्पॉट डैशबोर्ड</h3>
+              <p id="m5Desc" class="text-xs text-slate-600 leading-relaxed">
+                नगर निगम आयुक्त व स्वच्छता निरीक्षकों हेतु AI हॉटस्पॉट मैप, रूट ऑप्टिमाइजेशन और SLA एस्केलेशन कंट्रोल रूम।
+              </p>
+            </div>
+            <a href="#admin-console" id="m5Link" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-navy hover:underline">
+              <span>प्रशासन पोर्टल देखें</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+
+          <!-- Module 6 -->
+          <div class="bg-surface p-6 rounded-2xl border border-slate-200/80 hover:shadow-md transition-shadow flex flex-col justify-between">
+            <div class="flex flex-col gap-2.5">
+              <div class="flex items-center justify-between">
+                <span class="w-10 h-10 rounded-xl bg-green-100 text-primary flex items-center justify-center font-bold">
+                  <span class="material-symbols-outlined text-[22px]">menu_book</span>
+                </span>
+                <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-green-100 text-primary">MOD 06</span>
+              </div>
+              <h3 id="m6Title" class="font-heading font-bold text-base text-navy">अपशिष्ट जागरूकता एवं पृथक्करण</h3>
+              <p id="m6Desc" class="text-xs text-slate-600 leading-relaxed">
+                3-कूड़ेदान वर्गीकरण (गीला, सूखा, हानिकारक), घरेलू कंपोस्टिंग DIY गाइड एवं स्वच्छता क्विज व प्रमाण-पत्र।
+              </p>
+            </div>
+            <a href="#segregation-guide" id="m6Link" class="mt-4 inline-flex items-center gap-1 text-xs font-bold text-primary hover:underline">
+              <span>मार्गदर्शिका पढ़ें</span> <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before vs After Infographic Section -->
+    <section class="py-14 bg-navy text-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span id="transTag" class="text-xs font-bold text-green-400 uppercase tracking-widest block mb-1">प्रक्रियागत परिवर्तन</span>
+          <h2 id="transTitle" class="font-heading font-bold text-2xl sm:text-3xl text-white">
+            पारंपरिक देरी से AI-संचालित स्मार्ट स्वच्छता तक
+          </h2>
+          <p id="transDesc" class="text-slate-400 text-xs sm:text-sm mt-1">
+            पुरानी मैन्युअल व्यवस्था बनाम स्वच्छ भारत डिजिटल प्लेटफॉर्म की सीधी तुलना।
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- BEFORE Box -->
+          <div class="bg-navy-light/80 p-6 rounded-2xl border border-red-900/40 flex flex-col justify-between">
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-700">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-accent-red text-[24px]">cancel</span>
+                  <span id="beforeHead" class="font-heading font-bold text-lg text-red-400">पहले (पुराना तरीका)</span>
+                </div>
+                <span id="beforeSub" class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-950 text-red-300">मैन्युअल व खंडित प्रणाली</span>
+              </div>
+              <ul class="flex flex-col gap-3 text-xs text-slate-300">
+                <li id="bPoint1" class="flex items-start gap-2">
+                  <span class="text-accent-red font-bold">✕</span> <span><strong>कागजी पर्चियां व ठेला गाड़ियां:</strong> कोई रूट समन्वय नहीं, कई गलियां छूट जाती थीं।</span>
+                </li>
+                <li id="bPoint2" class="flex items-start gap-2">
+                  <span class="text-accent-red font-bold">✕</span> <span><strong>ओवरफ्लो डस्टबिन:</strong> हफ्तों तक बदबू और मवेशी; कोई स्वचालित सेंसर अलर्ट नहीं।</span>
+                </li>
+                <li id="bPoint3" class="flex items-start gap-2">
+                  <span class="text-accent-red font-bold">✕</span> <span><strong>मिश्रित कचरा:</strong> 80% से अधिक कचरा सीधे खुले लैंडफिल में बिना रीसाइक्लिंग फेंका जाता था।</span>
+                </li>
+                <li id="bPoint4" class="flex items-start gap-2">
+                  <span class="text-accent-red font-bold">✕</span> <span><strong>शून्य नागरिक ट्रैकिंग:</strong> शिकायत का कोई समयबद्ध रिकॉर्ड या निस्तारण प्रमाण नहीं।</span>
+                </li>
+              </ul>
+            </div>
+            <span id="bFoot" class="text-[11px] text-red-300/80 mt-4 block text-center">परिणाम: भारी म्यूनिसिपल खर्च और सार्वजनिक स्वास्थ्य को खतरा</span>
+          </div>
+
+          <!-- AFTER Box -->
+          <div class="bg-gradient-to-br from-primary-dark/80 to-navy-light p-6 rounded-2xl border border-green-500/40 flex flex-col justify-between shadow-lg">
+            <div class="flex flex-col gap-4">
+              <div class="flex items-center justify-between pb-3 border-b border-slate-700">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-green-400 text-[24px]">check_circle</span>
+                  <span id="afterHead" class="font-heading font-bold text-lg text-green-400">अब (डिजिटल समाधान)</span>
+                </div>
+                <span id="afterSub" class="text-[10px] font-bold px-2 py-0.5 rounded bg-green-950 text-green-300">स्मार्ट ऐप संचालित</span>
+              </div>
+              <ul class="flex flex-col gap-3 text-xs text-slate-200">
+                <li id="aPoint1" class="flex items-start gap-2">
+                  <span class="text-green-400 font-bold">✓</span> <span><strong>10 सेकंड में जियो-रिपोर्टिंग:</strong> नागरिक सीधे फोटो खींचते हैं, वार्ड ID स्वतः मैप होती है।</span>
+                </li>
+                <li id="aPoint2" class="flex items-start gap-2">
+                  <span class="text-green-400 font-bold">✓</span> <span><strong>AI रूट ऑप्टिमाइजेशन:</strong> कम्पैक्टर वाहन सिर्फ भरे हुए डिब्बों पर जाते हैं, ईंधन की बचत।</span>
+                </li>
+                <li id="aPoint3" class="flex items-start gap-2">
+                  <span class="text-green-400 font-bold">✓</span> <span><strong>Before/After फोटो सत्यापन:</strong> सफाई दल काम पूरा होने पर फोटो अपलोड करता है।</span>
+                </li>
+                <li id="aPoint4" class="flex items-start gap-2">
+                  <span class="text-green-400 font-bold">✓</span> <span><strong>लाइव SLA नियंत्रण:</strong> 4 घंटे के भीतर 98.4% शिकायतों का समयबद्ध समाधान।</span>
+                </li>
+              </ul>
+            </div>
+            <span id="aFoot" class="text-[11px] text-green-300 mt-4 block text-center font-bold">प्रभाव: 98.4% नागरिक शिकायत निवारण सफलता दर</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3-Bin Segregation Guide Section -->
+    <section id="segregation-guide" class="py-14 bg-surface">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <span id="binTag" class="text-xs font-bold text-primary uppercase tracking-widest block mb-1">स्रोत पर पृथक्करण</span>
+          <h2 id="binTitle" class="font-heading font-bold text-2xl sm:text-3xl text-navy">
+            कचरा पृथक्करण गाइड: सही कूड़ेदान चुनें
+          </h2>
+          <p id="binDesc" class="text-slate-500 text-xs sm:text-sm mt-1">
+            सही तरीके से अलग किया गया कचरा 100% पुनर्चक्रण योग्य है।
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Green Bin -->
+          <div class="bg-white p-6 rounded-2xl border-t-4 border-primary border-slate-200 shadow-sm flex flex-col justify-between">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 id="binGreenHead" class="font-heading font-bold text-base text-navy">हरा कूड़ेदान (Green Bin)</h3>
+                  <span id="binGreenSub" class="text-xs font-bold text-primary">गीला / जैविक अपशिष्ट</span>
+                </div>
+                <span id="binGreenFreq" class="text-[10px] font-bold px-2 py-0.5 rounded bg-green-100 text-primary">दैनिक संग्रह</span>
+              </div>
+              <p id="binGreenDesc" class="text-xs text-slate-600">
+                रसोई का कचरा, फलों-सब्जियों के छिलके, बासी भोजन, चायपत्ती, बगीचे के पत्ते व फूल।
+              </p>
+              <div class="text-[11px] text-slate-500 bg-green-50 p-2.5 rounded-lg border border-green-200">
+                <strong id="binGreenDestLabel" class="text-primary block">अंतिम उपयोग:</strong>
+                <span id="binGreenDestText">वार्ड कंपोस्टिंग खाद एवं बायो-सीएनजी गैस उत्पादन</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blue Bin -->
+          <div class="bg-white p-6 rounded-2xl border-t-4 border-accent-blue border-slate-200 shadow-sm flex flex-col justify-between">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 id="binBlueHead" class="font-heading font-bold text-base text-navy">नीला कूड़ेदान (Blue Bin)</h3>
+                  <span id="binBlueSub" class="text-xs font-bold text-accent-blue">सूखा / पुनर्चक्रण योग्य</span>
+                </div>
+                <span id="binBlueFreq" class="text-[10px] font-bold px-2 py-0.5 rounded bg-blue-100 text-accent-blue">सप्ताह में 3 बार</span>
+              </div>
+              <p id="binBlueDesc" class="text-xs text-slate-600">
+                प्लास्टिक की बोतलें, गत्ते, अखबार, किताबें, कांच के जार, दूध के पैकेट (धोकर सुखाए हुए), धातु के डिब्बे।
+              </p>
+              <div class="text-[11px] text-slate-500 bg-blue-50 p-2.5 rounded-lg border border-blue-200">
+                <strong id="binBlueDestLabel" class="text-accent-blue block">अंतिम उपयोग:</strong>
+                <span id="binBlueDestText">मटेरियल रिकवरी फैसिलिटी (MRF) व रीसाइक्लिंग कारखाने</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Red Bin -->
+          <div class="bg-white p-6 rounded-2xl border-t-4 border-accent-red border-slate-200 shadow-sm flex flex-col justify-between">
+            <div class="flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 id="binRedHead" class="font-heading font-bold text-base text-navy">लाल/काला कूड़ेदान (Red Bin)</h3>
+                  <span id="binRedSub" class="text-xs font-bold text-accent-red">घरेलू खतरनाक व ई-कचरा</span>
+                </div>
+                <span id="binRedFreq" class="text-[10px] font-bold px-2 py-0.5 rounded bg-red-100 text-accent-red">विशेष पिकअप</span>
+              </div>
+              <p id="binRedDesc" class="text-xs text-slate-600">
+                एक्सपायर्ड दवाएं, बैटरियां, पुराने मोबाइल, सीएफएल बल्ब, पेंट के डिब्बे, कीटनाशक व सैनिटरी नैपकिन।
+              </p>
+              <div class="text-[11px] text-slate-500 bg-red-50 p-2.5 rounded-lg border border-red-200">
+                <strong id="binRedDestLabel" class="text-accent-red block">अंतिम उपयोग:</strong>
+                <span id="binRedDestText">वैज्ञानिक इंसिनरेटर व अधिकृत ई-अपशिष्ट रिकवरी केंद्र</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bulky Pickup Booking Section -->
+    <section id="pickup-booking" class="py-14 bg-white border-t border-slate-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="bg-gradient-to-r from-primary to-primary-dark rounded-2xl text-white p-8 md:p-10 shadow-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 flex flex-col gap-3">
+            <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold self-start" id="pickupBadge">डोरस्टेप नागरिक सुविधा</span>
+            <h2 id="pickupHead" class="font-heading font-extrabold text-2xl sm:text-3xl text-white">
+              भारी सामान या ई-कचरे के लिए विशेष पिकअप बुक करें
+            </h2>
+            <p id="pickupDesc" class="text-green-100 text-xs sm:text-sm leading-relaxed max-w-xl">
+              पुराने सोफे, गद्दे, कंप्यूटर या पेड़ की टहनियां सड़क पर न फेंकें। नगर पालिका की समर्पित EV टिपर वैन अपने पते पर मंगवाएं।
+            </p>
+            <div class="flex items-center gap-3 text-xs text-green-200 pt-1">
+              <span>✓ <span id="pCheck1">50 किग्रा तक निःशुल्क नागरिक कोटा</span></span>
+              <span>✓ <span id="pCheck2">डिजिटल हरित निपटान प्रमाण-पत्र</span></span>
+            </div>
+          </div>
+          <div class="lg:col-span-5 bg-white text-navy p-6 rounded-xl shadow-md flex flex-col gap-3">
+            <h3 id="pickupFormTitle" class="font-heading font-bold text-sm text-navy">पिकअप स्लॉट चुनें</h3>
+            <input type="text" id="inputName" placeholder="नागरिक का नाम / Resident Name" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs outline-none focus:border-primary" />
+            <input type="tel" id="inputPhone" placeholder="मोबाइल नंबर (OTP सत्यापन) / Mobile" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs outline-none focus:border-primary" />
+            <select class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs outline-none focus:border-primary">
+              <option id="opt1">इलेक्ट्रॉनिक अपशिष्ट (TV, लैपटॉप, केबल)</option>
+              <option id="opt2">भारी फर्नीचर व लकड़ी का सामान</option>
+              <option id="opt3">उद्यान की टहनियां व हरित कचरा</option>
+            </select>
+            <button id="btnConfirmPickup" class="w-full py-2.5 rounded-lg bg-primary hover:bg-primary-dark text-white font-heading font-bold text-xs shadow-md transition-all">
+              स्लॉट सुरक्षित करें (Confirm Booking)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin Console Snapshot -->
+    <section id="admin-console" class="py-14 bg-surface">
+      <div class="max-w-7xl mx-auto px-4 sm:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <span id="adminTag" class="text-xs font-bold text-slate-500 uppercase tracking-widest block mb-1">कमांड व नियंत्रण केंद्र</span>
+            <h2 id="adminTitle" class="font-heading font-bold text-2xl sm:text-3xl text-navy">
+              म्यूनिसिपल वार्ड प्रशासन व टेलीमेट्री कंसोल
+            </h2>
+            <p id="adminDesc" class="text-slate-500 text-xs sm:text-sm mt-1">
+              स्वच्छता वाहनों की लाइव GPS ट्रैकिंग, हॉटस्पॉट हीटमैप और SLA एस्केलेशन।
+            </p>
+          </div>
+          <div class="bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm flex items-center gap-3">
+            <span class="w-3 h-3 rounded-full bg-primary animate-ping"></span>
+            <span id="adminFleetLive" class="text-xs font-bold text-navy">फ्लीट: 184/196 वाहन सक्रिय (वार्ड 28)</span>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span id="adminCard1Head" class="text-xs font-bold text-navy block mb-1">सक्रिय हॉटस्पॉट रडार</span>
+            <p id="adminCard1Desc" class="text-xs text-slate-600">सेक्टर 14 मार्केट में बिन ओवरफ्लो की चेतावनी। निकटतम कॉम्पैक्टर को ऑटो-रूट किया गया।</p>
+            <span class="mt-3 inline-block px-2 py-0.5 rounded bg-red-100 text-accent-red font-bold text-[10px]">अति-गंभीर SLA अलर्ट</span>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+            <span id="adminCard2Head" class="text-xs font-bold text-navy block mb-1">स्वच्छ सर्वेक्षण 2026 स्कोर</span>
+            <span class="font-heading font-extrabold text-2xl text-primary">96.8 / 100</span>
+            <p id="adminCard2Desc" class="text-xs text-slate-600 mt-1">राष्ट्रीय स्तर पर टियर-1 रैंकिंग। राष्ट्रपति स्वच्छता पुरस्कार हेतु चयनित।</p>
+          </div>
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col justify-between">
+            <div>
+              <span id="adminCard3Head" class="text-xs font-bold text-navy block mb-1">दैनिक कचरा निपटान</span>
+              <span class="font-heading font-extrabold text-2xl text-navy">1,840 MT</span>
+              <p id="adminCard3Desc" class="text-xs text-slate-600 mt-1">62% गीला कचरा (बायोगैस), 31% सूखा पुनर्चक्रण, 7% C&D मलबा।</p>
+            </div>
+            <a href="#" id="adminFullLink" class="text-xs font-bold text-primary hover:underline mt-2">पूर्ण प्रशासनिक डैशबोर्ड खोलें →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-navy text-slate-300 text-xs py-10 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <div class="flex items-center gap-2 text-white font-heading font-bold text-base mb-2">
+          <span class="material-symbols-outlined text-green-400">recycling</span>
+          <span id="ftrBrand">स्वच्छ भारत मिशन (शहरी)</span>
+        </div>
+        <p id="ftrDesc" class="text-slate-400 leading-relaxed">
+          आवासन और शहरी कार्य मंत्रालय, भारत सरकार। शून्य-कचरा स्मार्ट शहरों के लिए नागरिकों का सशक्तिकरण।
+        </p>
+      </div>
+      <div>
+        <h4 id="ftrCol1" class="text-white font-bold mb-2">नागरिक सेवाएं</h4>
+        <ul class="flex flex-col gap-1.5 text-slate-400">
+          <li><a href="#quick-report" id="ftrL1" class="hover:text-white">कचरा शिकायत दर्ज करें</a></li>
+          <li><a href="#pickup-booking" id="ftrL2" class="hover:text-white">भारी सामान पिकअप</a></li>
+          <li><a href="#quick-report" id="ftrL3" class="hover:text-white">शिकायत स्थिति ट्रैक करें</a></li>
+          <li><a href="#segregation-guide" id="ftrL4" class="hover:text-white">3-कूड़ेदान नियम</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 id="ftrCol2" class="text-white font-bold mb-2">प्रशासन व यूएलबी</h4>
+        <ul class="flex flex-col gap-1.5 text-slate-400">
+          <li><a href="#admin-console" id="ftrL5" class="hover:text-white">वार्ड मॉनिटरिंग कंसोल</a></li>
+          <li><a href="#admin-console" id="ftrL6" class="hover:text-white">सफाई वाहन फ्लीट ट्रैकिंग</a></li>
+          <li><a href="#admin-console" id="ftrL7" class="hover:text-white">स्वच्छ सर्वेक्षण रैंकिंग</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 id="ftrCol3" class="text-white font-bold mb-2">सहायता एवं संपर्क</h4>
+        <p class="text-slate-400">स्वच्छता निदेशालय, निर्माण भवन, नई दिल्ली - 110011</p>
+        <p class="text-green-400 font-bold mt-2">हेल्पलाइन: 1969 (टोल-फ्री)</p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 mt-8 pt-4 border-t border-slate-800 text-center text-slate-500 text-[11px]">
+      © 2025 स्वच्छ भारत मिशन, आवासन और शहरी कार्य मंत्रालय, भारत सरकार। सर्वाधिकार सुरक्षित।
+    </div>
+  </footer>
+
+  <!-- ================= BILINGUAL DICTIONARY & LOGIC ================= -->
+  <script>
+    let currentSelectedLang = 'hi'; // modal selection
+    let activeLanguage = 'hi';
+
+    const langData = {
+      hi: {
+        topGovText: "भारत सरकार • Government of India",
+        topSbmText: "स्वच्छ भारत मिशन (शहरी)",
+        topHelpLabel: "हेल्पलाइन:",
+        brandTitle: "स्वच्छ भारत",
+        brandSub: "एकीकृत अपशिष्ट प्रबंधन पोर्टल",
+        navHome: "मुख्य पृष्ठ",
+        navReport: "कचरा रिपोर्ट करें",
+        navPickup: "पिकअप अनुरोध",
+        navTrack: "शिकायत ट्रैक करें",
+        navGuide: "पृथक्करण निर्देशिका",
+        navAdmin: "प्रशासन डैशबोर्ड",
+        btnLoginText: "नागरिक लॉगिन / पंजीकरण",
+        alertStripText: "स्वच्छ सर्वेक्षण 2025: सभी शहरी वार्डों में रीयल-टाइम AI अपशिष्ट निवारण प्रणाली सक्रिय।",
+        ulbCountText: "4,372 शहरी स्थानीय निकायों (ULBs) से सम्बद्ध",
+        heroPill: "राष्ट्रीय स्वच्छता पहल • जीरो-लैंडफिल स्मार्ट सिटीज",
+        heroTitle: "स्वच्छ भारत का निर्माण: एकीकृत डिजिटल अपशिष्ट प्रबंधन प्लेटफॉर्म",
+        heroDesc: "कचरे की समस्या रिपोर्ट करने, भारी व ई-कचरे के डोरस्टेप पिकअप शेड्यूल करने, 4-चरणीय निवारण ट्रैक करने और म्यूनिसिपल स्वच्छता को सुगम बनाने का आधिकारिक मंच।",
+        heroBtnReportText: "कचरा रिपोर्ट करें",
+        heroBtnPickupText: "पिकअप अनुरोध",
+        heroTrust1: "MoHUA सत्यापित नागरिक ढांचा",
+        heroTrust2: "औसत समाधान SLA: 4.2 घंटे",
+        tabBtnReportText: "1-क्लिक रिपोर्ट",
+        tabBtnTrackText: "स्थिति ट्रैक करें",
+        qrHeader: "तुरंत फोटो से शिकायत दर्ज करें",
+        qrPhotoLabel: "कचरे की फोटो खींचें या अपलोड करें",
+        qrPhotoSub: "वार्ड संख्या व GPS लोकेशन स्वतः पहचानी जाएगी",
+        qrCatLabel: "कचरा श्रेणी चुनें:",
+        cat1: "ओवरफ्लो डस्टबिन",
+        cat2: "सड़क पर खुला ढेर",
+        cat3: "मृत पशु / बायो-वेस्ट",
+        cat4: "निर्माण मलबा (C&D)",
+        qrGpsText: "पता: वार्ड 28, सेक्टर 14 मालवीय नगर",
+        qrGpsBadge: "सत्यापित",
+        qrSubmitText: "शिकायत दर्ज करें (Submit Ticket)",
+        trackHead: "शिकायत स्थिति एवं समयरेखा",
+        trackBtn: "जांचें",
+        trackBadge: "सफाई वाहन रवाना",
+        step1: "दर्ज",
+        step2: "सत्यापित",
+        step3: "आवंटित",
+        step4: "समाधान",
+        trackVeh: "वाहन: DL-04-E-1982 (EV)",
+        trackEta: "पहुंचने का समय: 18 मिनट",
+        stat1Label: "इस सप्ताह साफ कूड़ेदान",
+        stat1Sub: "trending_up|+14.2% पिछले सप्ताह",
+        stat2Label: "समय पर समाधान SLA",
+        stat2Sub: "speed|4.2 घंटे औसत",
+        stat3Label: "सक्रिय नागरिक रिपोर्टर",
+        stat3Sub: "verified_user|100% OTP सत्यापित",
+        stat4Label: "पुनर्चक्रित ठोस कचरा",
+        stat4Sub: "recycling|खाद व बायोगैस में",
+        secModulesTag: "एकीकृत अपशिष्ट प्रणाली",
+        secModulesTitle: "सम्पूर्ण डिजिटल स्वच्छता जीवनचक्र",
+        secModulesDesc: "नागरिकों, स्वच्छता कर्मियों और नगर पालिका अधिकारियों को जोड़ने वाले 6 प्रमुख डिजिटल स्तंभ।",
+        m1Title: "नागरिक पंजीकरण एवं लॉगिन",
+        m1Desc: "ओटीपी व मेरी-पहचान एसएसओ द्वारा सुगम लॉगिन। आरडब्ल्यूए सोसायटी, अपार्टमेंट व व्यावसायिक प्रतिष्ठानों हेतु विशेष पोर्टल।",
+        m1Link: "नागरिक लॉगिन करें",
+        m2Title: "कचरा रिपोर्टिंग (जियो-टैग्ड)",
+        m2Desc: "सड़क पर कूड़े के ढेर, ओवरफ्लो डस्टबिन व अवैध डंपिंग की फोटो खींचें; स्वचालित प्राथमिकता से सफाई दल की तैनाती।",
+        m2Link: "शिकायत दर्ज करें",
+        m3Title: "अपशिष्ट पिकअप अनुरोध",
+        m3Desc: "भारी फर्नीचर, पुराना इलेक्ट्रॉनिक कचरा (E-Waste) और उद्यान मलबे के लिए डोरस्टेप इलेक्ट्रिक वैन स्लॉट बुक करें।",
+        m3Link: "पिकअप स्लॉट चुनें",
+        m4Title: "रीयल-टाइम शिकायत ट्रैकिंग",
+        m4Desc: "सफाई वाहन की लाइव GPS स्थिति, चालक का संपर्क, और सफाई के पहले व बाद (Before/After) की फोटो प्रमाण सहित सत्यापन।",
+        m4Link: "स्थिति ट्रैक करें",
+        m5Title: "प्रशासन व हॉटस्पॉट डैशबोर्ड",
+        m5Desc: "नगर निगम आयुक्त व स्वच्छता निरीक्षकों हेतु AI हॉटस्पॉट मैप, रूट ऑप्टिमाइजेशन और SLA एस्केलेशन कंट्रोल रूम।",
+        m5Link: "प्रशासन पोर्टल देखें",
+        m6Title: "अपशिष्ट जागरूकता एवं पृथक्करण",
+        m6Desc: "3-कूड़ेदान वर्गीकरण (गीला, सूखा, हानिकारक), घरेलू कंपोस्टिंग DIY गाइड एवं स्वच्छता क्विज व प्रमाण-पत्र।",
+        m6Link: "मार्गदर्शिका पढ़ें",
+        transTag: "प्रक्रियागत परिवर्तन",
+        transTitle: "पारंपरिक देरी से AI-संचालित स्मार्ट स्वच्छता तक",
+        transDesc: "पुरानी मैन्युअल व्यवस्था बनाम स्वच्छ भारत डिजिटल प्लेटफॉर्म की सीधी तुलना।",
+        beforeHead: "पहले (पुराना तरीका)",
+        beforeSub: "मैन्युअल व खंडित प्रणाली",
+        bPoint1: "कागजी पर्चियां व ठेला गाड़ियां: कोई रूट समन्वय नहीं, कई गलियां छूट जाती थीं।",
+        bPoint2: "ओवरफ्लो डस्टबिन: हफ्तों तक बदबू और मवेशी; कोई स्वचालित सेंसर अलर्ट नहीं।",
+        bPoint3: "मिश्रित कचरा: 80% से अधिक कचरा सीधे खुले लैंडफिल में बिना रीसाइक्लिंग फेंका जाता था।",
+        bPoint4: "शून्य नागरिक ट्रैकिंग: शिकायत का कोई समयबद्ध रिकॉर्ड या निस्तारण प्रमाण नहीं।",
+        bFoot: "परिणाम: भारी म्यूनिसिपल खर्च और सार्वजनिक स्वास्थ्य को खतरा",
+        afterHead: "अब (डिजिटल समाधान)",
+        afterSub: "स्मार्ट ऐप संचालित",
+        aPoint1: "10 सेकंड में जियो-रिपोर्टिंग: नागरिक सीधे फोटो खींचते हैं, वार्ड ID स्वतः मैप होती है।",
+        aPoint2: "AI रूट ऑप्टिमाइजेशन: कम्पैक्टर वाहन सिर्फ भरे हुए डिब्बों पर जाते हैं, ईंधन की बचत।",
+        aPoint3: "Before/After फोटो सत्यापन: सफाई दल काम पूरा होने पर फोटो अपलोड करता है।",
+        aPoint4: "लाइव SLA नियंत्रण: 4 घंटे के भीतर 98.4% शिकायतों का समयबद्ध समाधान।",
+        aFoot: "प्रभाव: 98.4% नागरिक शिकायत निवारण सफलता दर",
+        binTag: "स्रोत पर पृथक्करण",
+        binTitle: "कचरा पृथक्करण गाइड: सही कूड़ेदान चुनें",
+        binDesc: "सही तरीके से अलग किया गया कचरा 100% पुनर्चक्रण योग्य है।",
+        binGreenHead: "हरा कूड़ेदान (Green Bin)",
+        binGreenSub: "गीला / जैविक अपशिष्ट",
+        binGreenFreq: "दैनिक संग्रह",
+        binGreenDesc: "रसोई का कचरा, फलों-सब्जियों के छिलके, बासी भोजन, चायपत्ती, बगीचे के पत्ते व फूल।",
+        binGreenDestLabel: "अंतिम उपयोग:",
+        binGreenDestText: "वार्ड कंपोस्टिंग खाद एवं बायो-सीएनजी गैस उत्पादन",
+        binBlueHead: "नीला कूड़ेदान (Blue Bin)",
+        binBlueSub: "सूखा / पुनर्चक्रण योग्य",
+        binBlueFreq: "सप्ताह में 3 बार",
+        binBlueDesc: "प्लास्टिक की बोतलें, गत्ते, अखबार, किताबें, कांच के जार, दूध के पैकेट (धोकर सुखाए हुए), धातु के डिब्बे।",
+        binBlueDestLabel: "अंतिम उपयोग:",
+        binBlueDestText: "मटेरियल रिकवरी फैसिलिटी (MRF) व रीसाइक्लिंग कारखाने",
+        binRedHead: "लाल/काला कूड़ेदान (Red Bin)",
+        binRedSub: "घरेलू खतरनाक व ई-कचरा",
+        binRedFreq: "विशेष पिकअप",
+        binRedDesc: "एक्सपायर्ड दवाएं, बैटरियां, पुराने मोबाइल, सीएफएल बल्ब, पेंट के डिब्बे, कीटनाशक व सैनिटरी नैपकिन।",
+        binRedDestLabel: "अंतिम उपयोग:",
+        binRedDestText: "वैज्ञानिक इंसिनरेटर व अधिकृत ई-अपशिष्ट रिकवरी केंद्र",
+        pickupBadge: "डोरस्टेप नागरिक सुविधा",
+        pickupHead: "भारी सामान या ई-कचरे के लिए विशेष पिकअप बुक करें",
+        pickupDesc: "पुराने सोफे, गद्दे, कंप्यूटर या पेड़ की टहनियां सड़क पर न फेंकें। नगर पालिका की समर्पित EV टिपर वैन अपने पते पर मंगवाएं।",
+        pCheck1: "50 किग्रा तक निःशुल्क नागरिक कोटा",
+        pCheck2: "डिजिटल हरित निपटान प्रमाण-पत्र",
+        pickupFormTitle: "पिकअप स्लॉट चुनें",
+        inputNamePh: "नागरिक का नाम / Resident Name",
+        inputPhonePh: "मोबाइल नंबर (OTP सत्यापन) / Mobile",
+        opt1: "इलेक्ट्रॉनिक अपशिष्ट (TV, लैपटॉप, केबल)",
+        opt2: "भारी फर्नीचर व लकड़ी का सामान",
+        opt3: "उद्यान की टहनियां व हरित कचरा",
+        btnConfirmPickup: "स्लॉट सुरक्षित करें (Confirm Booking)",
+        adminTag: "कमांड व नियंत्रण केंद्र",
+        adminTitle: "म्यूनिसिपल वार्ड प्रशासन व टेलीमेट्री कंसोल",
+        adminDesc: "स्वच्छता वाहनों की लाइव GPS ट्रैकिंग, हॉटस्पॉट हीटमैप और SLA एस्केलेशन।",
+        adminFleetLive: "फ्लीट: 184/196 वाहन सक्रिय (वार्ड 28)",
+        adminCard1Head: "सक्रिय हॉटस्पॉट रडार",
+        adminCard1Desc: "सेक्टर 14 मार्केट में बिन ओवरफ्लो की चेतावनी। निकटतम कॉम्पैक्टर को ऑटो-रूट किया गया।",
+        adminCard2Head: "स्वच्छ सर्वेक्षण 2026 स्कोर",
+        adminCard2Desc: "राष्ट्रीय स्तर पर टियर-1 रैंकिंग। राष्ट्रपति स्वच्छता पुरस्कार हेतु चयनित।",
+        adminCard3Head: "दैनिक कचरा निपटान",
+        adminCard3Desc: "62% गीला कचरा (बायोगैस), 31% सूखा पुनर्चक्रण, 7% C&D मलबा।",
+        adminFullLink: "पूर्ण प्रशासनिक डैशबोर्ड खोलें →",
+        ftrBrand: "स्वच्छ भारत मिशन (शहरी)",
+        ftrDesc: "आवासन और शहरी कार्य मंत्रालय, भारत सरकार। शून्य-कचरा स्मार्ट शहरों के लिए नागरिकों का सशक्तिकरण।",
+        ftrCol1: "नागरिक सेवाएं",
+        ftrL1: "कचरा शिकायत दर्ज करें",
+        ftrL2: "भारी सामान पिकअप",
+        ftrL3: "शिकायत स्थिति ट्रैक करें",
+        ftrL4: "3-कूड़ेदान नियम",
+        ftrCol2: "प्रशासन व यूएलबी",
+        ftrL5: "वार्ड मॉनिटरिंग कंसोल",
+        ftrL6: "सफाई वाहन फ्लीट ट्रैकिंग",
+        ftrL7: "स्वच्छ सर्वेक्षण रैंकिंग",
+        ftrCol3: "सहायता एवं संपर्क"
+      },
+
+      en: {
+        topGovText: "Government of India • भारत सरकार",
+        topSbmText: "Swachh Bharat Mission (Urban)",
+        topHelpLabel: "Helpline:",
+        brandTitle: "Swachh Bharat",
+        brandSub: "Integrated Waste Management Portal",
+        navHome: "Home",
+        navReport: "Report Waste",
+        navPickup: "Pickup Request",
+        navTrack: "Track Grievance",
+        navGuide: "Segregation Guide",
+        navAdmin: "Admin Dashboard",
+        btnLoginText: "Citizen Login / Register",
+        alertStripText: "Swachh Survekshan 2025: Real-time AI waste grievance redressal active across all urban wards.",
+        ulbCountText: "Integrated with 4,372 Urban Local Bodies (ULBs)",
+        heroPill: "National Cleanliness Initiative • Zero-Landfill Smart Cities",
+        heroTitle: "Building a Cleaner India: Integrated Digital Waste Management Platform",
+        heroDesc: "The official national portal to report street waste, book doorstep bulky & e-waste pickups, track resolution in 4 transparent stages, and empower civic sanitation logistics.",
+        heroBtnReportText: "Report Waste Issue",
+        heroBtnPickupText: "Schedule Pickup",
+        heroTrust1: "MoHUA Verified Citizen Framework",
+        heroTrust2: "Avg SLA Resolution: 4.2 Hours",
+        tabBtnReportText: "1-Click Report",
+        tabBtnTrackText: "Track Status",
+        qrHeader: "Instant Photo Grievance Filing",
+        qrPhotoLabel: "Capture or upload waste photo",
+        qrPhotoSub: "Ward number & GPS coordinates are automatically tagged",
+        qrCatLabel: "Select Waste Category:",
+        cat1: "Overflowing Bin",
+        cat2: "Roadside Garbage Heap",
+        cat3: "Dead Animal / Bio-Waste",
+        cat4: "Construction Debris (C&D)",
+        qrGpsText: "Location: Ward 28, Sector 14 Malviya Nagar",
+        qrGpsBadge: "Verified",
+        qrSubmitText: "Submit Ticket (Lodge Complaint)",
+        trackHead: "Grievance Timeline & Live Status",
+        trackBtn: "Track",
+        trackBadge: "Truck Dispatched",
+        step1: "Logged",
+        step2: "Verified",
+        step3: "Assigned",
+        step4: "Resolved",
+        trackVeh: "Vehicle: DL-04-E-1982 (EV Tipper)",
+        trackEta: "Estimated Arrival: 18 mins",
+        stat1Label: "Bins Cleared This Week",
+        stat1Sub: "trending_up|+14.2% vs last week",
+        stat2Label: "On-Time Resolution SLA",
+        stat2Sub: "speed|4.2 hrs avg turnaround",
+        stat3Label: "Active Citizen Reporters",
+        stat3Sub: "verified_user|100% OTP Verified",
+        stat4Label: "Solid Waste Diverted",
+        stat4Sub: "recycling|To Biogas & Fertilizer",
+        secModulesTag: "Integrated Waste System",
+        secModulesTitle: "Complete Digital Sanitation Lifecycle",
+        secModulesDesc: "Six interconnected operational pillars bridging citizens, sanitation crews, and municipal administrators.",
+        m1Title: "Citizen Registration & Login",
+        m1Desc: "Quick Mobile OTP & MeriPehchaan SSO. Dedicated modules for individual residents, RWA societies, and bulk waste generators.",
+        m1Link: "Citizen Login →",
+        m2Title: "Geotagged Waste Reporting",
+        m2Desc: "Capture photo evidence of overflowing bins, street waste piles, and illegal dumps with automated priority dispatch.",
+        m2Link: "Lodge Complaint →",
+        m3Title: "Bulky & Doorstep Pickup",
+        m3Desc: "Schedule zero-emission EV pickups for old furniture, hazardous domestic waste, and electronics safely.",
+        m3Link: "Book Pickup Slot →",
+        m4Title: "Real-Time Grievance Tracking",
+        m4Desc: "Live GPS sanitation truck tracking, driver direct hotline, and Before/After tamper-proof photo resolution proof.",
+        m4Link: "Track Grievance →",
+        m5Title: "Municipal Admin Dashboard",
+        m5Desc: "Central command center for Ward Inspectors with AI hotspot maps, dynamic route re-balancing, and SLA alerts.",
+        m5Link: "Open Admin Portal →",
+        m6Title: "Waste Awareness & Segregation",
+        m6Desc: "Comprehensive 3-bin color guides (Wet, Dry, Hazardous), home composting DIY tips, and Swachhata digital badges.",
+        m6Link: "Explore Guide →",
+        transTag: "Paradigmatic Transformation",
+        transTitle: "From Legacy Delays to AI-Optimized Cleanliness",
+        transDesc: "A direct comparison between fragmented manual operations and the smart Swachh Bharat platform.",
+        beforeHead: "BEFORE (Legacy Manual System)",
+        beforeSub: "Fragmented & Uncoordinated",
+        bPoint1: "Paper Slips & Handcarts: No route optimization, many street corners missed completely.",
+        bPoint2: "Overflowing Dumpsters: Days of bad odor and stray animals; zero sensor or alert cues.",
+        bPoint3: "Mixed Dumping: Over 80% of unsegregated waste dumped straight into overflowing landfills.",
+        bPoint4: "Zero Citizen Tracking: Complaints lost in red tape without accountable resolution deadlines.",
+        bFoot: "Result: High municipal expenditure and recurring public health hazards",
+        afterHead: "AFTER (Smart Digital Solution)",
+        afterSub: "App-Driven Autonomous System",
+        aPoint1: "10-Second Geo-Reporting: Residents snap photos; ward ID is automatically mapped.",
+        aPoint2: "AI Route Optimization: Compactor trucks routed dynamically to high-fill bins, cutting fuel burn.",
+        aPoint3: "Before/After Photo Proof: Sanitation crew must upload verified cleanup photo to close ticket.",
+        aPoint4: "Live SLA Control: 98.4% of citizen complaints resolved within the 4-hour SLA benchmark.",
+        aFoot: "Platform Impact: 98.4% Grievance Redressal SLA Adherence",
+        binTag: "Segregation at Source",
+        binTitle: "Waste Segregation Guidelines: Match the Bin",
+        binDesc: "Properly segregated waste is 100% recyclable. Follow standard 3-bin color coding.",
+        binGreenHead: "Green Bin",
+        binGreenSub: "Wet / Biodegradable Waste",
+        binGreenFreq: "Daily Collection",
+        binGreenDesc: "Kitchen food waste, vegetable/fruit peels, tea leaves, leftover cooked food, garden leaves & flowers.",
+        binGreenDestLabel: "Destination:",
+        binGreenDestText: "Ward Composting Plants & Bio-CNG Gas Units",
+        binBlueHead: "Blue Bin",
+        binBlueSub: "Dry / Recyclable Waste",
+        binBlueFreq: "3x Per Week",
+        binBlueDesc: "Plastic bottles, cardboard cartons, newspapers, books, glass containers, rinsed milk pouches, tin cans.",
+        binBlueDestLabel: "Destination:",
+        binBlueDestText: "Material Recovery Facilities (MRF) & Recycling Mills",
+        binRedHead: "Red / Black Bin",
+        binRedSub: "Domestic Hazardous & E-Waste",
+        binRedFreq: "Special Pickup",
+        binRedDesc: "Expired medicines, syringes, batteries, old smartphones, CFL bulbs, pesticide cans, sanitaries.",
+        binRedDestLabel: "Destination:",
+        binRedDestText: "Scientific Hazardous Incinerators & E-Waste Recyclers",
+        pickupBadge: "Doorstep Municipal Facility",
+        pickupHead: "Book Bulky Waste or E-Waste Doorstep Pickup",
+        pickupDesc: "Do not dump sofas, mattress, or old computers on roadsides. Request dedicated municipal EV tippers right at your gate.",
+        pCheck1: "Free citizen quota up to 50 kg",
+        pCheck2: "Digital Green Disposal EPR Certificate",
+        pickupFormTitle: "Select Pickup Details",
+        inputNamePh: "Resident Full Name",
+        inputPhonePh: "Mobile Number (OTP Verification)",
+        opt1: "Electronic Waste (TVs, Laptops, Gadgets)",
+        opt2: "Bulky Wooden / Metal Furniture",
+        opt3: "Pruned Garden Branches & Green Biomass",
+        btnConfirmPickup: "Confirm Pickup Slot",
+        adminTag: "Command & Control Console",
+        adminTitle: "Municipal Ward Admin & Telemetry Console",
+        adminDesc: "Live GPS tracking of sanitation trucks, AI hotspot density maps, and automated SLA breach alerts.",
+        adminFleetLive: "Fleet: 184/196 Trucks Active (Ward 28)",
+        adminCard1Head: "Live Hotspot Radar",
+        adminCard1Desc: "Bin overflow alert at Sector 14 market. Nearest compactor unit auto-dispatched.",
+        adminCard2Head: "Swachh Survekshan 2026 Score",
+        adminCard2Desc: "Tier-1 National Benchmark. Nominated for Presidential Cleanliness Honors.",
+        adminCard3Head: "Daily Waste Processed",
+        adminCard3Desc: "62% Wet (Biogas/Compost), 31% Dry Recycled, 7% C&D Debris.",
+        adminFullLink: "Open Full Admin Dashboard →",
+        ftrBrand: "Swachh Bharat Mission (Urban)",
+        ftrDesc: "Ministry of Housing and Urban Affairs, Government of India. Empowering smart, zero-landfill urban cities.",
+        ftrCol1: "Citizen Services",
+        ftrL1: "Lodge Waste Complaint",
+        ftrL2: "Bulky & E-Waste Pickup",
+        ftrL3: "Live Status Tracking",
+        ftrL4: "3-Bin Segregation Rules",
+        ftrCol2: "ULB & Administration",
+        ftrL5: "Ward Management Console",
+        ftrL6: "Sanitation Fleet GPS Telemetry",
+        ftrL7: "Swachh Survekshan Rankings",
+        ftrCol3: "Support & Contact"
+      }
+    };
+
+    // Modal Card Selection
+    function pickLang(lang) {
+      currentSelectedLang = lang;
+      const cardHi = document.getElementById('cardHindi');
+      const cardEn = document.getElementById('cardEnglish');
+      const radioHi = document.getElementById('radioHi').firstElementChild;
+      const radioEn = document.getElementById('radioEn').firstElementChild;
+      const btnModalText = document.getElementById('btnModalText');
+
+      if (lang === 'hi') {
+        cardHi.className = "relative p-5 rounded-xl border-2 transition-all flex flex-col items-start gap-2.5 text-left border-primary bg-primary-light/40 group";
+        cardEn.className = "relative p-5 rounded-xl border-2 transition-all flex flex-col items-start gap-2.5 text-left border-slate-200 bg-white hover:border-slate-300 group";
+        radioHi.classList.remove('hidden');
+        radioEn.classList.add('hidden');
+        btnModalText.innerText = "हिंदी में जारी रखें / Continue in Hindi";
+      } else {
+        cardEn.className = "relative p-5 rounded-xl border-2 transition-all flex flex-col items-start gap-2.5 text-left border-primary bg-primary-light/40 group";
+        cardHi.className = "relative p-5 rounded-xl border-2 transition-all flex flex-col items-start gap-2.5 text-left border-slate-200 bg-white hover:border-slate-300 group";
+        radioEn.classList.remove('hidden');
+        radioHi.classList.add('hidden');
+        btnModalText.innerText = "Continue in English / अंग्रेजी में जारी रखें";
+      }
+    }
+
+    function confirmLangChoice() {
+      setLanguage(currentSelectedLang, false);
+      closeLanguageModal();
+    }
+
+    function openLanguageModal() {
+      const modal = document.getElementById('languageModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLanguageModal() {
+      const modal = document.getElementById('languageModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Dynamic Content Updater
+    function setLanguage(lang, closeModal = false) {
+      activeLanguage = lang;
+      currentSelectedLang = lang;
+      const d = langData[lang];
+      const main = document.getElementById('mainContent');
+
+      // Update Nav Buttons
+      const navBtnHi = document.getElementById('navBtnHi');
+      const navBtnEn = document.getElementById('navBtnEn');
+      if (lang === 'hi') {
+        navBtnHi.className = "px-2.5 py-0.5 rounded-full text-xs font-bold transition-all bg-primary text-white";
+        navBtnEn.className = "px-2.5 py-0.5 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white";
+      } else {
+        navBtnEn.className = "px-2.5 py-0.5 rounded-full text-xs font-bold transition-all bg-primary text-white";
+        navBtnHi.className = "px-2.5 py-0.5 rounded-full text-xs font-bold transition-all text-slate-300 hover:text-white";
+      }
+
+      // Smooth fade transition
+      main.classList.add('fade-out');
+
+      setTimeout(() => {
+        // Top Bar & Brand
+        document.getElementById('topGovText').innerText = d.topGovText;
+        document.getElementById('topSbmText').innerText = d.topSbmText;
+        document.getElementById('topHelpLabel').innerText = d.topHelpLabel;
+        document.getElementById('brandTitle').innerText = d.brandTitle;
+        document.getElementById('brandSub').innerText = d.brandSub;
+
+        // Nav
+        document.getElementById('navHome').innerText = d.navHome;
+        document.getElementById('navReport').innerText = d.navReport;
+        document.getElementById('navPickup').innerText = d.navPickup;
+        document.getElementById('navTrack').innerText = d.navTrack;
+        document.getElementById('navGuide').innerText = d.navGuide;
+        document.getElementById('navAdmin').innerText = d.navAdmin;
+        document.getElementById('btnLoginText').innerText = d.btnLoginText;
+
+        // Notification bar
+        document.getElementById('alertStripText').innerText = d.alertStripText;
+        document.getElementById('ulbCountText').innerText = d.ulbCountText;
+
+        // Hero
+        document.getElementById('heroPill').innerText = d.heroPill;
+        document.getElementById('heroTitle').innerText = d.heroTitle;
+        document.getElementById('heroDesc').innerText = d.heroDesc;
+        document.getElementById('heroBtnReport').lastElementChild.innerText = d.heroBtnReportText;
+        document.getElementById('heroBtnPickup').lastElementChild.innerText = d.heroBtnPickupText;
+        document.getElementById('heroTrust1').innerText = d.heroTrust1;
+        document.getElementById('heroTrust2').innerText = d.heroTrust2;
+
+        // Hero Widget
+        document.getElementById('tabBtnReport').innerText = d.tabBtnReportText;
+        document.getElementById('tabBtnTrack').innerText = d.tabBtnTrackText;
+        document.getElementById('qrHeader').innerText = d.qrHeader;
+        document.getElementById('qrPhotoLabel').innerText = d.qrPhotoLabel;
+        document.getElementById('qrPhotoSub').innerText = d.qrPhotoSub;
+        document.getElementById('qrCatLabel').innerText = d.qrCatLabel;
+        document.getElementById('cat1').innerText = d.cat1;
+        document.getElementById('cat2').innerText = d.cat2;
+        document.getElementById('cat3').innerText = d.cat3;
+        document.getElementById('cat4').innerText = d.cat4;
+        document.getElementById('qrGpsText').innerText = d.qrGpsText;
+        document.getElementById('qrGpsBadge').innerText = d.qrGpsBadge;
+        document.getElementById('qrSubmitText').innerText = d.qrSubmitText;
+
+        document.getElementById('trackHead').innerText = d.trackHead;
+        document.getElementById('trackBtn').innerText = d.trackBtn;
+        document.getElementById('trackBadge').innerText = d.trackBadge;
+        document.getElementById('step1').innerText = d.step1;
+        document.getElementById('step2').innerText = d.step2;
+        document.getElementById('step3').innerText = d.step3;
+        document.getElementById('step4').innerText = d.step4;
+        document.getElementById('trackVeh').innerText = d.trackVeh;
+        document.getElementById('trackEta').innerText = d.trackEta;
+
+        // Stats
+        document.getElementById('stat1Label').innerText = d.stat1Label;
+        document.getElementById('stat2Label').innerText = d.stat2Label;
+        document.getElementById('stat3Label').innerText = d.stat3Label;
+        document.getElementById('stat4Label').innerText = d.stat4Label;
+
+        // Modules
+        document.getElementById('secModulesTag').innerText = d.secModulesTag;
+        document.getElementById('secModulesTitle').innerText = d.secModulesTitle;
+        document.getElementById('secModulesDesc').innerText = d.secModulesDesc;
+        document.getElementById('m1Title').innerText = d.m1Title;
+        document.getElementById('m1Desc').innerText = d.m1Desc;
+        document.getElementById('m1Link').firstElementChild.innerText = d.m1Link;
+        document.getElementById('m2Title').innerText = d.m2Title;
+        document.getElementById('m2Desc').innerText = d.m2Desc;
+        document.getElementById('m2Link').firstElementChild.innerText = d.m2Link;
+        document.getElementById('m3Title').innerText = d.m3Title;
+        document.getElementById('m3Desc').innerText = d.m3Desc;
+        document.getElementById('m3Link').firstElementChild.innerText = d.m3Link;
+        document.getElementById('m4Title').innerText = d.m4Title;
+        document.getElementById('m4Desc').innerText = d.m4Desc;
+        document.getElementById('m4Link').firstElementChild.innerText = d.m4Link;
+        document.getElementById('m5Title').innerText = d.m5Title;
+        document.getElementById('m5Desc').innerText = d.m5Desc;
+        document.getElementById('m5Link').firstElementChild.innerText = d.m5Link;
+        document.getElementById('m6Title').innerText = d.m6Title;
+        document.getElementById('m6Desc').innerText = d.m6Desc;
+        document.getElementById('m6Link').firstElementChild.innerText = d.m6Link;
+
+        // Before vs After
+        document.getElementById('transTag').innerText = d.transTag;
+        document.getElementById('transTitle').innerText = d.transTitle;
+        document.getElementById('transDesc').innerText = d.transDesc;
+        document.getElementById('beforeHead').innerText = d.beforeHead;
+        document.getElementById('beforeSub').innerText = d.beforeSub;
+        document.getElementById('bPoint1').lastElementChild.innerHTML = `<strong>${d.bPoint1.split(':')[0]}:</strong> ${d.bPoint1.split(':')[1] || ''}`;
+        document.getElementById('bPoint2').lastElementChild.innerHTML = `<strong>${d.bPoint2.split(':')[0]}:</strong> ${d.bPoint2.split(':')[1] || ''}`;
+        document.getElementById('bPoint3').lastElementChild.innerHTML = `<strong>${d.bPoint3.split(':')[0]}:</strong> ${d.bPoint3.split(':')[1] || ''}`;
+        document.getElementById('bPoint4').lastElementChild.innerHTML = `<strong>${d.bPoint4.split(':')[0]}:</strong> ${d.bPoint4.split(':')[1] || ''}`;
+        document.getElementById('bFoot').innerText = d.bFoot;
+
+        document.getElementById('afterHead').innerText = d.afterHead;
+        document.getElementById('afterSub').innerText = d.afterSub;
+        document.getElementById('aPoint1').lastElementChild.innerHTML = `<strong>${d.aPoint1.split(':')[0]}:</strong> ${d.aPoint1.split(':')[1] || ''}`;
+        document.getElementById('aPoint2').lastElementChild.innerHTML = `<strong>${d.aPoint2.split(':')[0]}:</strong> ${d.aPoint2.split(':')[1] || ''}`;
+        document.getElementById('aPoint3').lastElementChild.innerHTML = `<strong>${d.aPoint3.split(':')[0]}:</strong> ${d.aPoint3.split(':')[1] || ''}`;
+        document.getElementById('aPoint4').lastElementChild.innerHTML = `<strong>${d.aPoint4.split(':')[0]}:</strong> ${d.aPoint4.split(':')[1] || ''}`;
+        document.getElementById('aFoot').innerText = d.aFoot;
+
+        // Bins
+        document.getElementById('binTag').innerText = d.binTag;
+        document.getElementById('binTitle').innerText = d.binTitle;
+        document.getElementById('binDesc').innerText = d.binDesc;
+        document.getElementById('binGreenHead').innerText = d.binGreenHead;
+        document.getElementById('binGreenSub').innerText = d.binGreenSub;
+        document.getElementById('binGreenFreq').innerText = d.binGreenFreq;
+        document.getElementById('binGreenDesc').innerText = d.binGreenDesc;
+        document.getElementById('binGreenDestLabel').innerText = d.binGreenDestLabel;
+        document.getElementById('binGreenDestText').innerText = d.binGreenDestText;
+
+        document.getElementById('binBlueHead').innerText = d.binBlueHead;
+        document.getElementById('binBlueSub').innerText = d.binBlueSub;
+        document.getElementById('binBlueFreq').innerText = d.binBlueFreq;
+        document.getElementById('binBlueDesc').innerText = d.binBlueDesc;
+        document.getElementById('binBlueDestLabel').innerText = d.binBlueDestLabel;
+        document.getElementById('binBlueDestText').innerText = d.binBlueDestText;
+
+        document.getElementById('binRedHead').innerText = d.binRedHead;
+        document.getElementById('binRedSub').innerText = d.binRedSub;
+        document.getElementById('binRedFreq').innerText = d.binRedFreq;
+        document.getElementById('binRedDesc').innerText = d.binRedDesc;
+        document.getElementById('binRedDestLabel').innerText = d.binRedDestLabel;
+        document.getElementById('binRedDestText').innerText = d.binRedDestText;
+
+        // Bulky Pickup
+        document.getElementById('pickupBadge').innerText = d.pickupBadge;
+        document.getElementById('pickupHead').innerText = d.pickupHead;
+        document.getElementById('pickupDesc').innerText = d.pickupDesc;
+        document.getElementById('pCheck1').innerText = d.pCheck1;
+        document.getElementById('pCheck2').innerText = d.pCheck2;
+        document.getElementById('pickupFormTitle').innerText = d.pickupFormTitle;
+        document.getElementById('inputName').placeholder = d.inputNamePh;
+        document.getElementById('inputPhone').placeholder = d.inputPhonePh;
+        document.getElementById('opt1').innerText = d.opt1;
+        document.getElementById('opt2').innerText = d.opt2;
+        document.getElementById('opt3').innerText = d.opt3;
+        document.getElementById('btnConfirmPickup').innerText = d.btnConfirmPickup;
+
+        // Admin Console
+        document.getElementById('adminTag').innerText = d.adminTag;
+        document.getElementById('adminTitle').innerText = d.adminTitle;
+        document.getElementById('adminDesc').innerText = d.adminDesc;
+        document.getElementById('adminFleetLive').innerText = d.adminFleetLive;
+        document.getElementById('adminCard1Head').innerText = d.adminCard1Head;
+        document.getElementById('adminCard1Desc').innerText = d.adminCard1Desc;
+        document.getElementById('adminCard2Head').innerText = d.adminCard2Head;
+        document.getElementById('adminCard2Desc').innerText = d.adminCard2Desc;
+        document.getElementById('adminCard3Head').innerText = d.adminCard3Head;
+        document.getElementById('adminCard3Desc').innerText = d.adminCard3Desc;
+        document.getElementById('adminFullLink').innerText = d.adminFullLink;
+
+        // Footer
+        document.getElementById('ftrBrand').innerText = d.ftrBrand;
+        document.getElementById('ftrDesc').innerText = d.ftrDesc;
+        document.getElementById('ftrCol1').innerText = d.ftrCol1;
+        document.getElementById('ftrL1').innerText = d.ftrL1;
+        document.getElementById('ftrL2').innerText = d.ftrL2;
+        document.getElementById('ftrL3').innerText = d.ftrL3;
+        document.getElementById('ftrL4').innerText = d.ftrL4;
+        document.getElementById('ftrCol2').innerText = d.ftrCol2;
+        document.getElementById('ftrL5').innerText = d.ftrL5;
+        document.getElementById('ftrL6').innerText = d.ftrL6;
+        document.getElementById('ftrL7').innerText = d.ftrL7;
+        document.getElementById('ftrCol3').innerText = d.ftrCol3;
+
+        main.classList.remove('fade-out');
+        main.classList.add('fade-in');
+      }, 150);
+
+      if (closeModal) {
+        closeLanguageModal();
+      }
+    }
+
+    // Hero Widget Tabs
+    function switchHeroTab(tab) {
+      const tabReport = document.getElementById('tabContentReport');
+      const tabTrack = document.getElementById('tabContentTrack');
+      const btnReport = document.getElementById('tabBtnReport');
+      const btnTrack = document.getElementById('tabBtnTrack');
+
+      if (tab === 'report') {
+        tabReport.classList.remove('hidden');
+        tabTrack.classList.add('hidden');
+        btnReport.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all bg-white text-primary shadow-sm";
+        btnTrack.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all text-slate-500 hover:text-navy";
+      } else {
+        tabTrack.classList.remove('hidden');
+        tabReport.classList.add('hidden');
+        btnTrack.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all bg-white text-primary shadow-sm";
+        btnReport.className = "flex-1 py-2 rounded-lg text-xs font-bold transition-all text-slate-500 hover:text-navy";
+      }
+    }
+  </script>
+</body>
+</html>

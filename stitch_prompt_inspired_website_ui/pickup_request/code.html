@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed":"#00201d","primary":"#00652c","on-secondary-fixed-variant":"#314863","secondary-fixed-dim":"#b0c9e8","status-progress":"#0284C7","status-resolved-soft":"#DCFCE7","civic-navy-dark":"#0A1B2C","error-container":"#ffdad6","secondary-container":"#c7dfff","surface-container-highest":"#d3e4fe","on-error":"#ffffff","surface-card":"#FFFFFF","alert-amber":"#D97706","on-primary-container":"#d3ffd5","segregation-hazardous":"#EA580C","surface":"#f8f9ff","on-error-container":"#93000a","error":"#ba1a1a","surface-bright":"#f8f9ff","tertiary-container":"#007d73","primary-fixed-dim":"#79db8d","on-surface":"#0b1c30","civic-navy-subtle":"#F0F4F8","status-critical-soft":"#FEE2E2","surface-container-low":"#eff4ff","segregation-dry":"#2563EB","on-primary-fixed-variant":"#005323","status-critical":"#DC2626","on-secondary":"#ffffff","status-progress-soft":"#E0F2FE","primary-container":"#15803d","inverse-on-surface":"#eaf1ff","on-background":"#0b1c30","surface-dim":"#cbdbf5","surface-variant":"#d3e4fe","on-primary":"#ffffff","inverse-primary":"#79db8d","alert-amber-soft":"#FEF3C7","on-tertiary-fixed-variant":"#005049","tertiary":"#00625a","outline":"#6f7a6e","surface-border":"#E2E8F0","surface-container-lowest":"#ffffff","secondary":"#49607c","on-tertiary":"#ffffff","surface-canvas":"#F8FAFC","secondary-fixed":"#d1e4ff","inverse-surface":"#213145","on-primary-fixed":"#00210a","surface-container":"#e5eeff","outline-variant":"#becabc","primary-fixed":"#95f8a7","segregation-wet":"#16A34A","surface-tint":"#006d30","tertiary-fixed-dim":"#6bd8cb","on-tertiary-container":"#c5fff5","on-secondary-fixed":"#011d35","background":"#f8f9ff","tertiary-fixed":"#89f5e7","surface-container-high":"#dce9ff","on-surface-variant":"#3f493f","status-resolved":"#15803D","on-secondary-container":"#4b637e"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"gutter":"1.25rem","space-md":"1rem","margin-mobile":"1rem","margin":"2rem","space-xl":"2.25rem","space-sm":"0.5rem","gutter-mobile":"0.75rem","space-lg":"1.5rem","space-xs":"0.25rem"},fontFamily:{"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Inter"],"label-sm":["Inter"],"body-sm":["Inter"],"title-lg":["Plus Jakarta Sans"],"body-lg":["Inter"],"body-md":["Inter"],"headline-xl":["Plus Jakarta Sans"],"label-lg":["Inter"],"stat-counter":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"]},fontSize:{"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.03em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"title-lg":["18px",{lineHeight:"26px",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-xl":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"stat-counter":["32px",{lineHeight:"38px",letterSpacing:"-0.02em",fontWeight:"800"}],"headline-xl-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.01em",fontWeight:"700"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-civic-navy-dark text-inverse-on-surface"><div class="max-w-7xl mx-auto px-gutter flex items-center justify-between h-9 font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-xs font-label-md text-label-md"><span class="material-symbols-outlined text-[16px] text-primary-fixed">assured_workload</span>भारत सरकार | Government of India</span><span class="hidden sm:inline text-secondary-fixed-dim">•</span><span class="hidden sm:inline text-secondary-fixed-dim">Swachh Bharat Mission (Urban)</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[15px] text-alert-amber">call</span><span class="text-secondary-fixed-dim">Toll Free Helpline:</span><span class="font-label-md text-label-md text-surface-card font-bold">1969</span></div><div class="flex items-center rounded-full bg-inverse-surface px-space-xs py-0.5 gap-space-xs"><button class="px-space-xs py-0.5 rounded-full bg-primary font-label-sm text-label-sm text-on-primary">EN</button><button class="px-space-xs py-0.5 rounded-full hover:bg-surface-container-high hover:text-on-surface font-label-sm text-label-sm text-secondary-fixed-dim transition-colors">हिंदी</button></div></div></div></div><div class="h-20 max-w-7xl mx-auto px-gutter flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Waste Management Portal Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBms-fBXHu3hmhKWsrc6Kkuy-hvBJsP_oQeyhfZS5NMRHcf2PMNYwzsMB3A1AvSN1Mt6abUfV9ktrvZflZN4q15fcqNmEixFa2WuvuL5xZ3X_5iqsfZbtMnI09Gd8avjOktzsxOvJGIQHrTXb5NAnFYztYwfA7gyQdZrSsF-avH3RaypByDI7i1k10QRKsRmhA_VMBHIQjGCSbrMDOrFqOU4d80G5z5rCMO12B9pDnkfd9WBjoMn_qD"/><div class="flex flex-col"><span class="font-title-md text-title-md text-primary tracking-tight font-bold">Swachh Bharat</span><span class="font-label-sm text-label-sm text-on-surface-variant">Integrated Waste Management System</span></div></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-semibold"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#">होम (Home)</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="report-waste" href="#">कचरा रिपोर्ट करें (Report Waste)</a><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="pickup-request" href="#">पिकअप अनुरोध (Pickup Request)</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="track-complaint" href="#">शिकायत ट्रैकिंग (Track Complaint)</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="awareness-guide" href="#">अपशिष्ट जागरूकता (Awareness Guide)</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">प्रशासन डैशबोर्ड (Admin Dashboard)</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors shadow-[0_1px_3px_rgba(15,41,66,0.05)]" data-path="citizen-login" href="#">नागरिक लॉगिन / पंजीकरण (Citizen Login / Register)</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface flex-1"><div class="flex flex-col w-full">
+<!-- Subtle Ambient Glow Background -->
+<div class="relative w-full overflow-hidden">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[720px] h-[360px] bg-gradient-to-b from-primary-fixed-dim/20 to-transparent blur-3xl pointer-events-none"></div>
+<!-- Main Container -->
+<div class="max-w-7xl mx-auto px-gutter py-space-lg w-full">
+<!-- Header Banner / Breadcrumb Track -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-primary">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+<span>नागरिक सेवा केंद्र • Citizen Special Pickup Utility</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-civic-navy-dark tracking-tight">
+            डोरस्टेप अपशिष्ट पिकअप अनुरोध
+          </h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-2xl">
+            Schedule municipal zero-emission EV trucks for domestic e-waste, oversized furniture, garden cuttings, and renovation debris safely.
+          </p>
+</div>
+<!-- Live Quota Status Indicator -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex items-center gap-space-md shrink-0">
+<div class="w-12 h-12 rounded-xl bg-status-resolved-soft flex items-center justify-center text-status-resolved">
+<span class="material-symbols-outlined text-[26px]">eco</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">2 of 2 Free</span>
+<span class="bg-status-resolved-soft text-status-resolved font-label-sm text-label-sm px-2 py-0.5 rounded-full font-semibold">Active Quota</span>
+</div>
+<span class="font-body-sm text-body-sm text-secondary">Q3 Free Doorstep Pickups Remaining</span>
+</div>
+</div>
+</div>
+<!-- Progressive Flow Steps Indicator -->
+<div class="bg-surface-card rounded-xl p-space-md mb-space-lg shadow-sm">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm relative">
+<!-- Step 1: Active -->
+<div class="flex items-center gap-space-md bg-surface-container-low/70 rounded-lg p-space-sm">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center font-title-md text-title-md font-bold shadow-sm">
+              1
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary uppercase tracking-wider">चरण १ (Step 1)</span>
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">अपशिष्ट प्रकार (Waste Category)</span>
+</div>
+</div>
+<!-- Step 2: Next -->
+<div class="flex items-center gap-space-md p-space-sm rounded-lg">
+<div class="w-10 h-10 rounded-full bg-surface-container text-secondary flex items-center justify-center font-title-md text-title-md font-bold">
+              2
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">चरण २ (Step 2)</span>
+<span class="font-title-md text-title-md text-secondary font-semibold">स्लॉट और पता (Slot &amp; Address)</span>
+</div>
+</div>
+<!-- Step 3: Confirmation -->
+<div class="flex items-center gap-space-md p-space-sm rounded-lg">
+<div class="w-10 h-10 rounded-full bg-surface-container text-secondary flex items-center justify-center font-title-md text-title-md font-bold">
+              3
+            </div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-wider">चरण ३ (Step 3)</span>
+<span class="font-title-md text-title-md text-secondary font-semibold">पुष्टि और रसीद (Confirmation)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Layout: 2-Column Split View -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- Left Content: Interactive Form Stages (8 Columns) -->
+<div class="lg:col-span-8 flex flex-col gap-space-lg">
+<!-- Category 1: Waste Selector Bento -->
+<section class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h2 class="font-headline-md text-headline-md text-civic-navy-dark font-bold">
+                  १. अपशिष्ट श्रेणी चुनें (Select Waste Stream)
+                </h2>
+<p class="font-body-md text-body-md text-secondary">
+                  Choose the type of non-standard household material for segregation and specialized recycling.
+                </p>
+</div>
+<span class="font-label-sm text-label-sm bg-primary-fixed-dim/40 text-on-primary-fixed font-bold px-space-sm py-1 rounded-full">
+                CPCB Authorized
+              </span>
+</div>
+<!-- Category Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Item 1: E-Waste (Default Selected) -->
+<label class="cursor-pointer relative flex flex-col p-space-md rounded-xl bg-status-resolved-soft/40 hover:bg-status-resolved-soft transition-all duration-200 shadow-sm">
+<input checked="" class="peer sr-only" name="waste_category" type="radio" value="ewaste"/>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[28px]">devices</span>
+</div>
+<span class="font-label-sm text-label-sm bg-status-resolved text-on-primary font-bold px-2 py-0.5 rounded-full">
+                    मुफ़्त / Free
+                  </span>
+</div>
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">ई-कचरा (E-Waste)</span>
+<span class="font-body-sm text-body-sm text-secondary mt-1">
+                  Laptops, phones, CRT/LED TVs, lithium batteries, cables, motherboards, printed circuits.
+                </span>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-status-resolved font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+                  Certified Responsible Dismantling
+                </div>
+<div class="absolute inset-0 rounded-xl pointer-events-none ring-2 ring-primary peer-checked:block hidden"></div>
+</label>
+<!-- Item 2: Bulky Goods -->
+<label class="cursor-pointer relative flex flex-col p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all duration-200">
+<input class="peer sr-only" name="waste_category" type="radio" value="bulky"/>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">chair</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-container-high text-on-secondary-fixed-variant font-medium px-2 py-0.5 rounded-full">
+                    Subsidized
+                  </span>
+</div>
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">भारी घरेलू सामान (Bulky Goods)</span>
+<span class="font-body-sm text-body-sm text-secondary mt-1">
+                  Old sofas, metal/wooden cot, broken mattresses, wardrobe panels, plastic water coolers.
+                </span>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">scale</span>
+                  First 50 kg free on monthly quota
+                </div>
+<div class="absolute inset-0 rounded-xl pointer-events-none ring-2 ring-primary peer-checked:block hidden"></div>
+</label>
+<!-- Item 3: C&D Debris -->
+<label class="cursor-pointer relative flex flex-col p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all duration-200">
+<input class="peer sr-only" name="waste_category" type="radio" value="construction"/>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="w-12 h-12 rounded-xl bg-segregation-hazardous text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">foundation</span>
+</div>
+<span class="font-label-sm text-label-sm bg-alert-amber-soft text-alert-amber font-semibold px-2 py-0.5 rounded-full">
+                    Tonnage Based
+                  </span>
+</div>
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">मलबा व निर्माण अपशिष्ट (C&amp;D Waste)</span>
+<span class="font-body-sm text-body-sm text-secondary mt-1">
+                  Concrete blocks, brick tiles, bathroom fixtures, plasterboards, interior tiles debris.
+                </span>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">local_shipping</span>
+                  Dedicated tipper truck dispatch
+                </div>
+<div class="absolute inset-0 rounded-xl pointer-events-none ring-2 ring-primary peer-checked:block hidden"></div>
+</label>
+<!-- Item 4: Garden Clippings -->
+<label class="cursor-pointer relative flex flex-col p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all duration-200">
+<input class="peer sr-only" name="waste_category" type="radio" value="garden"/>
+<div class="flex items-center justify-between mb-space-sm">
+<div class="w-12 h-12 rounded-xl bg-segregation-wet text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">park</span>
+</div>
+<span class="font-label-sm text-label-sm bg-status-resolved-soft text-status-resolved font-bold px-2 py-0.5 rounded-full">
+                    मुफ़्त / 100% Compost
+                  </span>
+</div>
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">उद्यान व बागवानी अपशिष्ट (Green Waste)</span>
+<span class="font-body-sm text-body-sm text-secondary mt-1">
+                  Cut tree branches, pruned lawn clippings, organic foliage, botanical dry leaves.
+                </span>
+<div class="mt-space-md pt-space-xs flex items-center gap-space-xs text-status-resolved font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">compost</span>
+                  Routed to Central Bio-Methanizer
+                </div>
+<div class="absolute inset-0 rounded-xl pointer-events-none ring-2 ring-primary peer-checked:block hidden"></div>
+</label>
+</div>
+<!-- Item Inventory Checklist -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md mt-space-xs">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="font-title-md text-title-md text-civic-navy-dark font-bold">
+                    आइटम संख्या और वजन का अनुमान (Select Items &amp; Quantity)
+                  </h3>
+<span class="font-body-sm text-body-sm text-secondary">Helps municipal dispatcher allocate vehicle payload size accurately</span>
+</div>
+<span class="font-label-md text-label-md text-primary font-bold" id="itemCountDisplay">3 Items Selected</span>
+</div>
+<!-- Item Rows -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+<!-- Counter 1 -->
+<div class="bg-surface-card rounded-lg p-space-sm flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-semibold">Old CRT/LED TV</span>
+<span class="font-body-sm text-body-sm text-secondary">~12 - 20 kg</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 rounded-full bg-surface-container-high text-civic-navy-dark font-bold hover:bg-surface-container transition-colors flex items-center justify-center" type="button">
+                      -
+                    </button>
+<span class="font-title-md text-title-md font-bold px-1 text-civic-navy-dark">1</span>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold hover:bg-primary-container transition-colors flex items-center justify-center" type="button">
+                      +
+                    </button>
+</div>
+</div>
+<!-- Counter 2 -->
+<div class="bg-surface-card rounded-lg p-space-sm flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-semibold">Desktop / Laptop</span>
+<span class="font-body-sm text-body-sm text-secondary">CPU, Monitor</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 rounded-full bg-surface-container-high text-civic-navy-dark font-bold hover:bg-surface-container transition-colors flex items-center justify-center" type="button">
+                      -
+                    </button>
+<span class="font-title-md text-title-md font-bold px-1 text-civic-navy-dark">2</span>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold hover:bg-primary-container transition-colors flex items-center justify-center" type="button">
+                      +
+                    </button>
+</div>
+</div>
+<!-- Counter 3 -->
+<div class="bg-surface-card rounded-lg p-space-sm flex items-center justify-between shadow-sm">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-semibold">Loose Cables &amp; Wire</span>
+<span class="font-body-sm text-body-sm text-secondary">~3 - 5 kg bunch</span>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="w-8 h-8 rounded-full bg-surface-container-high text-civic-navy-dark font-bold hover:bg-surface-container transition-colors flex items-center justify-center" type="button">
+                      -
+                    </button>
+<span class="font-title-md text-title-md font-bold px-1 text-civic-navy-dark">1</span>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary font-bold hover:bg-primary-container transition-colors flex items-center justify-center" type="button">
+                      +
+                    </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Category 2: Date & Slot Selection -->
+<section class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-civic-navy-dark font-bold">
+                २. समय एवं दिनांक चयन (Pick Date &amp; Slot)
+              </h2>
+<p class="font-body-md text-body-md text-secondary">
+                Select an authorized green fleet collection window according to your ward schedule.
+              </p>
+</div>
+<!-- Expedited Alert Tag -->
+<div class="bg-status-progress-soft rounded-lg p-space-sm flex items-center justify-between text-status-progress">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+<span class="font-label-md text-label-md font-semibold">निकटतम उपलब्ध स्लॉट (Next Available Slot):</span>
+<span class="font-title-md text-title-md font-bold text-civic-navy-dark">कल (Tomorrow), 09:30 AM</span>
+</div>
+<span class="font-label-sm text-label-sm bg-surface-card text-civic-navy-dark px-2 py-0.5 rounded-full font-bold shadow-sm">
+                Ward 14 EV Van #3
+              </span>
+</div>
+<!-- Date Strip Horizontal Scroller -->
+<div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 gap-space-sm">
+<!-- Day 1 (Selected) -->
+<button class="flex flex-col items-center p-space-sm rounded-xl bg-primary text-on-primary shadow-sm text-center" type="button">
+<span class="font-label-sm text-label-sm uppercase opacity-90">कल (Tomorrow)</span>
+<span class="font-headline-md text-headline-md font-bold my-1">24 Oct</span>
+<span class="font-label-sm text-label-sm bg-on-primary/20 px-2 py-0.5 rounded-full">4 Slots Free</span>
+</button>
+<!-- Day 2 -->
+<button class="flex flex-col items-center p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors text-center text-civic-navy-dark" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase">शुक्रवार (Fri)</span>
+<span class="font-headline-md text-headline-md font-bold my-1">25 Oct</span>
+<span class="font-label-sm text-label-sm text-status-resolved font-semibold">6 Slots Free</span>
+</button>
+<!-- Day 3 -->
+<button class="flex flex-col items-center p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors text-center text-civic-navy-dark" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase">शनिवार (Sat)</span>
+<span class="font-headline-md text-headline-md font-bold my-1">26 Oct</span>
+<span class="font-label-sm text-label-sm text-status-resolved font-semibold">8 Slots Free</span>
+</button>
+<!-- Day 4 -->
+<button class="flex flex-col items-center p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors text-center text-civic-navy-dark" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase">रविवार (Sun)</span>
+<span class="font-headline-md text-headline-md font-bold my-1">27 Oct</span>
+<span class="font-label-sm text-label-sm text-alert-amber font-semibold">2 Slots Left</span>
+</button>
+<!-- Day 5 -->
+<button class="hidden md:flex flex-col items-center p-space-sm rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors text-center text-civic-navy-dark" type="button">
+<span class="font-label-sm text-label-sm text-secondary uppercase">सोमवार (Mon)</span>
+<span class="font-headline-md text-headline-md font-bold my-1">28 Oct</span>
+<span class="font-label-sm text-label-sm text-status-resolved font-semibold">7 Slots Free</span>
+</button>
+</div>
+<!-- Time Slots -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md pt-space-xs">
+<!-- Morning Slot (Selected) -->
+<label class="cursor-pointer relative flex items-start gap-space-md p-space-md rounded-xl bg-status-progress-soft/50 shadow-sm">
+<input checked="" class="peer sr-only" name="time_slot" type="radio" value="morning"/>
+<div class="w-10 h-10 rounded-full bg-status-progress text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">wb_sunny</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">प्रातः कालीन (Morning Batch)</span>
+<span class="font-headline-md text-headline-md text-status-progress font-bold">08:00 AM – 12:00 PM</span>
+<span class="font-body-sm text-body-sm text-secondary mt-1">Recommended for high-rise societies and apartment complexes</span>
+</div>
+<div class="absolute inset-0 rounded-xl pointer-events-none ring-2 ring-status-progress peer-checked:block hidden"></div>
+</label>
+<!-- Afternoon Slot -->
+<label class="cursor-pointer relative flex items-start gap-space-md p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
+<input class="peer sr-only" name="time_slot" type="radio" value="afternoon"/>
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">wb_twilight</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">अपराह्न (Afternoon Batch)</span>
+<span class="font-headline-md text-headline-md text-civic-navy-dark font-bold">01:00 PM – 05:00 PM</span>
+<span class="font-body-sm text-body-sm text-secondary mt-1">Ideal for individual houses and gated residential layouts</span>
+</div>
+<div class="absolute inset-0 rounded-xl pointer-events-none ring-2 ring-primary peer-checked:block hidden"></div>
+</label>
+</div>
+</section>
+<!-- Category 3: Resident Details & Access Logistics -->
+<section class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-civic-navy-dark font-bold">
+                ३. पता एवं वाहन पहुंच विवरण (Pickup Address &amp; Access)
+              </h2>
+<p class="font-body-md text-body-md text-secondary">
+                Ensure field workers and EV tipper vehicles can access your doorway or lobby seamlessly.
+              </p>
+</div>
+<!-- Resident Info Inputs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-civic-navy-dark font-semibold">नागरिक का पूरा नाम (Resident Full Name) *</label>
+<div class="relative">
+<input class="w-full h-11 px-space-md rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md focus:bg-surface-card focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" type="text" value="Rajesh Kumar Verma"/>
+<span class="material-symbols-outlined text-[20px] text-secondary absolute right-3 top-2.5">person</span>
+</div>
+</div>
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<label class="font-label-md text-label-md text-civic-navy-dark font-semibold">मोबाइल नंबर (Mobile Number) *</label>
+<span class="font-label-sm text-label-sm text-status-resolved font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> OTP Verified
+                  </span>
+</div>
+<div class="relative">
+<input class="w-full h-11 px-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md shadow-sm" readonly="" type="tel" value="+91 98450 21980"/>
+<span class="material-symbols-outlined text-[20px] text-status-resolved absolute right-3 top-2.5">verified_user</span>
+</div>
+</div>
+</div>
+<!-- Address Field -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-civic-navy-dark font-semibold">दरवाजे का पूरा पता (Doorstep Address &amp; Landmarks) *</label>
+<textarea class="w-full p-space-md rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md focus:bg-surface-card focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" rows="2">Flat 402, Nilgiri Block, Orchid Green Residency, 14th Cross, Indiranagar, Ward 112</textarea>
+</div>
+<!-- Building Accessibility Row -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-space-md pt-space-xs">
+<!-- Floor Input -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-civic-navy-dark font-semibold">मंज़िल (Floor Number)</label>
+<input class="w-full h-11 px-space-md rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" type="text" value="4th Floor"/>
+</div>
+<!-- Elevator Presence -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-civic-navy-dark font-semibold">सर्विस लिफ्ट उपलब्ध? (Elevator Access)</label>
+<div class="flex items-center gap-space-sm h-11">
+<label class="flex-1 flex items-center justify-center gap-space-xs h-full rounded-lg bg-status-resolved-soft text-status-resolved font-label-md text-label-md font-bold cursor-pointer">
+<input checked="" class="sr-only" name="lift_access" type="radio" value="yes"/>
+<span class="material-symbols-outlined text-[18px]">elevator</span> हाँ (Yes)
+                  </label>
+<label class="flex-1 flex items-center justify-center gap-space-xs h-full rounded-lg bg-surface-container-low text-secondary font-label-md text-label-md font-medium cursor-pointer">
+<input class="sr-only" name="lift_access" type="radio" value="no"/>
+<span>नहीं (No)</span>
+</label>
+</div>
+</div>
+<!-- Access Notes -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-civic-navy-dark font-semibold">गेट पास / सुरक्षा निर्देश (Gate Notes)</label>
+<input class="w-full h-11 px-space-md rounded-lg bg-surface-canvas text-on-surface font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary shadow-sm" placeholder="Entry code or guard notification" type="text" value="Enter via Gate 2 for heavy vehicle"/>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Content: Sticky Summary & Dispatch Ticket Card (4 Columns) -->
+<div class="lg:col-span-4 flex flex-col gap-space-md sticky top-24">
+<!-- Summary Container -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-md flex flex-col gap-space-md">
+<!-- Header of Card -->
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm uppercase text-secondary font-semibold">बुकिंग सारांश (Booking Summary)</span>
+<span class="font-title-lg text-title-lg text-civic-navy-dark font-bold">Request #WM-2024-8841</span>
+</div>
+<div class="w-9 h-9 rounded-full bg-status-progress-soft text-status-progress flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">assignment</span>
+</div>
+</div>
+<!-- Vehicle Allocation Preview Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<img class="w-14 h-14 rounded-lg object-cover shadow-sm shrink-0" data-alt="Modern Indian municipal electric waste collection van green and white livery parked on clean city road sunny day cinematic photorealistic 8k" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk_6hzoCDpsxWSwXmMRPpokiixvOjaZ0HPTMVyqrKvpysQ33C7BfMxNE_oEKHnFJ45iGZdQhU0ELEjqzEZCX5BhBJPkUlGH3KUNr22CRRVQ_-2xnAU6yzHp3Zo6jSkCsdxJpEuiWf7go1teOP1uIKaUL8si6KgGYYF49c5DyTV90B6X2g8_l3VpnyG5-Vkg9O-5iqr_HlthQJgCinzuq7BxB0ijG6Xw0XqSqy1p_FtccHOL4QlC3mh"/>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-status-resolved font-bold flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-status-resolved animate-pulse"></span>
+                    EV Tipper #MH-02-EW-9021
+                  </span>
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold truncate">Swachh Express 3-Wheeler</span>
+<span class="font-body-sm text-body-sm text-secondary truncate">Assigned Driver: Mahendra Singh (Crew of 2)</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs text-secondary font-label-sm text-label-sm">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">pin_drop</span>
+<span>Ward 112 Depo</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-status-progress">speed</span>
+<span>Est. ETA: 25 mins</span>
+</div>
+</div>
+</div>
+<!-- Itemized Checklist breakdown -->
+<div class="flex flex-col gap-space-xs py-space-xs font-body-md text-body-md">
+<div class="flex justify-between items-center text-civic-navy-dark">
+<span>1× Color TV (Electronic)</span>
+<span class="font-semibold text-status-resolved">Included</span>
+</div>
+<div class="flex justify-between items-center text-civic-navy-dark">
+<span>2× Laptops / Peripherals</span>
+<span class="font-semibold text-status-resolved">Included</span>
+</div>
+<div class="flex justify-between items-center text-civic-navy-dark">
+<span>1× Scrap Wiring Bunch (5kg)</span>
+<span class="font-semibold text-status-resolved">Included</span>
+</div>
+<div class="flex justify-between items-center text-secondary font-body-sm text-body-sm pt-space-xs">
+<span>Doorstep Handling &amp; Porterage</span>
+<span>Subsidized Civic Aid</span>
+</div>
+</div>
+<!-- Green Certificate & Incentive Callout -->
+<div class="bg-status-resolved-soft rounded-lg p-space-sm flex items-center gap-space-sm text-status-resolved">
+<span class="material-symbols-outlined text-[24px] shrink-0">workspace_premium</span>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md font-bold">Harit Nagarik Eco-Credit +50 Pts</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Instant digital EPR recycling certificate upon handover.</span>
+</div>
+</div>
+<!-- Price Breakdown Calculation -->
+<div class="bg-surface-canvas rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex justify-between items-center font-body-md text-body-md text-secondary">
+<span>Scheduled Collection Fee:</span>
+<span class="line-through text-on-surface-variant">₹ 250.00</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-body-md text-status-resolved font-medium">
+<span>Swachh Quota Deduction:</span>
+<span>- ₹ 250.00</span>
+</div>
+<div class="flex justify-between items-center pt-space-sm mt-space-xs">
+<span class="font-title-lg text-title-lg text-civic-navy-dark font-bold">कुल देय (Total Payable)</span>
+<div class="flex flex-col items-end">
+<span class="font-stat-counter text-stat-counter text-status-resolved font-bold">₹ 0</span>
+<span class="font-label-sm text-label-sm text-secondary font-medium">100% Free Civic Service</span>
+</div>
+</div>
+</div>
+<!-- Primary Submission CTA Button -->
+<button class="w-full h-12 rounded-lg bg-primary hover:bg-primary-container active:scale-[0.98] text-on-primary font-title-md text-title-md font-bold transition-all shadow-md flex items-center justify-center gap-space-xs" id="confirmBookingBtn" type="button">
+<span class="material-symbols-outlined text-[22px]">calendar_month</span>
+<span>पिकअप स्लॉट बुक करें (Confirm Pickup Slot)</span>
+</button>
+<!-- Verification / Trust Note -->
+<div class="flex items-center justify-center gap-space-xs text-secondary font-label-sm text-label-sm text-center">
+<span class="material-symbols-outlined text-[16px] text-primary">security</span>
+<span>Govt. Verified Staff with QR Identification on arrival</span>
+</div>
+</div>
+<!-- Ward Depot Map Glance -->
+<div class="bg-surface-card rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">वार्ड १४ कलेक्शन कवरेज (Live Zone)</span>
+<span class="font-label-sm text-label-sm bg-status-resolved-soft text-status-resolved font-bold px-2 py-0.5 rounded-full">
+                Active Fleet
+              </span>
+</div>
+<div class="w-full h-36 bg-cover bg-center rounded-lg relative overflow-hidden shadow-sm" data-location="Indiranagar, Bengaluru, Karnataka" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuACLNGmrmBT7LXYa2agUH-fM4N7vD-rWLiilNS9pX5tGUm6D4Gp8pu0UjaRwdwrZJLMR-1UJarnRdP_sDaoUOhIF73cj7t9RmdwP87voaWV2B9S9zjEUarQ-seYSQmpgnO3D33feIQZiyGvg9XOEIvW8lregBJifoO9zU9nZ2eBsXBDhVkfmmbOL0yWsA_MPp_dLYOKW3riet3fie0vM0YRV35-c0mxI_ybambsXIm7ifLFZHR5pIS0')">
+<div class="absolute inset-0 bg-civic-navy-dark/20 backdrop-blur-[1px] flex items-center justify-center">
+<div class="bg-surface-card/90 px-space-md py-1.5 rounded-full shadow-md flex items-center gap-space-xs text-civic-navy-dark">
+<span class="w-2.5 h-2.5 rounded-full bg-status-resolved animate-ping"></span>
+<span class="font-label-md text-label-md font-bold">3 Vans in Sector 4</span>
+</div>
+</div>
+</div>
+<span class="font-body-sm text-body-sm text-secondary text-center">
+              Live tracking link will be sent via WhatsApp &amp; SMS 30 mins prior to arrival.
+            </span>
+</div>
+</div>
+</div>
+<!-- Informative Operational Guidelines Section -->
+<section class="mt-space-xl pt-space-md pb-space-lg flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-xs text-center max-w-2xl mx-auto">
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">आवश्यक निर्देश • Important Protocols</span>
+<h2 class="font-headline-lg text-headline-lg text-civic-navy-dark font-bold">
+            पिकअप से पहले अपशिष्ट प्रबंधन निर्देश
+          </h2>
+<p class="font-body-md text-body-md text-secondary">
+            Follow these safe segregation standards to protect sanitation workers and safeguard urban ecosystems.
+          </p>
+</div>
+<!-- 3 Standard Action Guides -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Guide 1: E-Waste Pre-Handling -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-status-progress-soft text-status-progress flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">battery_alert</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-civic-navy-dark font-bold">ई-कचरा डेटा व बैटरी सावधानी</h3>
+<p class="font-body-md text-body-md text-secondary">
+              Wipe personal sensitive data from laptops &amp; smartphones. Detach swollen or leaking lithium-ion batteries and pack them in a dry transparent poly pouch.
+            </p>
+<div class="mt-auto pt-space-xs font-label-md text-label-md text-status-progress flex items-center gap-1 font-semibold">
+<span>Read CPCB Safety Handbook</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Guide 2: Bulky & Sharp Goods -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-status-critical-soft text-status-critical flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">warning</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-civic-navy-dark font-bold">नुकीली वस्तुओं एवं कांच का सुरक्षित निस्तारण</h3>
+<p class="font-body-md text-body-md text-secondary">
+              Tightly tape broken glass or furniture nails with thick cardboard/corrugated paper to avoid injuries to door-to-door sanitation staff during transit.
+            </p>
+<div class="mt-auto pt-space-xs font-label-md text-label-md text-status-critical flex items-center gap-1 font-semibold">
+<span>Worker Safety Guidelines</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+<!-- Guide 3: Digital Certificate & EPR -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-status-resolved-soft text-status-resolved flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">verified</span>
+</div>
+<h3 class="font-title-lg text-title-lg text-civic-navy-dark font-bold">डिजिटल हरित प्रमाण पत्र (Green EPR Cert)</h3>
+<p class="font-body-md text-body-md text-secondary">
+              After collection and weighing at the zonal MRF (Material Recovery Facility), you will receive a QR-verified Green Disposal Certificate on DigiLocker.
+            </p>
+<div class="mt-auto pt-space-xs font-label-md text-label-md text-status-resolved flex items-center gap-1 font-semibold">
+<span>View Sample Certificate</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Municipal Emergency Help Banner -->
+<div class="bg-surface-container-low rounded-xl p-space-md sm:p-space-lg flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-alert-amber-soft text-alert-amber flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[28px]">support_agent</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">Need Immediate Hazardous or Commercial Bulk Assistance?</span>
+<span class="font-body-md text-body-md text-secondary">Our Ward Control Room is operational 24×7 for emergency municipal tipper dispatches.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm shrink-0 w-full sm:w-auto">
+<a class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-space-xs px-space-md py-space-sm rounded-lg bg-civic-navy-dark text-on-primary font-title-md text-title-md font-semibold hover:bg-inverse-surface transition-colors shadow-sm" href="tel:1969">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>1969 (Toll Free)</span>
+</a>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Micro-interaction script for interactive feedback -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const confirmBtn = document.getElementById('confirmBookingBtn');
+      if (confirmBtn) {
+        confirmBtn.addEventListener('click', () => {
+          const originalContent = confirmBtn.innerHTML;
+          confirmBtn.disabled = true;
+          confirmBtn.innerHTML = `
+            <span class="material-symbols-outlined text-[20px] animate-spin">progress_activity</span>
+            <span>अनुरोध दर्ज किया जा रहा है (Booking Scheduled)...</span>
+          `;
+          setTimeout(() => {
+            confirmBtn.innerHTML = `
+              <span class="material-symbols-outlined text-[22px]">check_circle</span>
+              <span>पिकअप पुष्टि सफल (Pickup Confirmed)!</span>
+            `;
+            confirmBtn.classList.remove('bg-primary', 'hover:bg-primary-container');
+            confirmBtn.classList.add('bg-status-resolved');
+            
+            // Pop up a transient toast
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-8 right-8 z-50 bg-civic-navy-dark text-inverse-on-surface p-space-md rounded-xl shadow-xl flex items-center gap-space-md animate-bounce';
+            toast.innerHTML = `
+              <div class="w-8 h-8 rounded-full bg-status-resolved flex items-center justify-center text-on-primary">
+                <span class="material-symbols-outlined text-[18px]">verified</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-title-md text-title-md font-bold text-on-primary">बुकिंग सफल #WM-2024-8841</span>
+                <span class="font-body-sm text-body-sm text-secondary-fixed-dim">SMS and WhatsApp confirmation dispatched to +91 98450 21980</span>
+              </div>
+            `;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 5000);
+          }, 1200);
+        });
+      }
+    });
+  </script>
+</div></main><footer class="w-full bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-auto"><div class="max-w-7xl mx-auto px-gutter py-space-xl grid grid-cols-1 md:grid-cols-4 gap-space-lg"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">recycling</span></div><span class="font-headline-md text-headline-md text-primary font-bold">स्वच्छ भारत मिशन</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Ministry of Housing and Urban Affairs, Government of India. Empowering citizens and urban local bodies for zero-landfill smart cities.</p><div class="flex items-center gap-space-xs font-label-md text-label-md text-primary"><span class="material-symbols-outlined text-[18px]">call</span><span>National Helpline: 1969</span></div></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">नागरिक सेवाएं (Citizen Services)</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="report-waste" href="#">कचरा स्थल रिपोर्टिंग (Lodge Waste Complaint)</a></li><li><a class="hover:text-on-surface transition-colors" data-path="pickup-request" href="#">विशेष ई-कचरा पिकअप (Bulk &amp; E-Waste Pickup)</a></li><li><a class="hover:text-on-surface transition-colors" data-path="track-complaint" href="#">शिकायत स्थिति जांचें (Live Status Tracking)</a></li><li><a class="hover:text-on-surface transition-colors" data-path="awareness-guide" href="#">अपशिष्ट पृथक्करण नियम (Waste Segregation Guide)</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">प्रशासन एवं निकाय (ULB &amp; Admin)</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">वार्ड मॉनिटरिंग डैशबोर्ड (Ward Management)</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">सफाई कर्मचारी दल आवंटन (Crew Allocation)</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">वाहन जीपीएस ट्रैकिंग (Sanitation Fleet GPS)</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">स्वच्छता रैंकिंग रिपोर्ट (Swachh Survekshan)</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">संपर्क एवं सहायता (Contact &amp; Support)</span><p class="font-body-sm text-body-sm text-on-surface-variant">Swachhata Directorate, Nirman Bhawan, New Delhi - 110011</p><p class="font-body-sm text-body-sm text-on-surface-variant">ईमेल: support-swachhbharat@gov.in</p><div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-status-resolved">verified</span><span>Gov.in Certified Municipal Service Node</span></div></div></div><div class="bg-surface-container-high py-space-md"><div class="max-w-7xl mx-auto px-gutter flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Swachh Bharat Mission (Urban), Government of India. All rights reserved.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Hyperlinking Policy</a><a class="hover:text-on-surface transition-colors" href="#">Accessibility Statement</a></div></div></div></footer></body></html>

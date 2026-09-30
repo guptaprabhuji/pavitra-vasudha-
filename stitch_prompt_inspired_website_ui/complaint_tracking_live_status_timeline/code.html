@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary-fixed":"#00201d","primary":"#00652c","on-secondary-fixed-variant":"#314863","secondary-fixed-dim":"#b0c9e8","status-progress":"#0284C7","status-resolved-soft":"#DCFCE7","civic-navy-dark":"#0A1B2C","error-container":"#ffdad6","secondary-container":"#c7dfff","surface-container-highest":"#d3e4fe","on-error":"#ffffff","surface-card":"#FFFFFF","alert-amber":"#D97706","on-primary-container":"#d3ffd5","segregation-hazardous":"#EA580C","surface":"#f8f9ff","on-error-container":"#93000a","error":"#ba1a1a","surface-bright":"#f8f9ff","tertiary-container":"#007d73","primary-fixed-dim":"#79db8d","on-surface":"#0b1c30","civic-navy-subtle":"#F0F4F8","status-critical-soft":"#FEE2E2","surface-container-low":"#eff4ff","segregation-dry":"#2563EB","on-primary-fixed-variant":"#005323","status-critical":"#DC2626","on-secondary":"#ffffff","status-progress-soft":"#E0F2FE","primary-container":"#15803d","inverse-on-surface":"#eaf1ff","on-background":"#0b1c30","surface-dim":"#cbdbf5","surface-variant":"#d3e4fe","on-primary":"#ffffff","inverse-primary":"#79db8d","alert-amber-soft":"#FEF3C7","on-tertiary-fixed-variant":"#005049","tertiary":"#00625a","outline":"#6f7a6e","surface-border":"#E2E8F0","surface-container-lowest":"#ffffff","secondary":"#49607c","on-tertiary":"#ffffff","surface-canvas":"#F8FAFC","secondary-fixed":"#d1e4ff","inverse-surface":"#213145","on-primary-fixed":"#00210a","surface-container":"#e5eeff","outline-variant":"#becabc","primary-fixed":"#95f8a7","segregation-wet":"#16A34A","surface-tint":"#006d30","tertiary-fixed-dim":"#6bd8cb","on-tertiary-container":"#c5fff5","on-secondary-fixed":"#011d35","background":"#f8f9ff","tertiary-fixed":"#89f5e7","surface-container-high":"#dce9ff","on-surface-variant":"#3f493f","status-resolved":"#15803D","on-secondary-container":"#4b637e"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"gutter":"1.25rem","space-md":"1rem","margin-mobile":"1rem","margin":"2rem","space-xl":"2.25rem","space-sm":"0.5rem","gutter-mobile":"0.75rem","space-lg":"1.5rem","space-xs":"0.25rem"},fontFamily:{"headline-lg":["Plus Jakarta Sans"],"headline-md":["Plus Jakarta Sans"],"label-md":["Inter"],"label-sm":["Inter"],"body-sm":["Inter"],"title-lg":["Plus Jakarta Sans"],"body-lg":["Inter"],"body-md":["Inter"],"headline-xl":["Plus Jakarta Sans"],"label-lg":["Inter"],"stat-counter":["Plus Jakarta Sans"],"headline-xl-mobile":["Plus Jakarta Sans"],"title-md":["Plus Jakarta Sans"],"headline-lg-mobile":["Plus Jakarta Sans"]},fontSize:{"headline-lg":["28px",{lineHeight:"36px",letterSpacing:"-0.015em",fontWeight:"700"}],"headline-md":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-md":["12px",{lineHeight:"16px",letterSpacing:"0.02em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.03em",fontWeight:"500"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"title-lg":["18px",{lineHeight:"26px",fontWeight:"600"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-xl":["40px",{lineHeight:"48px",letterSpacing:"-0.02em",fontWeight:"700"}],"label-lg":["14px",{lineHeight:"20px",letterSpacing:"0.01em",fontWeight:"600"}],"stat-counter":["32px",{lineHeight:"38px",letterSpacing:"-0.02em",fontWeight:"800"}],"headline-xl-mobile":["30px",{lineHeight:"38px",letterSpacing:"-0.01em",fontWeight:"700"}],"title-md":["16px",{lineHeight:"24px",fontWeight:"600"}],"headline-lg-mobile":["24px",{lineHeight:"32px",letterSpacing:"-0.01em",fontWeight:"600"}]}}}};</script></head><body class="bg-surface font-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 z-50 bg-surface-card/95 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="bg-civic-navy-dark text-inverse-on-surface"><div class="max-w-7xl mx-auto px-gutter flex items-center justify-between h-9 font-label-sm text-label-sm"><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-xs font-label-md text-label-md"><span class="material-symbols-outlined text-[16px] text-primary-fixed">assured_workload</span>Government of India</span><span class="hidden sm:inline text-secondary-fixed-dim">•</span><span class="hidden sm:inline text-secondary-fixed-dim">Swachh Bharat Mission (Urban)</span></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[15px] text-alert-amber">call</span><span class="text-secondary-fixed-dim">Toll Free Helpline:</span><span class="font-label-md text-label-md text-surface-card font-bold">1969</span></div><div class="flex items-center rounded-full bg-inverse-surface px-space-xs py-0.5 gap-space-xs"><button class="px-space-xs py-0.5 rounded-full bg-primary font-label-sm text-label-sm text-on-primary">EN</button><button class="px-space-xs py-0.5 rounded-full hover:bg-surface-container-high hover:text-on-surface font-label-sm text-label-sm text-secondary-fixed-dim transition-colors">HI</button></div></div></div></div><div class="h-20 max-w-7xl mx-auto px-gutter flex items-center justify-between"><div class="flex items-center gap-space-md"><img alt="Waste Management Portal Emblem" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBms-fBXHu3hmhKWsrc6Kkuy-hvBJsP_oQeyhfZS5NMRHcf2PMNYwzsMB3A1AvSN1Mt6abUfV9ktrvZflZN4q15fcqNmEixFa2WuvuL5xZ3X_5iqsfZbtMnI09Gd8avjOktzsxOvJGIQHrTXb5NAnFYztYwfA7gyQdZrSsF-avH3RaypByDI7i1k10QRKsRmhA_VMBHIQjGCSbrMDOrFqOU4d80G5z5rCMO12B9pDnkfd9WBjoMn_qD"/><div class="flex flex-col"><span class="font-title-md text-title-md text-primary tracking-tight font-bold">Swachh Bharat</span><span class="font-label-sm text-label-sm text-on-surface-variant">Integrated Waste Management System</span></div></div><nav class="hidden xl:flex items-center gap-space-md" data-active-classes="text-primary font-semibold"><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="home" href="#">Home</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="report-waste" href="#">Report Waste</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="pickup-request" href="#">Pickup Request</a><a aria-current="page" class="transition-colors text-primary font-semibold" data-path="track-complaint" href="#">Track Complaint</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="awareness-guide" href="#">Awareness Guide</a><a class="font-body-md text-body-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">Admin Dashboard</a></nav><div class="flex items-center gap-space-md"><a class="hidden sm:inline-flex items-center justify-center px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-colors shadow-[0_1px_3px_rgba(15,41,66,0.05)]" data-path="citizen-login" href="#">Citizen Login / Register</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface flex-1"><div class="flex flex-col w-full">
+<!-- Subtle Civic Ambient Light & Top Banner -->
+<section class="relative bg-surface-canvas overflow-hidden py-space-lg">
+<div class="max-w-7xl mx-auto px-gutter flex flex-col gap-space-md">
+<!-- Breadcrumb and National Tracking Badge -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">domain</span>
+<span>Citizen Service Center</span>
+<span class="text-secondary-fixed-dim">/</span>
+<span class="text-on-surface font-bold">Complaint Status Tracking (Live)</span>
+</div>
+<div class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-status-resolved-soft text-status-resolved font-label-sm text-label-sm">
+<span class="w-2 h-2 rounded-full bg-status-resolved animate-ping"></span>
+<span>Swachh Nagar Real-Time SLA Monitor Active</span>
+</div>
+</div>
+<!-- Page Main Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs max-w-3xl">
+<h1 class="font-headline-xl text-headline-xl text-civic-navy-dark tracking-tight">
+            Track Grievance &amp; Resolution Timeline
+</h1>
+<p class="font-body-lg text-body-lg text-secondary">
+            Monitor the live status, assigned sanitation team, GPS vehicle telemetry, and geo-tagged resolution proof in real-time under Swachh Bharat Mission (Urban).
+          </p>
+</div>
+<!-- Quick Emergency Escalation Pill Button -->
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container text-civic-navy-dark font-label-md text-label-md shadow-sm transition-all" href="#escalation-box">
+<span class="material-symbols-outlined text-alert-amber text-[18px]">priority_high</span>
+<span>Escalate SLA</span>
+</a>
+</div>
+<!-- Ticket Search & Switcher Bar -->
+<div class="mt-space-sm bg-surface-card rounded-xl p-space-md shadow-sm">
+<form class="grid grid-cols-1 md:grid-cols-12 gap-space-sm items-center" onsubmit="event.preventDefault(); alert('Updating ticket details...');">
+<div class="md:col-span-8 lg:col-span-9 flex items-center bg-surface-canvas rounded-lg px-space-md py-space-xs">
+<span class="material-symbols-outlined text-on-surface-variant mr-space-xs text-[20px]">search</span>
+<input class="w-full bg-transparent font-title-md text-title-md text-civic-navy-dark font-semibold focus:outline-none placeholder:text-secondary-fixed-dim" id="ticketInput" placeholder="Enter Complaint Number or Mobile Number (e.g. SBM-2026-XXXX or Mobile)" type="text" value="#SBM-2026-9812"/>
+<span class="hidden sm:inline-block px-space-xs py-0.5 rounded bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+              Ward 28
+            </span>
+</div>
+<div class="md:col-span-4 lg:col-span-3 flex gap-space-xs">
+<button class="w-full h-11 inline-flex items-center justify-center gap-space-xs rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-lg text-label-lg transition-transform active:scale-[0.98]" type="submit">
+<span class="material-symbols-outlined text-[18px]">troubleshoot</span>
+<span>Track Grievance</span>
+</button>
+</div>
+</form>
+</div>
+<!-- Active Ticket Overview Summary Card -->
+<div class="bg-civic-navy-dark text-inverse-on-surface rounded-xl p-space-lg shadow-md relative overflow-hidden">
+<!-- Background subtle crest silhouette -->
+<div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]">recycling</span>
+</div>
+<div class="relative z-10 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center gap-space-sm">
+<span class="font-label-lg text-label-lg bg-surface-card/15 px-space-sm py-0.5 rounded font-mono text-primary-fixed">
+                #SBM-2026-9812
+              </span>
+<span class="inline-flex items-center gap-space-xs px-space-sm py-0.5 rounded-full bg-status-progress-soft text-status-progress font-label-md text-label-md">
+<span class="w-1.5 h-1.5 rounded-full bg-status-progress"></span>
+                In Progress
+              </span>
+<span class="px-space-sm py-0.5 rounded-full bg-alert-amber-soft text-alert-amber font-label-sm text-label-sm">
+                High Severity
+              </span>
+</div>
+<h2 class="font-title-lg text-title-lg text-surface-card mt-space-xs">
+              Overflowing Public Bin &amp; Garbage Spillover near Community Park
+            </h2>
+<div class="flex flex-wrap items-center gap-space-md text-secondary-fixed-dim font-body-sm text-body-sm">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary-fixed">location_on</span>
+                Sector 14, Main Avenue, Urban Ward 28, New Delhi
+              </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+                Logged: Today 08:15 AM
+              </span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-segregation-dry">category</span>
+                Waste Category: Mixed Municipal Solid Waste
+              </span>
+</div>
+</div>
+<!-- SLA Clock Module -->
+<div class="bg-inverse-surface/80 rounded-lg p-space-md flex items-center gap-space-md w-full lg:w-auto">
+<div class="w-12 h-12 rounded-full bg-status-progress-soft flex items-center justify-center text-status-progress">
+<span class="material-symbols-outlined text-[26px]">timer</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim">Citizen Service Guarantee (SLA Deadline)</span>
+<span class="font-headline-md text-headline-md text-surface-card">Today, 12:30 PM</span>
+<span class="font-label-sm text-label-sm text-primary-fixed flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> 
+                Within SLA (01 hr 45 min remaining)
+              </span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Multi-Column Content Workspace -->
+<section class="max-w-7xl mx-auto px-gutter py-space-lg w-full">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg">
+<!-- Left 7 Columns: Step-by-Step Resolution Stepper & Photographic Evidence -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- 4-Stage Resolution Stepper Card -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-lg">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">timeline</span>
+<h3 class="font-title-lg text-title-lg text-civic-navy-dark">
+                Resolution Workflow Timeline
+              </h3>
+</div>
+<span class="font-label-md text-label-md px-space-sm py-0.5 rounded bg-surface-container text-on-surface">
+              Step 3/4 Active
+            </span>
+</div>
+<!-- Stepper Track -->
+<div class="relative flex flex-col gap-space-lg pl-3">
+<!-- Connecting Vertical Lines -->
+<div class="absolute left-[23px] top-6 bottom-6 w-0.5 bg-surface-border"></div>
+<!-- Stage 1: Completed -->
+<div class="relative flex items-start gap-space-md">
+<div class="relative z-10 w-8 h-8 rounded-full bg-status-resolved text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-1">
+<span class="font-title-md text-title-md text-status-resolved font-bold">1. Complaint Logged</span>
+<span class="font-label-sm text-label-sm text-secondary">08:15 AM • 12 Oct</span>
+</div>
+<p class="font-body-md text-body-md text-civic-navy-dark">
+                  Grievance submitted by citizen with photographic evidence and GPS location. AI geo-tagging validation completed.
+                </p>
+<div class="flex items-center gap-space-sm mt-space-xs font-label-sm text-label-sm text-secondary">
+<span class="inline-flex items-center gap-1 bg-surface-card px-space-xs py-0.5 rounded text-primary font-medium">
+<span class="material-symbols-outlined text-[14px]">smart_toy</span> AI Vision Scan: 96% Bin Overflow
+                  </span>
+<span>IP/Geo Verified: Lat 28.5355, Long 77.3910</span>
+</div>
+</div>
+</div>
+<!-- Stage 2: Completed -->
+<div class="relative flex items-start gap-space-md">
+<div class="relative z-10 w-8 h-8 rounded-full bg-status-resolved text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</div>
+<div class="flex-1 bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-1">
+<span class="font-title-md text-title-md text-status-resolved font-bold">2. Inspected &amp; Assigned by Ward Inspector</span>
+<span class="font-label-sm text-label-sm text-secondary">08:42 AM • 12 Oct</span>
+</div>
+<p class="font-body-md text-body-md text-civic-navy-dark">
+                  Confirmed by Ward 28 Chief Sanitary Inspector Rajesh Kumar. Quick action sanitation unit dispatched.
+                </p>
+<div class="flex items-center gap-space-md mt-space-xs font-label-sm text-label-sm text-on-surface-variant">
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-primary">badge</span>
+                    Inspector: Rajesh Kumar (Emp #INSP-2804)
+                  </span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-segregation-dry">call</span>
+                    +91 9811X XXXXX
+                  </span>
+</div>
+</div>
+</div>
+<!-- Stage 3: Current Active Stage -->
+<div class="relative flex items-start gap-space-md">
+<div class="relative z-10 w-8 h-8 rounded-full bg-status-progress text-on-primary flex items-center justify-center ring-4 ring-status-progress-soft shadow-md animate-pulse">
+<span class="material-symbols-outlined text-[18px]">local_shipping</span>
+</div>
+<div class="flex-1 bg-status-progress-soft/40 rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-1">
+<div class="flex items-center gap-space-xs">
+<span class="font-title-md text-title-md text-status-progress font-bold">3. Sanitation Crew &amp; Vehicle Dispatched</span>
+<span class="px-space-xs py-0.5 rounded bg-status-progress text-on-primary font-label-sm text-label-sm uppercase tracking-wider">Current Status</span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">09:10 AM • 12 Oct</span>
+</div>
+<p class="font-body-md text-body-md text-civic-navy-dark">
+                  Hydraulic Compactor Vehicle (DL-04-E-9042) en-route with a 3-member sanitation crew. GPS telemetry active.
+                </p>
+<!-- Mini Progress info bar inside active step -->
+<div class="mt-space-xs bg-surface-card rounded p-space-sm flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span class="text-on-surface font-semibold">Estimated Arrival (ETA)</span>
+<span class="text-status-progress font-bold">Expected in 12 minutes (1.2 KM away)</span>
+</div>
+<div class="w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-status-progress h-1.5 rounded-full" style="width: 72%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Stage 4: Pending Resolution -->
+<div class="relative flex items-start gap-space-md opacity-75">
+<div class="relative z-10 w-8 h-8 rounded-full bg-surface-container text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+</div>
+<div class="flex-1 bg-surface-container rounded-lg p-space-md flex flex-col gap-space-xs">
+<div class="flex flex-wrap items-center justify-between gap-1">
+<span class="font-title-md text-title-md text-on-surface-variant font-semibold">4. Cleanup Completed &amp; Photo Verified</span>
+<span class="font-label-sm text-label-sm text-secondary">Estimated Time: 10:45 AM</span>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+                  Upon cleanup, the crew will upload geo-stamped photo evidence and the citizen will provide satisfaction confirmation (OTP/Rating).
+                </p>
+</div>
+</div>
+</div>
+</div>
+<!-- Before & After Photographic Verification Section -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[22px]">compare</span>
+<h3 class="font-title-lg text-title-lg text-civic-navy-dark">
+                Before &amp; After Resolution Proof
+              </h3>
+</div>
+<span class="font-label-sm text-label-sm text-secondary">Tamper-Proof Audit</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<!-- Before Card -->
+<div class="flex flex-col rounded-lg bg-surface-container-low overflow-hidden">
+<div class="relative aspect-video w-full bg-surface-container">
+<img alt="Complaint Before Cleanup Photo" class="w-full h-full object-cover" data-alt="Photographic evidence of overflowing municipal waste bin in a busy urban residential neighborhood in India, with scattered plastic bags, organic waste, dry cartons around a blue public dumpster, bright daylight capture with official timestamp watermark in green and white tone." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADdUw6ZLKowCGVxMj0mLFHf1vjVq5V6M_dXw5gL0rGIn5WY1o2b8HDcqURN0-Qk22pqprSr822ZLDstKNpk9RwtYYnu4i7FEgAjTTiRoPgy0FZnsmwFMOG-bLzM6rXX_9rag_SMd3NVtr_FEkDT-VPc7IDZGFRU9xopnFlvLwvecJoRnLPA_Frh-56EfdwPSn4--LfTPklLE5RbBKE2k8PFHifwb5bavxmYefXXk3SehG55pPOBM-r"/>
+<span class="absolute top-2 left-2 bg-status-critical text-on-error font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold uppercase tracking-wider">
+                  Before Cleanup
+                </span>
+<span class="absolute bottom-2 left-2 bg-civic-navy-dark/80 text-inverse-on-surface font-label-sm text-label-sm px-space-xs py-0.5 rounded backdrop-blur-sm">
+                  12 Oct 2026, 08:14:22 AM
+                </span>
+</div>
+<div class="p-space-sm flex flex-col gap-0.5 font-body-sm text-body-sm">
+<span class="font-semibold text-civic-navy-dark">Uploaded By: Citizen Report</span>
+<span class="text-secondary text-[11px]">GPS Coords: 28.5355° N, 77.3910° E • Ward 28</span>
+</div>
+</div>
+<!-- After Placeholder Card -->
+<div class="flex flex-col rounded-lg bg-surface-container-low overflow-hidden">
+<div class="relative aspect-video w-full bg-surface-container flex flex-col items-center justify-center p-space-md text-center">
+<div class="w-12 h-12 rounded-full bg-surface-card flex items-center justify-center text-status-progress mb-space-xs shadow-sm">
+<span class="material-symbols-outlined text-[24px] animate-bounce">photo_camera</span>
+</div>
+<span class="font-label-md text-label-md text-civic-navy-dark">Cleanup in Progress</span>
+<span class="font-body-sm text-body-sm text-secondary mt-0.5 max-w-xs">
+                  Sanitation crew will upload live geo-stamped photo upon completion.
+                </span>
+<span class="absolute top-2 left-2 bg-status-progress text-on-primary font-label-sm text-label-sm px-space-xs py-0.5 rounded font-bold uppercase tracking-wider">
+                  After Cleanup
+                </span>
+</div>
+<div class="p-space-sm flex flex-col gap-0.5 font-body-sm text-body-sm">
+<span class="font-semibold text-on-surface-variant">Verification Status: Pending Worker Upload</span>
+<span class="text-secondary text-[11px]">Automated geo-stamp photo validation</span>
+</div>
+</div>
+</div>
+<!-- Anti-Corruption / Integrity Badge -->
+<div class="p-space-sm rounded-lg bg-surface-canvas flex items-center gap-space-sm text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-primary text-[20px]">verified_user</span>
+<span>
+              All photographic evidence is encrypted and timestamp-protected as per National Urban Data Model (NUDM) standards.
+            </span>
+</div>
+</div>
+<!-- Citizen Feedback & Rating Module (Interactive) -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md" id="rating-section">
+<div class="flex flex-col gap-0.5">
+<h3 class="font-title-lg text-title-lg text-civic-navy-dark">
+              Citizen Feedback &amp; Rating
+            </h3>
+<p class="font-body-sm text-body-sm text-secondary">
+              Evaluate your experience once cleanup is completed to help your ward maintain top ranking in Swachh Survekshan.
+            </p>
+</div>
+<!-- Star Rating Selector -->
+<div class="bg-surface-canvas rounded-lg p-space-md flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-civic-navy-dark font-bold">Service Rating</span>
+<div class="flex items-center gap-1 text-alert-amber" id="starContainer">
+<button class="star-btn transition-transform hover:scale-125 focus:outline-none" onclick="rateTicket(1)" type="button">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="star-btn transition-transform hover:scale-125 focus:outline-none" onclick="rateTicket(2)" type="button">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="star-btn transition-transform hover:scale-125 focus:outline-none" onclick="rateTicket(3)" type="button">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="star-btn transition-transform hover:scale-125 focus:outline-none" onclick="rateTicket(4)" type="button">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+<button class="star-btn transition-transform hover:scale-125 focus:outline-none" onclick="rateTicket(5)" type="button">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 0;">star</span>
+</button>
+<span class="ml-space-xs font-title-md text-title-md text-civic-navy-dark font-bold" id="ratingScoreText">4.0 / 5</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-1 rounded bg-status-resolved-soft text-status-resolved font-label-md text-label-md font-bold">
+                Satisfactory Service
+              </span>
+</div>
+</div>
+<!-- Feedback text field -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-sm text-label-sm text-secondary font-semibold" for="feedbackNotes">
+              Optional Remarks
+            </label>
+<textarea class="w-full bg-surface-canvas rounded-lg p-space-sm font-body-sm text-body-sm text-on-surface focus:outline-none placeholder:text-secondary-fixed-dim" id="feedbackNotes" placeholder="Was the waste completely cleared? Was disinfectant sprayed? (Share details...)" rows="2"></textarea>
+</div>
+<div class="flex flex-wrap items-center justify-between gap-space-sm">
+<button class="px-space-lg py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-sm transition-all" onclick="alert('Feedback submitted successfully. Thank you!');" type="button">
+              Submit Feedback
+            </button>
+<span class="font-body-sm text-body-sm text-secondary">
+              OTP verification will be issued upon cleanup completion
+            </span>
+</div>
+</div>
+</div>
+<!-- Right 5 Columns: Live Fleet GPS Map & Vehicle Telemetry -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Live Vehicle Telemetry & Map Card -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[20px]">near_me</span>
+                Live Vehicle GPS Tracking
+              </span>
+<span class="font-body-sm text-body-sm text-secondary">Ward 28 Field Navigation Node</span>
+</div>
+<span class="flex items-center gap-1 px-space-xs py-0.5 rounded bg-status-resolved-soft text-status-resolved font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-status-resolved animate-ping"></span>
+              GPS Live
+            </span>
+</div>
+<!-- Dynamic Simulated Map Display -->
+<div class="relative w-full h-72 rounded-lg overflow-hidden bg-surface-container shadow-inner">
+<div class="w-full h-full bg-cover bg-center" data-location="Sector 14, Urban Ward 28, New Delhi, India" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDFDTN2TEeXBnVB1PXo3rL09AmW0YzpA-7X7k5YlGMHuswWyIk5lMNeFl_6TcyEDaF1kJf-UmL_ycxqNHySIikX_l-Ar7Fg6gHTFc2D8n16qgtPOiUVQglZn0b1B7u68mKSCriABd0uxibn4haUftyEbkvY_KnaE8o0d7Xjk3VnClL-Rt0MtZ-qRG4x7AJf1wgo29RPRFF9yEMEzVZLSdPdTS_ureA4L-7rLBsgiSdiTSCSVseh54jL')"></div>
+<!-- Overlay simulated GPS telemetry pin -->
+<div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-civic-navy-dark text-on-primary px-space-sm py-1 rounded-full shadow-lg flex items-center gap-space-xs pointer-events-none">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-fixed animate-pulse"></span>
+<span class="font-label-sm text-label-sm font-bold font-mono">DL-04-E-9042</span>
+<span class="text-secondary-fixed-dim text-[10px]">| 18 km/h</span>
+</div>
+<!-- Destination Target Indicator -->
+<div class="absolute bottom-6 right-8 bg-error text-on-error px-space-xs py-0.5 rounded font-label-sm text-label-sm flex items-center gap-1 shadow-md">
+<span class="material-symbols-outlined text-[14px]">flag</span>
+<span>Target (Bin #28)</span>
+</div>
+<!-- Map Controls overlay -->
+<div class="absolute bottom-2 left-2 flex gap-1">
+<button class="w-8 h-8 rounded bg-surface-card text-civic-navy-dark flex items-center justify-center shadow font-bold text-lg hover:bg-surface-container">+</button>
+<button class="w-8 h-8 rounded bg-surface-card text-civic-navy-dark flex items-center justify-center shadow font-bold text-lg hover:bg-surface-container">-</button>
+</div>
+</div>
+<!-- Vehicle and Crew Dossier -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between pb-space-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-primary font-bold text-lg">
+                  SP
+                </div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">Sunil Pal</span>
+<span class="font-label-sm text-label-sm text-secondary">Senior Sanitation Vehicle Driver • Ward Team 4</span>
+</div>
+</div>
+<a class="w-10 h-10 rounded-full bg-primary hover:bg-primary-container text-on-primary flex items-center justify-center shadow transition-transform active:scale-95" href="tel:1969" title="Call Field Lead">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+</div>
+<div class="grid grid-cols-2 gap-space-xs pt-space-xs">
+<div class="bg-surface-card p-space-xs rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Vehicle</span>
+<span class="font-label-md text-label-md text-civic-navy-dark">TATA 407 Compactor</span>
+</div>
+<div class="bg-surface-card p-space-xs rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Proximity</span>
+<span class="font-label-md text-label-md text-status-progress font-bold">1.2 KM away (ETA 12m)</span>
+</div>
+<div class="bg-surface-card p-space-xs rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Crew Size</span>
+<span class="font-label-md text-label-md text-civic-navy-dark">3 Helpers</span>
+</div>
+<div class="bg-surface-card p-space-xs rounded flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary">Route Plan</span>
+<span class="font-label-md text-label-md text-civic-navy-dark">Ghazipur Processing Plant (MRF 4)</span>
+</div>
+</div>
+</div>
+<!-- Direct Helpline Action -->
+<div class="flex items-center justify-between p-space-sm rounded-lg bg-surface-canvas">
+<div class="flex items-center gap-space-xs text-civic-navy-dark font-label-md text-label-md">
+<span class="material-symbols-outlined text-alert-amber text-[18px]">support_agent</span>
+<span>Direct Dispatch Hotline: 1969</span>
+</div>
+<button class="font-label-sm text-label-sm text-primary font-bold hover:underline" onclick="alert('Connecting to control room...');">
+              Direct Dispatch
+            </button>
+</div>
+</div>
+<!-- Municipal Ward Performance KPI Mini-Bento -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<h4 class="font-title-md text-title-md text-civic-navy-dark font-semibold">
+              Ward 28 Performance Metrics
+            </h4>
+<span class="font-label-sm text-label-sm text-primary font-bold">Rank #3 Citywide</span>
+</div>
+<div class="grid grid-cols-2 gap-space-sm">
+<div class="bg-surface-canvas p-space-md rounded-lg flex flex-col">
+<span class="font-stat-counter text-stat-counter text-primary font-extrabold">96.4%</span>
+<span class="font-label-sm text-label-sm text-secondary">24-Hour Resolution Rate</span>
+<span class="mt-1 font-label-sm text-label-sm text-status-resolved flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> +2.1% this week
+              </span>
+</div>
+<div class="bg-surface-canvas p-space-md rounded-lg flex flex-col">
+<span class="font-stat-counter text-stat-counter text-status-progress font-extrabold">2.4h</span>
+<span class="font-label-sm text-label-sm text-secondary">Average TAT</span>
+<span class="mt-1 font-label-sm text-label-sm text-status-progress flex items-center gap-0.5">
+<span class="material-symbols-outlined text-[14px]">speed</span> 35m faster than avg
+              </span>
+</div>
+</div>
+<!-- Ward Segregation Compliance Ring Display (SVG) -->
+<div class="bg-surface-container-low rounded-lg p-space-md flex items-center justify-between">
+<div class="flex flex-col gap-1">
+<span class="font-label-md text-label-md text-civic-navy-dark font-bold">Source Segregation Compliance</span>
+<p class="font-body-sm text-body-sm text-secondary">88% of households in Ward 28 actively separate wet and dry waste.</p>
+<div class="flex items-center gap-space-sm text-[11px] font-semibold mt-1">
+<span class="text-segregation-wet flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-segregation-wet"></span> Wet 62%</span>
+<span class="text-segregation-dry flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-segregation-dry"></span> Dry 38%</span>
+</div>
+</div>
+<!-- Mini Radial Chart SVG -->
+<div class="relative w-16 h-16 shrink-0 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<path class="text-surface-container stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-width="3.5"></path>
+<path class="text-primary stroke-current" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke-dasharray="88, 100" stroke-linecap="round" stroke-width="3.5"></path>
+</svg>
+<span class="absolute font-label-md text-label-md font-bold text-civic-navy-dark">88%</span>
+</div>
+</div>
+</div>
+<!-- Official Escalation Panel (For Delayed Resolution) -->
+<div class="bg-surface-card rounded-xl p-space-lg shadow-sm flex flex-col gap-space-sm" id="escalation-box">
+<div class="flex items-center gap-space-xs text-status-critical">
+<span class="material-symbols-outlined text-[20px]">warning</span>
+<h4 class="font-title-md text-title-md font-bold">SLA Escalation</h4>
+</div>
+<p class="font-body-sm text-body-sm text-secondary">
+            If waste collection is not completed by 12:30 PM, this ticket will automatically escalate to the Zonal Joint Commissioner (SBM).
+          </p>
+<div class="pt-space-xs flex gap-space-xs">
+<button class="w-full py-space-xs rounded-lg bg-surface-container-high hover:bg-status-critical-soft text-status-critical font-label-md text-label-md transition-colors" onclick="alert('Ticket SBM-2026-9812 has been escalated to the Zonal Sanitation Officer.');" type="button">
+              Request Early Escalation
+            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Awareness & Guideline Sticky Helper Strip -->
+<section class="max-w-7xl mx-auto px-gutter pb-space-xl w-full">
+<div class="bg-gradient-to-r from-surface-card via-surface-canvas to-surface-card rounded-xl p-space-md shadow-sm flex flex-col md:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed-dim text-on-primary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">delete_sweep</span>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-civic-navy-dark font-bold">Did you know? (Segregation Tip)</span>
+<p class="font-body-sm text-body-sm text-secondary">
+            Keeping wet and dry waste separated reduces landfill pollution by 90%.
+          </p>
+</div>
+</div>
+<a class="shrink-0 px-space-md py-space-sm rounded-lg bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md transition-all" data-path="awareness-guide" href="#">
+        View Guide
+      </a>
+</div>
+</section>
+<!-- Inline Client-side Interactivity Script -->
+<script>
+    function rateTicket(rating) {
+      const container = document.getElementById('starContainer');
+      const text = document.getElementById('ratingScoreText');
+      if (!container || !text) return;
+      
+      const buttons = container.querySelectorAll('.star-btn');
+      buttons.forEach((btn, index) => {
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (index < rating) {
+          icon.style.fontVariationSettings = "'FILL' 1";
+        } else {
+          icon.style.fontVariationSettings = "'FILL' 0";
+        }
+      });
+      text.textContent = rating + ".0 / 5";
+    }
+  </script>
+</div></main><footer class="w-full bg-surface-container-low shadow-[0_1px_8px_rgba(0,0,0,0.04)] mt-auto"><div class="max-w-7xl mx-auto px-gutter py-space-xl grid grid-cols-1 md:grid-cols-4 gap-space-lg"><div class="flex flex-col gap-space-sm"><div class="flex items-center gap-space-sm"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">recycling</span></div><span class="font-headline-md text-headline-md text-primary font-bold">Swachh Bharat Mission</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">Ministry of Housing and Urban Affairs, Government of India. Empowering citizens and urban local bodies for zero-landfill smart cities.</p><div class="flex items-center gap-space-xs font-label-md text-label-md text-primary"><span class="material-symbols-outlined text-[18px]">call</span><span>National Helpline: 1969</span></div></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">Citizen Services</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="report-waste" href="#">Lodge Waste Complaint</a></li><li><a class="hover:text-on-surface transition-colors" data-path="pickup-request" href="#">Bulk &amp; E-Waste Pickup</a></li><li><a class="hover:text-on-surface transition-colors" data-path="track-complaint" href="#">Live Status Tracking</a></li><li><a class="hover:text-on-surface transition-colors" data-path="awareness-guide" href="#">Waste Segregation Guide</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">ULB &amp; Admin</span><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-on-surface-variant"><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">Ward Management</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">Crew Allocation</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">Sanitation Fleet GPS</a></li><li><a class="hover:text-on-surface transition-colors" data-path="admin-dashboard" href="#">Swachh Survekshan</a></li></ul></div><div class="flex flex-col gap-space-sm"><span class="font-title-md text-title-md text-on-surface font-semibold">Contact &amp; Support</span><p class="font-body-sm text-body-sm text-on-surface-variant">Swachhata Directorate, Nirman Bhawan, New Delhi - 110011</p><p class="font-body-sm text-body-sm text-on-surface-variant">Email: support-swachhbharat@gov.in</p><div class="flex items-center gap-space-xs font-label-sm text-label-sm text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-status-resolved">verified</span><span>Gov.in Certified Municipal Service Node</span></div></div></div><div class="bg-surface-container-high py-space-md"><div class="max-w-7xl mx-auto px-gutter flex flex-col sm:flex-row items-center justify-between gap-space-sm text-center sm:text-left"><p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Swachh Bharat Mission (Urban), Government of India. All rights reserved.</p><div class="flex items-center gap-space-md font-body-sm text-body-sm text-on-surface-variant"><a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a><a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a><a class="hover:text-on-surface transition-colors" href="#">Hyperlinking Policy</a><a class="hover:text-on-surface transition-colors" href="#">Accessibility Statement</a></div></div></div></footer></body></html>
